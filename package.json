@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "frontend": "cd ./frontend && yarn start",
+    "backend": "cd ./backend && yarn server"
+  },
+  "name": "Final_project_wp1111",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/AlanHsiao-psy/Final_project_wp1111.git",
+  "author": "Chia-Chi-Shen <musicsusanshen@gmail.com>",
+  "license": "MIT"
+}
