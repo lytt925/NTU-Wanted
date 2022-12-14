@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = ['聯絡我們'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 // var postPage = false;
 
@@ -127,6 +127,7 @@ function ResponsiveAppBar() {
                             <Button
                                 key={page}
                                 onClick={handleCloseNavMenu}
+                                variant="outlined"
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
                                 {page}
@@ -134,18 +135,19 @@ function ResponsiveAppBar() {
                         ))}
                     </Box>
 
-                    <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
+                    <Box sx={{ mr: 3,flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
                         <Tooltip title="Post experiments">
                             <Button
                                 key='Post'
+                                variant="contained"
                                 onClick={navigateToPost}
+                                color="success"
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
-                                Post
+                                + 新實驗
                             </Button>
                         </Tooltip>
                     </Box>
-
                     
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">

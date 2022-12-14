@@ -39,7 +39,7 @@ const InfoForm = () => {
             <Form.Item name={['user', 'age']} label="受試者年齡" rules={[{ type: 'number', min: 0, max: 99 }]}>
                 <InputNumber />
             </Form.Item>
-            <Form.Item name={['user', 'introduction']} label="其他條件" >
+            <Form.Item name={['user', 'others']} label="其他條件" >
                 <Input.TextArea />
             </Form.Item>
         </div>
