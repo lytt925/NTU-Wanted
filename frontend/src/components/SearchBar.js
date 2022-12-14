@@ -16,7 +16,7 @@ const SearchBar = () => {
     return (
         <Box
             component="form"
-            sx={{ mx: 'auto', my: '20px', width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            sx={{ mx: 'auto', my: '20px', width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'sticky', top: '68px', left: 0 }}
             noValidate
             autoComplete="on"
         >

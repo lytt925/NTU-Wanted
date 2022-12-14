@@ -4,16 +4,24 @@ import Box from '@mui/material/Box';
 import { useState, useEffect } from 'react';
 import TaskInfo from './Info';
 
-const BoxCss = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-}
 
 export default function ResultList() {
+    const BoxCss = {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'sticky',
+        top: '150px',
+        width: '100vw',
+    }
     return (
         <Box sx={BoxCss}>
+            <TaskInfo />
+            <TaskInfo />
+            <TaskInfo />
+            <TaskInfo />
+            <TaskInfo />
             <TaskInfo />
         </Box>
     )

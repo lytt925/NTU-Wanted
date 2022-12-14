@@ -21,8 +21,8 @@ export default function CheckboxesGroup() {
         });
     };
 
-    const { gilad, jason, antoine } = state;
-    const error = [gilad, jason, antoine].filter((v) => v).length !== 2;
+    const { 問卷, 實驗, 訪談 } = state;
+    const error = [問卷, 實驗, 訪談].filter((v) => v).length !== 2;
 
     return (
         <FormControl sx={{ m: '10px', display: 'flex', 'flexDirection': 'row' }} component="fieldset" variant="standard">
@@ -30,19 +30,19 @@ export default function CheckboxesGroup() {
             <FormGroup row>
                 <FormControlLabel
                     control={
-                        <Checkbox checked={gilad} onChange={handleChange} name="gilad" />
+                        <Checkbox checked={問卷} onChange={handleChange} name="gilad" />
                     }
                     label="問卷"
                 />
                 <FormControlLabel
                     control={
-                        <Checkbox checked={jason} onChange={handleChange} name="jason" />
+                        <Checkbox checked={實驗} onChange={handleChange} name="jason" />
                     }
                     label="實驗"
                 />
                 <FormControlLabel
                     control={
-                        <Checkbox checked={antoine} onChange={handleChange} name="antoine" />
+                        <Checkbox checked={訪談} onChange={handleChange} name="antoine" />
                     }
                     label="訪談"
                 />

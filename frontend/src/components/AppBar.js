@@ -37,7 +37,7 @@ function ResponsiveAppBar() {
         setAnchorElUser(null);
     };
 
-    
+
     const navigate = useNavigate();
     const navigateToPost = () => {
         navigate('/newpost');
@@ -45,7 +45,7 @@ function ResponsiveAppBar() {
     };
 
     return (
-        <AppBar position="static" minheight="100px">
+        <AppBar position="sticky">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -135,7 +135,7 @@ function ResponsiveAppBar() {
                         ))}
                     </Box>
 
-                    <Box sx={{ mr: 3,flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
+                    <Box sx={{ mr: 3, flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
                         <Tooltip title="Post experiments">
                             <Button
                                 key='Post'
@@ -148,7 +148,7 @@ function ResponsiveAppBar() {
                             </Button>
                         </Tooltip>
                     </Box>
-                    
+
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -157,7 +157,6 @@ function ResponsiveAppBar() {
                         </Tooltip>
                         <Menu
                             sx={{ mt: '45px' }}
-                            id="menu-appbar"
                             anchorEl={anchorElUser}
                             anchorOrigin={{
                                 vertical: 'top',

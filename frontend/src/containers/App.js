@@ -17,9 +17,12 @@ const BoxCss = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingBottom: '20px',
+    position: 'sticky', top: '68px', left: 0,
+    backgroundColor: 'white',
+    zIndex: 3
     // borderBottom: '2px solid lightgrey'
 }
+
 
 const Wrapper = styled(Container)({
     display: 'flex',
@@ -44,16 +47,17 @@ function App() {
         <Router>
             <ResponsiveAppBar />
             <Routes>
-            <Route path="/" element={<Wrapper className='App'>
-                <Box sx={BoxCss} boxShadow={1}>
-                    <SearchBar />
-                    {/* <CheckboxesGroup /> */}
+                <Route path="/" element={<Wrapper className='App'>
+                    <Box sx={BoxCss}>
+                        <SearchBar />
+                        {/* <CheckboxesGroup /> */}
+                    </Box>
                     <CheckTable />
-                </Box>
-                <ResultList />
-            </Wrapper >} />
-            <Route path="/newpost" element={<InfoForm />} />
-            
+                    <Box sx={{ height: '1px', width: '100vw', borderTop: '1px solid lightgrey', position: 'sticky', top: '176px' }}></Box>
+                    <ResultList />
+                </Wrapper >} />
+                <Route path="/newpost" element={<InfoForm />} />
+
             </Routes>
         </Router>
     );

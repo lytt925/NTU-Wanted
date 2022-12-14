@@ -47,10 +47,8 @@ export default function MultipleSelect({ label, tasks }) {
     return (
         <div>
             <FormControl variant='standard' sx={{ m: 1, width: 185 }}>
-                <InputLabel id="demo-multiple-name-label">{label}</InputLabel>
+                <InputLabel >{label}</InputLabel>
                 <Select
-                    labelId="demo-multiple-name-label"
-                    id="demo-multiple-name"
                     multiple
                     value={taskName}
                     onChange={handleChange}
