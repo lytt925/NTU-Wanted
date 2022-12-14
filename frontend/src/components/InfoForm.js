@@ -1,6 +1,8 @@
 ﻿import React from 'react';
 import { Button, Form, Input, InputNumber, DatePicker } from 'antd';
 import "./infoForm.css";
+import { useNavigate } from 'react-router-dom';
+
 const layout = {
     labelCol: { span: 3, offset: 4 },
     wrapperCol: { span: 14, offset: 1 },
@@ -13,13 +15,18 @@ const validateMessages = {
     },
 };
 
-const onFinish = () => {
-    console.log("submit")
-}
+const InfoForm = () => {
 
-const InfoForm = () => (
+    const navigate = useNavigate();
+    const navigateToHome = () => {
+        navigate('/');
+        console.log("submit")
 
-    <Form {...layout} name="infoForm" onFinish={onFinish} validateMessages={validateMessages}>
+    };
+
+    return (
+
+    <Form {...layout} name="infoForm" onFinish={navigateToHome} validateMessages={validateMessages}>
         <h3>基本資料：</h3>
         <Form.Item name={['user', 'name']} label="單位名稱" rules={[{ required: true }]}>
             <Input />
@@ -54,7 +61,7 @@ const InfoForm = () => (
             </Button>
         </Form.Item>
     </Form>
-)
+)}
 
 
 export default InfoForm;

@@ -1,4 +1,4 @@
-import AppBar from '../components/AppBar'
+import ResponsiveAppBar from '../components/AppBar'
 import SearchBar from '../components/SearchBar';
 import CheckboxesGroup from '../components/CheckBox'
 import CheckTable from '../components/CheckTable'
@@ -7,6 +7,10 @@ import Box from '@mui/material/Box';
 import Table from '../components/DataTable';
 import ResultList from '../components/ResultsList'
 import { Container } from '@mui/material';
+import { useNavigate, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import InfoForm from '../components/InfoForm';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 const BoxCss = {
     display: 'flex',
@@ -25,18 +29,33 @@ const Wrapper = styled(Container)({
 })
 
 function App() {
+    // const navigate = useNavigate();
+    // const Topost = () => {
+    //     navigate('/newpost')
+    // }
+    // console.log(postPage);
+    // useEffect(() => {
+    //     if (postPage === true) {
+    //         Topost();
+    //     }
+    // }, [postPage])
+
     return (
-        <>
-            <AppBar />
-            <Wrapper className='App'>
+        <Router>
+            <ResponsiveAppBar />
+            <Routes>
+            <Route path="/" element={<Wrapper className='App'>
                 <Box sx={BoxCss} boxShadow={1}>
                     <SearchBar />
                     {/* <CheckboxesGroup /> */}
                     <CheckTable />
                 </Box>
                 <ResultList />
-            </Wrapper >
-        </>
+            </Wrapper >} />
+            <Route path="/newpost" element={<InfoForm />} />
+            
+            </Routes>
+        </Router>
     );
 }
 
