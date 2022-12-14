@@ -4,7 +4,6 @@ import CheckboxesGroup from '../components/CheckBox'
 import CheckTable from '../components/CheckTable'
 import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box';
-import Table from '../components/DataTable';
 import ResultList from '../components/ResultsList'
 import { Container } from '@mui/material';
 import { useNavigate, useLocation } from 'react-router-dom';
