@@ -25,7 +25,7 @@ export default function BasicTable() {
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                         <TableCell component="th" scope="row">
-                            報酬類型
+                            報酬形式：
                         </TableCell>
                         <TableCell align='left'>
                             {tagRows.map((tag) => (
@@ -43,7 +43,7 @@ export default function BasicTable() {
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                         <TableCell component="th" scope="row">
-                            類型
+                            實驗類型：
                         </TableCell>
                         <TableCell align='left'>
                             {typeRows.map((type) => (
