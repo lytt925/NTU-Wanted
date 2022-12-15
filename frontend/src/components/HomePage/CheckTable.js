@@ -34,9 +34,7 @@ const HeaderTableCell = styled(TableCell)({
 })
 
 export default function BasicTable() {
-    const [dateFrom, setDateFrom] = useState([null, null])
-    const [dateTo, setDateTo] = useState([null, null])
-    const { tagSelected, setTagSelected, typeSelected, setTypeSelected, setTimeRange, } = useInfo()
+    const { tagSelected, setTagSelected, typeSelected, setTypeSelected, timeRange, setTimeRange, } = useInfo()
 
     const typeRows = ['實驗', '問卷', '訪談'];
     const tagRows = ['普心加分', '現金', '食物']
@@ -83,13 +81,18 @@ export default function BasicTable() {
     }
 
     const DatePickerRange = () => {
-        const DatePick = ({ date, setDate }) => (
+        const DatePick = ({ date, from, to }) => (
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
                     label={date ? '' : '期間'}
                     value={date}
                     onChange={(newDate) => {
-                        setDate(newDate);
+                        const newTimeRange = timeRange.slice()
+                        const YDMList = [newDate.$y, newDate.$M, newDate.$D]
+                        if (from) newTimeRange[0] = YDMList.join('/')
+                        else if (to) newTimeRange[1] = YDMList.join('/')
+                        console.log(newTimeRange)
+                        setTimeRange(newTimeRange);
                     }}
                     views={["year", "month", "day"]}
                     inputFormat="YYYY/MM/DD"
@@ -116,9 +119,9 @@ export default function BasicTable() {
                 </HeaderTableCell>
                 <TableCell align='left' sx={{ display: 'flex', alignItems: 'center', fontSize: '1em' }}>
                     自
-                    <DatePick date={dateFrom} setDate={setDateFrom} />
+                    <DatePick date={timeRange[0]} from={true} />
                     至
-                    <DatePick date={dateTo} setDate={setDateTo} />
+                    <DatePick date={timeRange[1]} to={true} />
                 </TableCell>
             </TableRow >
         )
