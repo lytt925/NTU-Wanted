@@ -12,8 +12,8 @@ export default function ResultList() {
         alignItems: 'center',
         position: 'sticky',
         top: '150px',
-        width: '42.1vw',
-        minWidth: '600px',
+        width: '69.5%',
+        minWidth: '450px',
         '&, .TaskInfo:first-of-type': { marginTop: "10px" },
     }
     return (

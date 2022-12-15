@@ -6,7 +6,6 @@ import ResultList from './ResultsList'
 import Box from '@mui/material/Box';
 import { Container } from '@mui/material';
 import React, { useState, useEffect } from 'react'
-import { width } from '@mui/system';
 
 const BoxCss = {
     display: 'flex',
@@ -27,12 +26,9 @@ const Wrapper = styled(Container)({
 
 const HomePage = () => (
     <Wrapper className='App'>
-        <Box sx={BoxCss}>
-            <SearchBar />
-            {/* <CheckboxesGroup /> */}
-        </Box>
+        <SearchBar />
         <CheckTable />
-        <Box sx={{ height: '1px', width: '100vw', borderTop: '1px solid lightgrey', position: 'sticky', top: '176px' }}></Box>
+        <Box sx={{ height: '1px', width: '100vw', borderTop: '1px solid lightgrey', position: 'sticky', top: '148px' }}></Box>
         <ResultList />
     </Wrapper >
 )

@@ -25,7 +25,8 @@ const BoxCss = {
     justifyContent: 'center',
     alignItems: 'center',
     paddingBottom: '20px',
-    width: '100vw',
+    width: '69.5%',
+    minWidth: '600px',
     zIndex: 1
 }
 

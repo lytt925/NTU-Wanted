@@ -13,13 +13,16 @@ const SearchInput = styled(TextField)`
 
 const searchBoxCss = {
     mx: 'auto',
-    my: '20px',
-    width: '100vw',
+    pb: '12px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     position: 'sticky',
-    top: '68px'
+    top: '68px',
+    backgroundColor: 'white',
+    zIndex: 3,
+    width: '69.5%',
+    minWidth: '600px',
 }
 
 
