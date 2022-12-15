@@ -23,7 +23,7 @@ const SearchBar = () => {
             autoComplete="on"
         >
             <SearchInput label="名稱" variant="standard" sx={{ width: 500 }} />
-            <MultipleSelect tasks={locations} label={"實驗地點"} />
+            <MultipleSelect tasks={locations} label={"地點"} />
             <Button sx={{ margin: "8px" }} variant="contained" size="large">搜尋</Button>
         </Box >
     );

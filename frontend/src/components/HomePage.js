@@ -6,13 +6,14 @@ import Box from '@mui/material/Box';
 import ResultList from '../components/ResultsList'
 import { Container } from '@mui/material';
 import React, { useState, useEffect } from 'react'
+import { width } from '@mui/system';
 
 const BoxCss = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'sticky', top: '68px', left: 0,
+    position: 'sticky', top: '68px', left: 0, // 68px is the height of the Appbar
     backgroundColor: 'white',
     zIndex: 3
 }
@@ -33,7 +34,7 @@ const HomePage = () => (
         <CheckTable />
         <Box sx={{ height: '1px', width: '100vw', borderTop: '1px solid lightgrey', position: 'sticky', top: '176px' }}></Box>
         <ResultList />
-    </Wrapper>
+    </Wrapper >
 )
 
 export default HomePage
