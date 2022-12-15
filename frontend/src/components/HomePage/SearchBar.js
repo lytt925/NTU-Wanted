@@ -4,9 +4,9 @@ import { styled } from '@mui/material/styles'
 import TextField from '@mui/material/TextField';
 import { Button } from "@mui/material";
 import MultipleSelect from "./MultiSelect";
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { useInfo } from "../../containers/hooks/useInfo";
+import LoadingButton from '@mui/lab/LoadingButton';
+import SendIcon from '@mui/icons-material/Send';
 
 const SearchInput = styled(TextField)`
   margin: 10px;
@@ -15,6 +15,10 @@ const SearchInput = styled(TextField)`
 const locations = ['校總區', '城中校區', '家裡'];
 
 const SearchBar = () => {
+    const { sendSearch, test, setTest } = useInfo()
+    const [loading, setLoading] = useState(false)
+    console.log(test)
+
     return (
         <Box
             component="form"
@@ -24,7 +28,16 @@ const SearchBar = () => {
         >
             <SearchInput label="名稱" variant="standard" sx={{ width: 500 }} />
             <MultipleSelect tasks={locations} label={"地點"} />
-            <Button sx={{ margin: "8px" }} variant="contained" size="large">搜尋</Button>
+            <LoadingButton
+                onClick={() => setTest(!test)}
+                endIcon={<SendIcon />}
+                loading={loading}
+                loadingPosition="end"
+                variant="contained"
+                sx={{ height: '43px', width: "90px", margin: '8px' }}
+            >
+                {test ? '搜尋' : 'ddd'}
+            </LoadingButton>
         </Box >
     );
 }

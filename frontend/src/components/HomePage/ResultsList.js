@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import { useState, useEffect } from 'react';
 import TaskInfo from './Info';
 
-
 export default function ResultList() {
     const BoxCss = {
         display: 'flex',
@@ -13,10 +12,14 @@ export default function ResultList() {
         alignItems: 'center',
         position: 'sticky',
         top: '150px',
-        width: '100vw',
+        width: '42.1vw',
+        minWidth: '600px',
+        '&, .TaskInfo:first-of-type': { marginTop: "10px" },
     }
     return (
         <Box sx={BoxCss}>
+            <TaskInfo />
+            <TaskInfo />
             <TaskInfo />
             <TaskInfo />
             <TaskInfo />

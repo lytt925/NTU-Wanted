@@ -1,9 +1,9 @@
-import ResponsiveAppBar from '../components/AppBar'
-import SearchBar from '../components/SearchBar';
-import CheckTable from '../components/CheckTable'
+import ResponsiveAppBar from './AppBar'
+import SearchBar from './SearchBar';
+import CheckTable from './CheckTable'
 import { styled } from '@mui/material/styles'
+import ResultList from './ResultsList'
 import Box from '@mui/material/Box';
-import ResultList from '../components/ResultsList'
 import { Container } from '@mui/material';
 import React, { useState, useEffect } from 'react'
 import { width } from '@mui/system';

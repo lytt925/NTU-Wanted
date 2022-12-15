@@ -1,9 +1,9 @@
-import ResponsiveAppBar from '../components/AppBar'
+import ResponsiveAppBar from '../components/HomePage/AppBar'
 import { useNavigate, useLocation } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
-import InfoForm from '../components/InfoForm';
+import InfoForm from '../components/CreatePost/InfoForm';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import HomePage from '../components/HomePage';
+import HomePage from '../components/HomePage/HomePage';
 
 function App() {
     // const navigate = useNavigate();

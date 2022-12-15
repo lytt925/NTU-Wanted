@@ -117,7 +117,7 @@ export default function BasicTable() {
 
     return (
         <Box sx={BoxCss}>
-            <TableContainer sx={{ maxWidth: 800 }} component={Paper} variant={'outlined'} square>
+            <TableContainer sx={{ maxWidth: '800px' }} component={Paper} variant={'outlined'} square>
                 <Table sx={{ maxWidth: '100%' }} size="small" aria-label="simple table">
                     <TableBody>
                         <DatePickerRange />
