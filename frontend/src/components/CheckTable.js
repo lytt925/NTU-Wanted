@@ -28,17 +28,22 @@ const BoxCss = {
     zIndex: 1
 }
 
+const HeaderTableCell = styled(TableCell)({
+    borderRight: '1px solid rgb(224,224,224)'
+})
+
 export default function BasicTable() {
     const [dateFrom, setDateFrom] = useState([null, null])
+    const [dateTo, setDateTo] = useState([null, null])
 
     const typeRows = ['實驗', '問卷', '訪談'];
     const tagRows = ['普心加分', '現金', '食物']
 
     const TagCheckButton = () => (
         <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-            <TableCell component="th" scope="row">
+            <HeaderTableCell component="th" scope="row">
                 報酬形式：
-            </TableCell>
+            </HeaderTableCell>
             <TableCell align='left'>
                 {tagRows.map((tag) => (
                     <FormControlLabel
@@ -52,10 +57,10 @@ export default function BasicTable() {
     )
 
     const TypeCheckButton = () => (
-        <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-            <TableCell component="th" scope="row">
+        <TableRow>
+            <HeaderTableCell component="th" scope="row">
                 實驗類型：
-            </TableCell>
+            </HeaderTableCell>
             <TableCell align='left'>
                 {typeRows.map((type) => (
                     <FormControlLabel
@@ -68,47 +73,56 @@ export default function BasicTable() {
         </TableRow>
     )
 
-    const DatePickerRange = () => (
-        <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
-            <TableCell component="th" scope="row">
-                期間：
-            </TableCell>
-            <TableCell align='left'>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DatePicker
-                        label={dateFrom ? '' : '期間'}
-                        value={dateFrom}
-                        onChange={(newDate) => {
-                            setDateFrom(newDate);
-                        }}
-                        views={["year", "month", "day"]}
-                        inputFormat="YYYY/MM/DD"
-                        disableHighlightToday
-                        InputProps={{ startAdornment: <InputAdornment position="start">自</InputAdornment> }}
-                        renderInput={(InputProps) => {
-                            let newParams = { ...InputProps, error: false }
-                            return <TextField
-                                size="small"
-                                sx={{ width: '180px' }}
-                                variant="outlined"
-                                InputProps={{ shrink: false }
-                                }
-                                {...newParams} />
-                        }}
-                    />
-                </LocalizationProvider>
-            </TableCell>
-        </TableRow>
-    )
+    const DatePickerRange = () => {
+        const DatePick = ({ date, setDate }) => (
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
+                    label={date ? '' : '期間'}
+                    value={date}
+                    onChange={(newDate) => {
+                        setDate(newDate);
+                    }}
+                    views={["year", "month", "day"]}
+                    inputFormat="YYYY/MM/DD"
+                    disableHighlightToday
+                    // InputProps={{ startAdornment: <InputAdornment position="start">自</InputAdornment> }}
+                    renderInput={(InputProps) => {
+                        let newParams = { ...InputProps, error: false }
+                        return <TextField
+                            size="small"
+                            sx={{ width: '180px', mr: '30px', ml: '10px' }}
+                            variant="outlined"
+                            InputProps={{ shrink: false }
+                            }
+                            {...newParams} />
+                    }}
+                />
+            </LocalizationProvider>
+        )
+
+        return (
+            <TableRow>
+                <HeaderTableCell component="th" scope="row">
+                    期間：
+                </HeaderTableCell>
+                <TableCell align='left' sx={{ display: 'flex', alignItems: 'center', fontSize: '1em' }}>
+                    自
+                    <DatePick date={dateFrom} setDate={setDateFrom} />
+                    至
+                    <DatePick date={dateTo} setDate={setDateTo} />
+                </TableCell>
+            </TableRow >
+        )
+    }
 
     return (
         <Box sx={BoxCss}>
             <TableContainer sx={{ maxWidth: 800 }} component={Paper} variant={'outlined'} square>
                 <Table sx={{ maxWidth: '100%' }} size="small" aria-label="simple table">
                     <TableBody>
+                        <DatePickerRange />
                         <TagCheckButton />
                         <TypeCheckButton />
-                        <DatePickerRange />
                     </TableBody>
                 </Table>
             </TableContainer>
