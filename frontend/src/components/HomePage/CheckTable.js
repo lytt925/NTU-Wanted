@@ -3,9 +3,9 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
+// import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import InputAdornment from '@mui/material/InputAdornment';
+// import InputAdornment from '@mui/material/InputAdornment';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -15,6 +15,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import TextField from '@mui/material/TextField';
+import { useInfo } from "../../containers/hooks/useInfo";
 
 
 
@@ -35,43 +36,51 @@ const HeaderTableCell = styled(TableCell)({
 export default function BasicTable() {
     const [dateFrom, setDateFrom] = useState([null, null])
     const [dateTo, setDateTo] = useState([null, null])
+    const { tagSelected, setTagSelected, typeSelected, setTypeSelected, setTimeRange, } = useInfo()
 
     const typeRows = ['實驗', '問卷', '訪談'];
     const tagRows = ['普心加分', '現金', '食物']
 
-    const TagCheckButton = () => (
-        <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-            <HeaderTableCell component="th" scope="row">
-                報酬形式：
-            </HeaderTableCell>
-            <TableCell align='left'>
-                {tagRows.map((tag) => (
-                    <FormControlLabel
-                        control={<Checkbox name={tag} />}
-                        label={tag}
-                        key={tag}
-                    />
-                ))}
-            </TableCell>
-        </TableRow>
-    )
+    const checkBoxList = [
+        { header: '報酬形式', checkBoxes: tagRows, boxState: tagSelected, setBoxState: setTagSelected },
+        { header: '實驗類型', checkBoxes: typeRows, boxState: typeSelected, setBoxState: setTypeSelected },
+    ]
 
-    const TypeCheckButton = () => (
-        <TableRow>
+    const handleCheck = (e, boxState, setBoxState) => {
+        const newBoxSelected = boxState.slice()
+        if (e.target.checked) newBoxSelected.push(e.target.name)
+        else {
+            const boxToRemoveIdx = newBoxSelected.indexOf(e.target.name);
+            if (boxToRemoveIdx > -1) { // only splice array when item is found
+                newBoxSelected.splice(boxToRemoveIdx, 1); // 2nd parameter means remove one item only
+            }
+        }
+        setBoxState(newBoxSelected)
+        console.log(newBoxSelected)
+    }
+
+    const CheckButtonRow = ({ header, checkBoxes, boxState, setBoxState }) => {
+        return <TableRow>
             <HeaderTableCell component="th" scope="row">
-                實驗類型：
+                {header}：
             </HeaderTableCell>
             <TableCell align='left'>
-                {typeRows.map((type) => (
+                {checkBoxes.map((box) => (
                     <FormControlLabel
-                        control={<Checkbox name={type} />}
-                        label={type}
-                        key={type}
+                        control={
+                            <Checkbox
+                                name={box}
+                                onChange={(e) => handleCheck(e, boxState, setBoxState)}
+                                checked={boxState.includes(box)}
+                            />
+                        }
+                        label={box}
+                        key={box}
                     />
                 ))}
             </TableCell>
         </TableRow>
-    )
+    }
 
     const DatePickerRange = () => {
         const DatePick = ({ date, setDate }) => (
@@ -121,8 +130,9 @@ export default function BasicTable() {
                 <Table sx={{ maxWidth: '100%' }} size="small" aria-label="simple table">
                     <TableBody>
                         <DatePickerRange />
-                        <TagCheckButton />
-                        <TypeCheckButton />
+                        {checkBoxList.map(({ header, checkBoxes, boxState, setBoxState }) => (
+                            <CheckButtonRow key={header} header={header} checkBoxes={checkBoxes} boxState={boxState} setBoxState={setBoxState} />
+                        ))}
                     </TableBody>
                 </Table>
             </TableContainer>

@@ -7,7 +7,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import Chip from '@mui/material/Chip';
 
 
 const ITEM_HEIGHT = 48;
@@ -30,15 +29,12 @@ function getStyles(task, taskName, theme) {
     };
 }
 
-export default function MultipleSelect({ label, tasks }) {
+export default function MultipleSelect({ label, types, value, setValue }) {
     const theme = useTheme();
-    const [taskName, setTaskName] = useState([]);
 
     const handleChange = (event) => {
-        const {
-            target: { value },
-        } = event;
-        setTaskName(
+        const { target: { value } } = event;
+        setValue(
             // On autofill we get a stringified value.
             typeof value === 'string' ? value.split(',') : value,
         );
@@ -50,17 +46,17 @@ export default function MultipleSelect({ label, tasks }) {
                 <InputLabel >{label}</InputLabel>
                 <Select
                     multiple
-                    value={taskName}
+                    value={value}
                     onChange={handleChange}
                     MenuProps={MenuProps}
                 >
-                    {tasks.map((task) => (
+                    {types.map((type) => (
                         <MenuItem
-                            key={task}
-                            value={task}
-                            style={getStyles(task, taskName, theme)}
+                            key={type}
+                            value={type}
+                            style={getStyles(type, value, theme)}
                         >
-                            {task}
+                            {type}
                         </MenuItem>
                     ))}
                 </Select>

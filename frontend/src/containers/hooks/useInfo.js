@@ -8,7 +8,17 @@ const InfoContext = createContext({
     test: false,
     setTest: () => { },
     searchDone: true,
-    setSearchDone: () => { }
+    setSearchDone: () => { },
+    setSearchName: () => { },
+    setLocation: () => { },
+    setTimeRange: () => { },
+    setTagSelected: () => { },
+    setTypeSelected: () => { },
+    searchName: '',
+    location: [],
+    timeRange: [null, null],
+    tagSelected: [],
+    typeSelected: []
 })
 
 const InfoProvider = (props) => {
@@ -16,8 +26,16 @@ const InfoProvider = (props) => {
     const [test, setTest] = useState(false)
     const [searchDone, setSearchDone] = useState(true)
 
-    const sendSearch = () => {
+    // Search Filter //
+    const [searchName, setSearchName] = useState('')
+    const [location, setLocation] = useState([])
+    const [timeRange, setTimeRange] = useState([null, null])
+    const [tagSelected, setTagSelected] = useState([])
+    const [typeSelected, setTypeSelected] = useState([])
+    // Search Filter //                  
 
+    const sendSearch = () => {
+        console.log(setSearchName, setLocation, setTimeRange, setTagSelected, setTypeSelected)
     }
 
     return (
@@ -28,7 +46,17 @@ const InfoProvider = (props) => {
                 test,
                 setTest,
                 searchDone,
-                setSearchDone
+                setSearchDone,
+                setSearchName,
+                setLocation,
+                setTimeRange,
+                setTagSelected,
+                setTypeSelected,
+                searchName,
+                location,
+                timeRange,
+                tagSelected,
+                typeSelected,
             }}
             {...props}
         />
