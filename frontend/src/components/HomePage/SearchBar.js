@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles'
 import TextField from '@mui/material/TextField';
 import MultipleSelect from "./MultiSelect";
-import { useInfo } from "../../containers/hooks/useInfo";
+import { useFilter } from "../../containers/hooks/useFilter";
 import LoadingButton from '@mui/lab/LoadingButton';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -27,7 +27,7 @@ const searchBoxCss = {
 
 
 const SearchBar = () => {
-    const { sendSearch, test, setTest, searchName, setSearchName, location, setLocation } = useInfo()
+    const { sendSearch, test, setTest, searchName, setSearchName, location, setLocation } = useFilter()
     const [loading, setLoading] = useState(false)
 
     const searchNameHandler = (e) => {

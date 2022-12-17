@@ -1,4 +1,4 @@
-import ResponsiveAppBar from './AppBar'
+import ResponsiveAppBar from '../Navbar/Navbar'
 import SearchBar from './SearchBar';
 import CheckTable from './CheckTable'
 import { styled } from '@mui/material/styles'

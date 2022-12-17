@@ -1,4 +1,4 @@
-import ResponsiveAppBar from '../components/HomePage/AppBar'
+import ResponsiveAppBar from '../components/Navbar/Navbar'
 import { useNavigate, useLocation } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
 import InfoForm from '../components/CreatePost/InfoForm';

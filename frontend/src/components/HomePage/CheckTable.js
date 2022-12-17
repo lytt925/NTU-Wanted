@@ -15,7 +15,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import TextField from '@mui/material/TextField';
-import { useInfo } from "../../containers/hooks/useInfo";
+import { useFilter } from "../../containers/hooks/useFilter";
 
 
 
@@ -31,11 +31,16 @@ const BoxCss = {
 }
 
 const HeaderTableCell = styled(TableCell)({
-    borderRight: '1px solid rgb(224,224,224)'
+    borderRight: '1px solid rgb(224,224,224)',
+    padding: '2px 6px 2px 15px'
+})
+
+const RowTableCell = styled(TableCell)({
+    padding: '2px 16px'
 })
 
 export default function BasicTable() {
-    const { tagSelected, setTagSelected, typeSelected, setTypeSelected, timeRange, setTimeRange, } = useInfo()
+    const { tagSelected, setTagSelected, typeSelected, setTypeSelected, timeRange, setTimeRange, } = useFilter()
 
     const typeRows = ['實驗', '問卷', '訪談'];
     const tagRows = ['普心加分', '現金', '食物']
@@ -63,7 +68,7 @@ export default function BasicTable() {
             <HeaderTableCell component="th" scope="row">
                 {header}：
             </HeaderTableCell>
-            <TableCell align='left'>
+            <RowTableCell align='left'>
                 {checkBoxes.map((box) => (
                     <FormControlLabel
                         control={
@@ -77,7 +82,7 @@ export default function BasicTable() {
                         key={box}
                     />
                 ))}
-            </TableCell>
+            </RowTableCell>
         </TableRow>
     }
 
@@ -118,20 +123,20 @@ export default function BasicTable() {
                 <HeaderTableCell component="th" scope="row">
                     期間：
                 </HeaderTableCell>
-                <TableCell align='left' sx={{ display: 'flex', alignItems: 'center', fontSize: '1em' }}>
+                <RowTableCell align='left' sx={{ display: 'flex', alignItems: 'center', fontSize: '1em' }}>
                     自
                     <DatePick date={timeRange[0]} from={true} />
                     至
                     <DatePick date={timeRange[1]} to={true} />
-                </TableCell>
+                </RowTableCell>
             </TableRow >
         )
     }
 
     return (
         <Box sx={BoxCss}>
-            <TableContainer sx={{ maxWidth: '800px' }} component={Paper} variant={'outlined'} square>
-                <Table sx={{ maxWidth: '100%' }} size="small" aria-label="simple table">
+            <TableContainer component={Paper} variant={'outlined'}>
+                <Table sx={{ maxWidth: '100%' }} size="small" padding='none' aria-label="filter table">
                     <TableBody>
                         <DatePickerRange />
                         {checkBoxList.map(({ header, checkBoxes, boxState, setBoxState }) => (

@@ -2,12 +2,12 @@ import {
     useState, useEffect, createContext, useContext
 } from "react";
 
-const InfoContext = createContext({
-    infoList: [],
-    sendSearch: () => { },
-    test: false,
-    setTest: () => { },
-    searchDone: true,
+const FilterContext = createContext({
+    // FilterList: [],
+    // sendSearch: () => { },
+    // test: false,
+    // setTest: () => { },
+    // searchDone: true,
     setSearchDone: () => { },
     setSearchName: () => { },
     setLocation: () => { },
@@ -21,10 +21,10 @@ const InfoContext = createContext({
     typeSelected: []
 })
 
-const InfoProvider = (props) => {
-    const [infoList, setInfoList] = useState([])
-    const [test, setTest] = useState(false)
-    const [searchDone, setSearchDone] = useState(true)
+const FilterProvider = (props) => {
+    // const [FilterList, setFilterList] = useState([])
+    // const [test, setTest] = useState(false)
+    // const [searchDone, setSearchDone] = useState(true)
 
     // Search Filter //
     const [searchName, setSearchName] = useState('')
@@ -34,19 +34,19 @@ const InfoProvider = (props) => {
     const [typeSelected, setTypeSelected] = useState([])
     // Search Filter //                  
 
-    const sendSearch = () => {
-        console.log(setSearchName, setLocation, setTimeRange, setTagSelected, setTypeSelected)
-    }
+    // const sendSearch = () => {
+    //     console.log(setSearchName, setLocation, setTimeRange, setTagSelected, setTypeSelected)
+    // }
 
     return (
-        <InfoContext.Provider
+        <FilterContext.Provider
             value={{
-                infoList,
-                sendSearch,
-                test,
-                setTest,
-                searchDone,
-                setSearchDone,
+                // FilterList,
+                // sendSearch,
+                // test,
+                // setTest,
+                // searchDone,
+                // setSearchDone,
                 setSearchName,
                 setLocation,
                 setTimeRange,
@@ -63,6 +63,6 @@ const InfoProvider = (props) => {
     )
 }
 
-const useInfo = () => useContext(InfoContext)
+const useFilter = () => useContext(FilterContext)
 
-export { InfoProvider, useInfo };
+export { FilterProvider, useFilter };
