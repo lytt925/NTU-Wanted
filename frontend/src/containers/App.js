@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import InfoForm from '../components/CreatePost/InfoForm';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from '../components/HomePage/HomePage';
+import ExpPage from '../components/ExpPage/ExpPage';
 
 function App() {
     // const navigate = useNavigate();
@@ -23,6 +24,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/newpost" element={<InfoForm />} />
+                <Route path="/experiment/:id" element={<ExpPage />} />
             </Routes>
         </Router>
     );

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,13 +12,15 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { Password } from "@mui/icons-material";
 
 const pages = ['聯絡我們'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 // var postPage = false;
 
 function ResponsiveAppBar() {
+
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -44,6 +46,7 @@ function ResponsiveAppBar() {
 
     };
 
+
     return (
         <AppBar position="sticky">
             <Container maxWidth="xl">
@@ -64,7 +67,7 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        NTU-Wanted
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
@@ -120,7 +123,7 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        NTU Wanted
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
@@ -135,7 +138,7 @@ function ResponsiveAppBar() {
                         ))}
                     </Box>
 
-                    <Box sx={{ mr: 3, flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
+                    <Box id='newExp' sx={{ mr: 3, flexGrow: 0, display: { xs: 'none', md: 'flex' } }} visibility={(window.location.href === 'http://localhost:3000/newpost') ? 'hidden' : 'visiable'}>
                         <Tooltip title="Post experiments">
                             <Button
                                 key='Post'
