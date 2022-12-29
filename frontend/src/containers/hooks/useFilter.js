@@ -1,34 +1,25 @@
 import {
-    useState, useEffect, createContext, useContext
+    useState, createContext, useContext
 } from "react";
 
 const FilterContext = createContext({
-    // FilterList: [],
-    // sendSearch: () => { },
-    // test: false,
-    // setTest: () => { },
-    // searchDone: true,
-    setSearchDone: () => { },
     setSearchName: () => { },
-    setLocation: () => { },
+    setLocationSelected: () => { },
     setTimeRange: () => { },
     setTagSelected: () => { },
     setTypeSelected: () => { },
     searchName: '',
-    location: [],
     timeRange: [null, null],
+    locationSelected: [],
     tagSelected: [],
     typeSelected: []
 })
 
 const FilterProvider = (props) => {
-    // const [FilterList, setFilterList] = useState([])
-    // const [test, setTest] = useState(false)
-    // const [searchDone, setSearchDone] = useState(true)
 
     // Search Filter //
     const [searchName, setSearchName] = useState('')
-    const [location, setLocation] = useState([])
+    const [locationSelected, setLocationSelected] = useState([])
     const [timeRange, setTimeRange] = useState([null, null])
     const [tagSelected, setTagSelected] = useState([])
     const [typeSelected, setTypeSelected] = useState([])
@@ -41,19 +32,13 @@ const FilterProvider = (props) => {
     return (
         <FilterContext.Provider
             value={{
-                // FilterList,
-                // sendSearch,
-                // test,
-                // setTest,
-                // searchDone,
-                // setSearchDone,
                 setSearchName,
-                setLocation,
+                setLocationSelected,
                 setTimeRange,
                 setTagSelected,
                 setTypeSelected,
                 searchName,
-                location,
+                locationSelected,
                 timeRange,
                 tagSelected,
                 typeSelected,

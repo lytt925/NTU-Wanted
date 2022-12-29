@@ -2,7 +2,7 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box';
 import { useState, useEffect } from 'react';
-import TaskInfo from './Info';
+import TaskInfo from './TaskInfo';
 
 export default function ResultList() {
     const BoxCss = {

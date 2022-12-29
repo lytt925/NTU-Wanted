@@ -12,7 +12,10 @@ export const ExpList = [
         memo: '需求人數 250人',
         reward: '受試者會根據實驗總長，得到普心時數2小時及320元的受試者費（共3.5小時）或普心時數2小時（共兩小時）。',
         link: 'https://reurl.cc/DZk6OQ',
-        tags: ['普心實驗', '看電影', '討論互動'],
+        types: ['實驗'],
+        tags: ['現金', '普心時數'],
+        locationTag: ['校總區'],
+        otherTags: ['看電影'],
         comments: [{ name: 'lytt', content: '請問可以找朋友一起參加嗎？' }, { name: 'bb77', content: '普心時數可以改拿現金ㄇ' }, { name: '欸冷', content: '可樂有點少，希望可以加大' }]
     },
     {

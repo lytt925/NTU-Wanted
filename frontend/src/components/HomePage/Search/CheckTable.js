@@ -15,7 +15,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import TextField from '@mui/material/TextField';
-import { useFilter } from "../../containers/hooks/useFilter";
+import { useFilter } from "../../../containers/hooks/useFilter";
 
 
 
@@ -40,14 +40,16 @@ const RowTableCell = styled(TableCell)({
 })
 
 export default function BasicTable() {
-    const { tagSelected, setTagSelected, typeSelected, setTypeSelected, timeRange, setTimeRange, } = useFilter()
+    const { tagSelected, setTagSelected, typeSelected, setTypeSelected, locationSelected, setLocationSelected, timeRange, setTimeRange, } = useFilter()
 
-    const typeRows = ['實驗', '問卷', '訪談'];
-    const tagRows = ['普心加分', '現金', '食物']
+    const typeRows = ['實驗', '問卷', '訪談', '其他'];
+    const tagRows = ['普心加分', '現金', '食物', '其他']
+    const locationRows = ['校總區', '城中校區', '家裡']
 
     const checkBoxList = [
         { header: '報酬形式', checkBoxes: tagRows, boxState: tagSelected, setBoxState: setTagSelected },
         { header: '實驗類型', checkBoxes: typeRows, boxState: typeSelected, setBoxState: setTypeSelected },
+        { header: '地點', checkBoxes: locationRows, boxState: locationSelected, setBoxState: setLocationSelected }
     ]
 
     const handleCheck = (e, boxState, setBoxState) => {
@@ -86,59 +88,59 @@ export default function BasicTable() {
         </TableRow>
     }
 
-    const DatePickerRange = () => {
-        const DatePick = ({ date, from, to }) => (
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DatePicker
-                    label={date ? '' : '期間'}
-                    value={date}
-                    onChange={(newDate) => {
-                        const newTimeRange = timeRange.slice()
-                        const YDMList = [newDate.$y, newDate.$M, newDate.$D]
-                        if (from) newTimeRange[0] = YDMList.join('/')
-                        else if (to) newTimeRange[1] = YDMList.join('/')
-                        console.log(newTimeRange)
-                        setTimeRange(newTimeRange);
-                    }}
-                    views={["year", "month", "day"]}
-                    inputFormat="YYYY/MM/DD"
-                    disableHighlightToday
-                    // InputProps={{ startAdornment: <InputAdornment position="start">自</InputAdornment> }}
-                    renderInput={(InputProps) => {
-                        let newParams = { ...InputProps, error: false }
-                        return <TextField
-                            size="small"
-                            sx={{ width: '180px', mr: '30px', ml: '10px' }}
-                            variant="outlined"
-                            InputProps={{ shrink: false }
-                            }
-                            {...newParams} />
-                    }}
-                />
-            </LocalizationProvider>
-        )
+    // const DatePickerRange = () => {
+    //     const DatePick = ({ date, from, to }) => (
+    //         <LocalizationProvider dateAdapter={AdapterDayjs}>
+    //             <DatePicker
+    //                 label={date ? '' : '期間'}
+    //                 value={date}
+    //                 onChange={(newDate) => {
+    //                     const newTimeRange = timeRange.slice()
+    //                     const YDMList = [newDate.$y, newDate.$M, newDate.$D]
+    //                     if (from) newTimeRange[0] = YDMList.join('/')
+    //                     else if (to) newTimeRange[1] = YDMList.join('/')
+    //                     console.log(newTimeRange)
+    //                     setTimeRange(newTimeRange);
+    //                 }}
+    //                 views={["year", "month", "day"]}
+    //                 inputFormat="YYYY/MM/DD"
+    //                 disableHighlightToday
+    //                 // InputProps={{ startAdornment: <InputAdornment position="start">自</InputAdornment> }}
+    //                 renderInput={(InputProps) => {
+    //                     let newParams = { ...InputProps, error: false }
+    //                     return <TextField
+    //                         size="small"
+    //                         sx={{ width: '180px', mr: '30px', ml: '10px' }}
+    //                         variant="outlined"
+    //                         InputProps={{ shrink: false }
+    //                         }
+    //                         {...newParams} />
+    //                 }}
+    //             />
+    //         </LocalizationProvider>
+    //     )
 
-        return (
-            <TableRow>
-                <HeaderTableCell component="th" scope="row">
-                    期間：
-                </HeaderTableCell>
-                <RowTableCell align='left' sx={{ display: 'flex', alignItems: 'center', fontSize: '1em' }}>
-                    自
-                    <DatePick date={timeRange[0]} from={true} />
-                    至
-                    <DatePick date={timeRange[1]} to={true} />
-                </RowTableCell>
-            </TableRow >
-        )
-    }
+    //     return (
+    //         <TableRow>
+    //             <HeaderTableCell component="th" scope="row">
+    //                 期間：
+    //             </HeaderTableCell>
+    //             <RowTableCell align='left' sx={{ display: 'flex', alignItems: 'center', fontSize: '1em' }}>
+    //                 自
+    //                 <DatePick date={timeRange[0]} from={true} />
+    //                 至
+    //                 <DatePick date={timeRange[1]} to={true} />
+    //             </RowTableCell>
+    //         </TableRow >
+    //     )
+    // }
 
     return (
         <Box sx={BoxCss}>
             <TableContainer component={Paper} variant={'outlined'}>
                 <Table sx={{ maxWidth: '100%' }} size="small" padding='none' aria-label="filter table">
                     <TableBody>
-                        <DatePickerRange />
+                        {/* <DatePickerRange /> */}
                         {checkBoxList.map(({ header, checkBoxes, boxState, setBoxState }) => (
                             <CheckButtonRow key={header} header={header} checkBoxes={checkBoxes} boxState={boxState} setBoxState={setBoxState} />
                         ))}
