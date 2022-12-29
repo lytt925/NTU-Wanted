@@ -17,6 +17,14 @@ const BoxCss = {
     marginBottom: "10px"
 }
 
+const BoxTopCss = {
+    px: '25px',
+    py: '10px',
+    width: "100%",
+    border: "1px solid transparent",
+    marginBottom: "10px"
+}
+
 const bigBoxCss = {
     display: 'flex',
     flexDirection: 'column',
@@ -51,10 +59,10 @@ const Information = ({ info }) => {
 
     return (
         <Box sx={bigBoxCss}>
-            <Box sx={BoxCss} className='ExpInfo' component={Paper}>
+            <Box sx={BoxTopCss} className='ExpInfo' component={Paper}>
                 <Box sx={titleCss}>
-                    <Typography variant="h6">
-                        研究名稱：{info.title}
+                    <Typography variant="h4">
+                        {info.title}
                     </Typography>
                     {liked ? <Favorite onClick={handleLike} sx={{ color: 'red', "&:hover": { cursor: 'pointer' } }} />
                         : <FavoriteBorder onClick={handleLike} sx={{ "&:hover": { cursor: 'pointer' } }} />}
@@ -64,9 +72,20 @@ const Information = ({ info }) => {
             <Box sx={BoxCss} className='ExpInfo' component={Paper}>
                 <Box sx={{ float: 'left' }}>
                     <List>
-                        <li>時長：{info.length}</li>
-                        <li>時間：{info.time}</li>
-                        <li>地點：{info.location}</li>
+                        <Typography gutterBottom variant="h6" component="div">
+                            實驗內容
+                        </Typography>
+                        <li>{info.introduction}</li>
+                    </List>
+                </Box>
+            </Box >
+            <Box sx={BoxCss} className='ExpInfo' component={Paper}>
+                <Box sx={{ float: 'left' }}>
+                    <List>
+                        <Typography gutterBottom variant="h6" component="div">
+                            時長
+                        </Typography>
+                        <li>{info.length}</li>
                     </List>
                 </Box>
 
@@ -74,28 +93,51 @@ const Information = ({ info }) => {
             <Box sx={BoxCss} className='ExpInfo' component={Paper}>
                 <Box sx={{ float: 'left' }}>
                     <List>
-                        <li>實驗內容：<br />{info.introduction}</li>
+                        <Typography gutterBottom variant="h6" component="div">
+                            時間
+                        </Typography>
+                        <li>{info.time}</li>
                     </List>
                 </Box>
+
+            </Box >
+            <Box sx={BoxCss} className='ExpInfo' component={Paper}>
+                <Box sx={{ float: 'left' }}>
+                    <List>
+                        <Typography gutterBottom variant="h6" component="div">
+                            地點
+                        </Typography>
+                        <li>{info.location}</li>
+                    </List>
+                </Box>
+
             </Box >
             <Box sx={BoxCss} className='ExpInfo' component={Paper} elevation={1}>
                 <Box sx={{ float: 'left' }}>
                     <List>
-                        <li>實驗報酬：<br />{info.reward}</li>
+                        <Typography gutterBottom variant="h6" component="div">
+                            實驗報酬
+                        </Typography>
+                        <li>{info.reward}</li>
                     </List>
                 </Box>
             </Box >
             <Box sx={BoxCss} className='ExpInfo' component={Paper}>
                 <Box sx={{ float: 'left' }}>
                     <List>
-                        <li>其他資訊：<br />{info.memo}</li>
+                        <Typography gutterBottom variant="h6" component="div">
+                            其他資訊
+                        </Typography>
+                        <li>{info.memo}</li>
                     </List>
                 </Box>
             </Box >
             <Box sx={BoxCss} className='ExpInfo' component={Paper}>
                 <Box sx={{ float: 'left' }}>
                     <List>
-                        <li>實驗報名連結：</li>
+                        <Typography gutterBottom variant="h6" component="div">
+                            實驗報名連結
+                        </Typography>
                         <Button variant="outlined" href={info.link} target='_blank'>{info.link}</Button>
                     </List>
                 </Box>
@@ -103,6 +145,9 @@ const Information = ({ info }) => {
             <Box sx={BoxCss} className='ExpInfo' component={Paper}>
                 <Box sx={{ float: 'left' }}>
                     <List>
+                        <Typography gutterBottom variant="h6" component="div">
+                            聯絡資訊
+                        </Typography>
                         <li>實驗主試人員：{info.experimenter}</li>
                         <li>聯絡電話：{info.phone}</li>
                         <li>電子郵件：{info.email}</li>

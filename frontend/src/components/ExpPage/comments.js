@@ -10,6 +10,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import SendIcon from '@mui/icons-material/Send';
+import { message } from "antd";
 // import axios from 'axios'
 
 // const instance = axios.create({
@@ -21,6 +22,7 @@ const BoxCss = {
     py: '10px',
     width: "100%",
     border: "1px solid lightgrey",
+    backgroundColor: "#FFFFF4"
 }
 
 const commenttitleCss = {
@@ -51,6 +53,7 @@ const Comment = ({ restaurantId, comments, setComments, setLoad }) => {
     // const [rating, setRating] = useState(0)
     const [name, setName] = useState('')
     const [content, setContent] = useState('')
+    const [error, setError] = useState(false);
 
     // const changeRating = (newRating) => {
     //     setRating(newRating)
@@ -64,19 +67,63 @@ const Comment = ({ restaurantId, comments, setComments, setLoad }) => {
     //     })
     // }
 
+    // const displayStatus = (s) => {
+    //     if (s.payload) {
+    //         const { type, payload } = s;
+    //         const content = {
+    //             content: payload, duration: 0.8
+    //         }
+    //         switch (type) {
+    //             case 'success':
+    //                 message.success(content)
+    //                 break
+    //             case 'error':
+    //             default:
+    //                 message.error(content)
+    //                 break
+    //         }
+    //     }
+    // }
+
     const submitComment = () => {
         // TODO Part III-3-b: submit a comment and reset input fields
         // storeComment();
         // setComments([...comments, { 'name': name, 'content': content }])
 
-        // fake add comments
-        comments.push({ 'name': name, 'content': content });
-        // console.log(name, content);
-        // console.log(comments);
 
-        setName('');
-        setContent('');
-        setLoad(true);
+
+        if (content === "") {
+            setError(true);
+        }
+        else {
+            var nname = name;
+            if (name === "") {
+                setName("匿名");
+                nname = "匿名"
+            }
+            // fake add comments
+            // console.log({ 'name': nname, 'content': content });
+            comments.push({ 'name': nname, 'content': content });
+            // console.log(name, content);
+            // console.log(comments);
+
+            const firstName = document.getElementById('content');
+            const firstNameInput = document.getElementById('name');
+
+            // Send value to server
+            // console.log(firstNameInput.value);
+
+            // 👇️ clear input field
+            firstName.value = '';
+            firstNameInput.value = '';
+
+            setName('');
+            setContent('');
+            setLoad(true);
+            setError(false);
+        }
+
+
     }
     // console.log('frontend_comments', comments);
     return (
@@ -89,8 +136,8 @@ const Comment = ({ restaurantId, comments, setComments, setLoad }) => {
                 </Box>
             </Box >
             {
-                comments.map((comment) => (
-                    <Box sx={BoxCss} className='ExpInfo' key={comment.name}>
+                comments.map((comment, key) => (
+                    <Box sx={BoxCss} className='ExpInfo' key={key}>
                         <Box sx={{ float: 'left' }}>
                             <List>
                                 <li style={{ textDecoration: 'underline' }}>{comment.name}</li>
@@ -121,7 +168,10 @@ const Comment = ({ restaurantId, comments, setComments, setLoad }) => {
                     defaultValue={content}
                     sx={{ mt: '20px' }}
                     onChange={e => setContent(e.target.value)}
+                    error={error === true}
+                    helperText={(error === true) ? "Please enter comment." : ''}
                 />
+
                 <Box display="flex" justifyContent="flex-end">
                     <Button variant="contained" sx={{ mt: '20px', mb: '20px', mr: '10px' }} endIcon={<SendIcon />} onClick={submitComment}>Submit</Button>
                 </Box>
