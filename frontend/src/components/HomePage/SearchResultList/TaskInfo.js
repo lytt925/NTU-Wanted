@@ -27,7 +27,8 @@ const TaskInfo = () => {
     const { state } = useLocation();
     const [liked, setLiked] = useState(false)
 
-    const handleLike = () => {
+    const handleLike = (e) => {
+        e.stopPropagation()
         setLiked(!liked)
     }
 
