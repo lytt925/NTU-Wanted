@@ -105,7 +105,7 @@ const SearchBar = () => {
             noValidate
             autoComplete="on"
         >
-            <SearchInput label="名稱" variant="outlined" sx={{ width: '300px' }} onChange={searchNameHandler} value={searchName} size='small' />
+            <SearchInput placeholder="搜尋" variant="outlined" sx={{ width: '300px' }} onChange={searchNameHandler} value={searchName} size='small' />
             <DatePickerRange />
             {/* <MultipleSelect types={locations} label={"地點"} value={location} setValue={setLocation} /> */}
             <LoadingButton
