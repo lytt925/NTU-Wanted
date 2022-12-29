@@ -14,7 +14,7 @@ export default function ResultList() {
         top: '150px',
         width: '69.5%',
         minWidth: '450px',
-        '&, .TaskInfo:first-of-type': { marginTop: "10px" },
+        '&, .TaskInfo:first-of-type': { marginTop: "10px", borderTopRightRadius: "5px", borderTopLeftRadius: "5px" },
     }
     return (
         <Box sx={BoxCss}>

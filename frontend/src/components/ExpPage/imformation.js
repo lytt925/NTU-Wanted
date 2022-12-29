@@ -14,6 +14,7 @@ const BoxCss = {
     py: '10px',
     width: "100%",
     border: "1px solid lightgrey",
+    marginBottom: "10px"
 }
 
 const bigBoxCss = {
@@ -21,12 +22,19 @@ const bigBoxCss = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    // position: 'sticky',
     top: '150px',
     width: '69.5%',
     minWidth: '450px',
     '&, .ExpInfo:first-of-type': { marginTop: "10px" },
 }
+
+const titleCss = {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+}
+
 
 const List = styled('ul')({
     listStyleType: 'none',
@@ -43,23 +51,17 @@ const Information = ({ info }) => {
 
     return (
         <Box sx={bigBoxCss}>
-            <Box sx={BoxCss} className='ExpInfo'>
-                <Box sx={{ float: 'left' }}>
-                    <Typography variant="h6" sx={{ mt: "25px" }}>
+            <Box sx={BoxCss} className='ExpInfo' component={Paper}>
+                <Box sx={titleCss}>
+                    <Typography variant="h6">
                         研究名稱：{info.title}
                     </Typography>
-                    <br />
-                    <Stack direction="row" spacing={1} sx={{ mb: "5px" }}>
-                        {info.tags.map((tag) => (<Chip key={tag} sx={{ padding: '0', fontSize: '0.5em' }} label={tag} color="primary" variant="outlined" />))}
-                    </Stack>
-                </Box>
-                <Box sx={{ float: 'right', mx: "10px", mt: "10px", zIndex: 2 }}>
                     {liked ? <Favorite onClick={handleLike} sx={{ color: 'red', "&:hover": { cursor: 'pointer' } }} />
                         : <FavoriteBorder onClick={handleLike} sx={{ "&:hover": { cursor: 'pointer' } }} />}
                 </Box>
 
             </Box >
-            <Box sx={BoxCss} className='ExpInfo'>
+            <Box sx={BoxCss} className='ExpInfo' component={Paper}>
                 <Box sx={{ float: 'left' }}>
                     <List>
                         <li>時長：{info.length}</li>
@@ -69,28 +71,28 @@ const Information = ({ info }) => {
                 </Box>
 
             </Box >
-            <Box sx={BoxCss} className='ExpInfo'>
+            <Box sx={BoxCss} className='ExpInfo' component={Paper}>
                 <Box sx={{ float: 'left' }}>
                     <List>
                         <li>實驗內容：<br />{info.introduction}</li>
                     </List>
                 </Box>
             </Box >
-            <Box sx={BoxCss} className='ExpInfo'>
+            <Box sx={BoxCss} className='ExpInfo' component={Paper} elevation={1}>
                 <Box sx={{ float: 'left' }}>
                     <List>
                         <li>實驗報酬：<br />{info.reward}</li>
                     </List>
                 </Box>
             </Box >
-            <Box sx={BoxCss} className='ExpInfo'>
+            <Box sx={BoxCss} className='ExpInfo' component={Paper}>
                 <Box sx={{ float: 'left' }}>
                     <List>
                         <li>其他資訊：<br />{info.memo}</li>
                     </List>
                 </Box>
             </Box >
-            <Box sx={BoxCss} className='ExpInfo'>
+            <Box sx={BoxCss} className='ExpInfo' component={Paper}>
                 <Box sx={{ float: 'left' }}>
                     <List>
                         <li>實驗報名連結：</li>
@@ -98,7 +100,7 @@ const Information = ({ info }) => {
                     </List>
                 </Box>
             </Box >
-            <Box sx={BoxCss} className='ExpInfo'>
+            <Box sx={BoxCss} className='ExpInfo' component={Paper}>
                 <Box sx={{ float: 'left' }}>
                     <List>
                         <li>實驗主試人員：{info.experimenter}</li>

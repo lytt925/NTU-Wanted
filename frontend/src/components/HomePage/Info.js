@@ -15,6 +15,7 @@ const BoxCss = {
     py: '10px',
     width: "100%",
     border: "1px solid lightgrey",
+    fontSize: '14px'
 }
 
 const List = styled('ul')({
@@ -38,24 +39,22 @@ const TaskInfo = () => {
 
     return (
         <Box sx={BoxCss} className='TaskInfo'>
-            <Box sx={{ float: 'left', "&:hover": { cursor: 'pointer' } }} onClick={() => ToExp(a.id)}>
-                <Typography variant="h6" sx={{ mt: "10px" }}>
+            <Box sx={{ mt: '5px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', "&:hover": { cursor: 'pointer' } }} onClick={() => ToExp(a.id)}>
+                <Typography variant="h6">
                     {a.title}
                 </Typography>
-                <List>
-                    <li>時長：{a.length}</li>
-                    <li>時間：{a.time}</li>
-                    <li>地點：{a.location}</li>
-                </List>
-                <Stack direction="row" spacing={1} sx={{ mb: "5px" }}>
-                    {a.tags.map((tag) => (<Chip key={tag} sx={{ padding: '0', fontSize: '0.5em' }} label={tag} color="primary" variant="outlined" />))}
-                </Stack>
-            </Box>
-            <Box sx={{ float: 'right', mx: "10px", mt: "10px", zIndex: 2 }}>
                 {liked ? <Favorite onClick={handleLike} sx={{ color: 'red', "&:hover": { cursor: 'pointer' } }} />
                     : <FavoriteBorder onClick={handleLike} sx={{ "&:hover": { cursor: 'pointer' } }} />}
             </Box>
-        </Box >
+            <List>
+                <li>時長：{a.length}</li>
+                <li>時間：{a.time}</li>
+                <li>地點：{a.location}</li>
+            </List>
+            <Stack direction="row" spacing={1} sx={{ mb: "5 px", verticalAlign: 'middle' }}>
+                {a.tags.map((tag) => (<Chip key={tag} sx={{ padding: 'None', fontSize: '12px' }} label={tag} color="primary" variant="outlined" />))}
+            </Stack>
+        </Box>
     )
 }
 
