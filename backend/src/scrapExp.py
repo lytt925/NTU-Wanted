@@ -4,6 +4,7 @@ import re
 from os import listdir
 from os import makedirs
 from bs4 import BeautifulSoup
+import json
 
 expUrl = 'http://www.psy.ntu.edu.tw/index.php/homepage/psy-experiments'
 location = 'http://www.psy.ntu.edu.tw'
@@ -29,7 +30,7 @@ def findEmail(soup):
         email+=string
     return email
 
-def genExpInfo(url):
+def genExpInfo(title, url):
     response = requests.get(url)
     soup = BeautifulSoup(re.sub('[\t\n\r]', '', response.text))
     content = soup.select('.itemExtraFields li')
@@ -39,7 +40,7 @@ def genExpInfo(url):
         key = next(children).text
         value = next(children).text.replace('\xa0', '\n')
         expInfo[key] = value
-
+    expInfo['title'] = title
     contact = expInfo['實驗者聯絡方式:']
     phone=re.search('聯絡電話：(.*)電子郵件',contact).group(1).strip(' ')
     email=findEmail(soup)
@@ -49,6 +50,9 @@ def genExpInfo(url):
     return expInfo
 
 AllExpList = []
-for url in urls:
-    expInfo = genExpInfo(url)
+for i,url in enumerate(urls):
+    expInfo = genExpInfo(titles[i], url)
     AllExpList.append(expInfo)
+
+with open ('data.json', 'w', encoding="utf8") as file:
+    json.dump(AllExpList, file, ensure_ascii=False)
