@@ -28,7 +28,7 @@ const HomePage = () => (
     <Wrapper className='App'>
         <SearchBar />
         <CheckTable />
-        <Box sx={{ height: '1px', width: '99vw', borderTop: '1px solid lightgrey', position: 'sticky', top: '148px' }}></Box>
+        <Box sx={{ height: '1px', width: '99vw', borderTop: '1px solid lightgrey', position: 'sticky', top: '144px' }}></Box>
         <ResultList />
     </Wrapper >
 )
