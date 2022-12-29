@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 const ExpSchema = new Schema({
-    user: { type: mongoose.Types.ObjectId, ref: 'User' },
+    creator: { type: mongoose.Types.ObjectId, ref: 'User' },
     title: { type: String, required: [true, 'Title field is required.'] },
     location: { type: String, required: [true, 'Location field is required.'] },
     experimenter: { type: String, required: [true, 'experimenter field is required.'] },
