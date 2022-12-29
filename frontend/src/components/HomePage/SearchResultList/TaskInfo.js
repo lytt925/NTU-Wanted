@@ -35,7 +35,9 @@ const TaskInfo = () => {
     const navigate = useNavigate();
     const ToExp = (id) => {
         // TODO Part III-1: navigate the user to restaurant page with the corresponding id
-        navigate('/experiment/' + id)
+        navigate('/experiment/' + id);
+        const body = document.querySelector('body');
+        body.style.backgroundColor = '#f2f2f2';
     }
 
     return (

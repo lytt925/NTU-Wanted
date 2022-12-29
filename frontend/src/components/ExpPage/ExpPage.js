@@ -20,6 +20,7 @@ const Wrapper = styled(Container)({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#f2f2f2'
 })
 
 const bigBoxCss = {
@@ -74,6 +75,9 @@ const ExpPage = () => {
     //     rating += comment.rating
     // }
     // rating = rating / comments.length;
+
+    const body = document.querySelector('body');
+    body.style.backgroundColor = '#f2f2f2';
 
     return (
         <Wrapper className='ExpPage'>

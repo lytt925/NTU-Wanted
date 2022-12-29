@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import SendIcon from '@mui/icons-material/Send';
 import { message } from "antd";
+import ReplyIcon from '@mui/icons-material/Reply';
 // import axios from 'axios'
 
 // const instance = axios.create({
@@ -20,9 +21,10 @@ import { message } from "antd";
 const BoxCss = {
     px: '25px',
     py: '10px',
-    width: "100%",
-    border: "1px solid lightgrey",
-    backgroundColor: "#FFFFF4"
+    width: "95%",
+    borderTop: "1px solid lightgrey",
+    backgroundColor: "#FFFFFF",
+    // '& .CommentInfo:last-of-type': { marginBottom: "20px" },
 }
 
 const commenttitleCss = {
@@ -30,6 +32,8 @@ const commenttitleCss = {
     py: '10px',
     width: "100%",
     border: "1px solid transparent",
+    backgroundColor: "#FFFFFF",
+    marginBottom: "20px",
 }
 
 const bigBoxCss = {
@@ -41,7 +45,12 @@ const bigBoxCss = {
     top: '150px',
     width: '69.5%',
     minWidth: '450px',
-    '&, .ExpInfo:first-of-type': { marginTop: "10px" },
+    // '&.CommentInfo:last-of-type': { backgroundColor: "red", marginBottom: "20px" },
+    marginBottom: "25px",
+    border: "1px solid lightgray",
+    backgroundColor: "#FFFFFF",
+    marginTop: "15px",
+    // backgroundColor: "blue"
 }
 
 const List = styled('ul')({
@@ -130,18 +139,18 @@ const Comment = ({ restaurantId, comments, setComments, setLoad }) => {
         <Box sx={bigBoxCss}>
             <Box sx={commenttitleCss}>
                 <Box>
-                    <Typography variant="h6" sx={{ mt: "25px", textAlign: 'left' }}>
+                    <Typography variant="h6" fontWeight='bold' sx={{ mt: "25px", textAlign: 'left' }}>
                         留言板
                     </Typography>
                 </Box>
             </Box >
             {
                 comments.map((comment, key) => (
-                    <Box sx={BoxCss} className='ExpInfo' key={key}>
+                    <Box sx={BoxCss} className='CommentInfo' key={key}>
                         <Box sx={{ float: 'left' }}>
                             <List>
-                                <li style={{ textDecoration: 'underline' }}>{comment.name}</li>
-                                <li style={{ color: '#6698FF' }}>{comment.content}</li>
+                                <li style={{ fontWeight: 'bold', marginBottom: "8px" }}>{comment.name}</li>
+                                <li>{comment.content}</li>
                             </List>
                         </Box>
 
@@ -155,7 +164,7 @@ const Comment = ({ restaurantId, comments, setComments, setLoad }) => {
 
 
             </div>
-            <Box sx={BoxCss} className='ExpInfo' >
+            <Box sx={BoxCss} >
                 <Box sx={{ float: 'left' }} >
                     <TextField fullWidth id="name" label="Name" variant="standard" defaultValue={name} onChange={e => setName(e.target.value)} />
                 </Box>

@@ -27,7 +27,7 @@ const searchBoxCss = {
     justifyContent: 'center',
     position: 'sticky',
     top: '68px',
-    backgroundColor: 'white',
+    backgroundColor: '#FFFFFF',
     zIndex: 3,
     width: '69.5%',
     minWidth: '600px',

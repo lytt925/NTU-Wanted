@@ -36,6 +36,10 @@ const InfoForm = () => {
         console.log("submit")
     };
 
+    const body = document.querySelector('body');
+    body.style.backgroundColor = '#FFFFFF';
+
+
     return (
 
         <Form {...layout} id='infoForm' name="infoForm" onFinish={navigateToHome} validateMessages={validateMessages}>

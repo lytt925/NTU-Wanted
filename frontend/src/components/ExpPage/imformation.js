@@ -61,7 +61,7 @@ const Information = ({ info }) => {
         <Box sx={bigBoxCss}>
             <Box sx={BoxTopCss} className='ExpInfo' component={Paper}>
                 <Box sx={titleCss}>
-                    <Typography variant="h5" sx={{ mt: '10px', mb: '10px' }}>
+                    <Typography variant="h5" fontWeight='bold' sx={{ mt: '10px', mb: '10px' }}>
                         {info.title}
                     </Typography>
                     {liked ? <Favorite onClick={handleLike} sx={{ color: 'red', "&:hover": { cursor: 'pointer' } }} />
@@ -71,42 +71,12 @@ const Information = ({ info }) => {
             <Box sx={BoxCss} className='ExpInfo' component={Paper}>
                 <Box sx={{ float: 'left' }}>
                     <List>
-                        <Typography gutterBottom variant="h6" component="div">
-                            實驗內容
+                        <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
+                            實驗資訊
                         </Typography>
-                        <li>{info.introduction}</li>
-                    </List>
-                </Box>
-            </Box >
-            <Box sx={BoxCss} className='ExpInfo' component={Paper}>
-                <Box sx={{ float: 'left' }}>
-                    <List>
-                        <Typography gutterBottom variant="h6" component="div">
-                            時長
-                        </Typography>
-                        <li>{info.length}</li>
-                    </List>
-                </Box>
-
-            </Box >
-            <Box sx={BoxCss} className='ExpInfo' component={Paper}>
-                <Box sx={{ float: 'left' }}>
-                    <List>
-                        <Typography gutterBottom variant="h6" component="div">
-                            時間
-                        </Typography>
-                        <li>{info.time}</li>
-                    </List>
-                </Box>
-
-            </Box >
-            <Box sx={BoxCss} className='ExpInfo' component={Paper}>
-                <Box sx={{ float: 'left' }}>
-                    <List>
-                        <Typography gutterBottom variant="h6" component="div">
-                            地點
-                        </Typography>
-                        <li>{info.location}</li>
+                        <li>時長：{info.length}</li>
+                        <li>時間：{info.time}</li>
+                        <li>地點：{info.location}</li>
                     </List>
                 </Box>
 
@@ -114,7 +84,7 @@ const Information = ({ info }) => {
             <Box sx={BoxCss} className='ExpInfo' component={Paper} elevation={1}>
                 <Box sx={{ float: 'left' }}>
                     <List>
-                        <Typography gutterBottom variant="h6" component="div">
+                        <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
                             實驗報酬
                         </Typography>
                         <li>{info.reward}</li>
@@ -124,32 +94,43 @@ const Information = ({ info }) => {
             <Box sx={BoxCss} className='ExpInfo' component={Paper}>
                 <Box sx={{ float: 'left' }}>
                     <List>
-                        <Typography gutterBottom variant="h6" component="div">
-                            其他資訊
+                        <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
+                            實驗內容
+                        </Typography>
+                        <li>{info.introduction}</li>
+                    </List>
+                </Box>
+            </Box >
+            <Box sx={BoxCss} className='ExpInfo' component={Paper}>
+                <Box sx={{ float: 'left' }}>
+                    <List>
+                        <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
+                            備註
                         </Typography>
                         <li>{info.memo}</li>
                     </List>
                 </Box>
             </Box >
+
             <Box sx={BoxCss} className='ExpInfo' component={Paper}>
                 <Box sx={{ float: 'left' }}>
                     <List>
-                        <Typography gutterBottom variant="h6" component="div">
-                            實驗報名連結
+                        <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
+                            聯絡資訊
                         </Typography>
-                        <Button variant="outlined" href={info.link} target='_blank'>{info.link}</Button>
+                        <li>實驗主試人員：{info.experimenter}</li>
+                        <li>聯絡電話：{info.phone}</li>
+                        <li>電子郵件：{info.email}</li>
                     </List>
                 </Box>
             </Box >
             <Box sx={BoxCss} className='ExpInfo' component={Paper}>
                 <Box sx={{ float: 'left' }}>
                     <List>
-                        <Typography gutterBottom variant="h6" component="div">
-                            聯絡資訊
+                        <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
+                            實驗報名連結
                         </Typography>
-                        <li>實驗主試人員：{info.experimenter}</li>
-                        <li>聯絡電話：{info.phone}</li>
-                        <li>電子郵件：{info.email}</li>
+                        <Button variant="outlined" href={info.link} target='_blank'>{info.link}</Button>
                     </List>
                 </Box>
             </Box >

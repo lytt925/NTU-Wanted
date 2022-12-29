@@ -24,14 +24,20 @@ const Wrapper = styled(Container)({
     alignItems: 'center',
 })
 
-const HomePage = () => (
-    <Wrapper className='App'>
-        <SearchBar />
-        <CheckTable />
-        <Box sx={{ height: '1px', width: '99vw', borderTop: '1px solid lightgrey', position: 'sticky', top: '144px' }}></Box>
-        <ResultList />
-    </Wrapper >
-)
+const HomePage = () => {
+
+    const body = document.querySelector('body');
+    body.style.backgroundColor = '#FFFFFF';
+
+    return (
+        <Wrapper className='App'>
+            <SearchBar />
+            <CheckTable />
+            <Box sx={{ height: '1px', width: '99vw', borderTop: '1px solid lightgrey', position: 'sticky', top: '144px' }}></Box>
+            <ResultList />
+        </Wrapper >
+    )
+}
 
 
 
