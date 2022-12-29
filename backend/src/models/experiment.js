@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 const ExpSchema = new Schema({
+    user: { type: mongoose.Types.ObjectId, ref: 'User' },
     title: { type: String, required: [true, 'Title field is required.'] },
     location: { type: String, required: [true, 'Location field is required.'] },
     experimenter: { type: String, required: [true, 'experimenter field is required.'] },
@@ -17,7 +18,7 @@ const ExpSchema = new Schema({
     tags: [{ type: String, required: true },],
     locationTag: [{ type: String, required: true },],
     otherTags: [{ type: String }],
-    comments: [{ user: { type: mongoose.Types.ObjectId, ref: 'User' }, comment: { type: String } }],
+    comments: [{ type: mongoose.Types.ObjectId, ref: 'Comment' }]
 }, {
     collection: 'Experiment',
     timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }

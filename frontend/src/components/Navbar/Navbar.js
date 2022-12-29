@@ -23,6 +23,8 @@ function ResponsiveAppBar() {
 
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
+    const port = (window.location.origin) + "/newpost";
+    // console.log(port);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -138,7 +140,7 @@ function ResponsiveAppBar() {
                         ))}
                     </Box>
 
-                    <Box id='newExp' sx={{ mr: 3, flexGrow: 0, display: { xs: 'none', md: 'flex' } }} visibility={(window.location.href === 'http://localhost:3000/newpost') ? 'hidden' : 'visiable'}>
+                    <Box id='newExp' sx={{ mr: 3, flexGrow: 0, display: { xs: 'none', md: 'flex' } }} visibility={(window.location.href === port) ? 'hidden' : 'visiable'}>
                         <Tooltip title="Post experiments">
                             <Button
                                 key='Post'
@@ -182,7 +184,7 @@ function ResponsiveAppBar() {
                     </Box>
                 </Toolbar>
             </Container>
-        </AppBar>
+        </AppBar >
     );
 }
 export default ResponsiveAppBar;
