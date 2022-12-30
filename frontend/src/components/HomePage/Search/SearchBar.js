@@ -38,15 +38,8 @@ const SearchBar = ({ expList, setExpList }) => {
     const { setSearchName, setTimeRange, searchName, timeRange, locationTagsSelected, rewardTagsSelected, typeTagsSelected, } = useFilter()
     const [loading, setLoading] = useState(false)
 
-    const searchNameHandler = (e) => {
-        setSearchName(e.target.value)
-    }
-
     const { state } = useLocation();
 
-    useEffect(() => {
-        sendSearch()
-    }, [state])
 
     const sendSearch = async () => {
         console.log({
@@ -68,17 +61,24 @@ const SearchBar = ({ expList, setExpList }) => {
                 },
             })
         if (message === 'success') {
-            console.log('success')
             setExpList([...contents])
         }
     }
 
+    useEffect(() => {
+        sendSearch()
+    }, [state])
 
     useEffect(() => {
         if (expList) {
             setLoading(false)
         }
     }, [expList])
+
+    const searchNameHandler = (e) => {
+        setSearchName(e.target.value)
+    }
+
 
     const DatePickerRange = () => {
         const DatePick = ({ date, from, to }) => (
@@ -97,7 +97,6 @@ const SearchBar = ({ expList, setExpList }) => {
                     views={["year", "month", "day"]}
                     inputFormat="YYYY/MM/DD"
                     disableHighlightToday
-                    // InputProps={{ startAdornment: <InputAdornment position="start">自</InputAdornment> }}
                     renderInput={(InputProps) => {
                         let newParams = { ...InputProps, error: false }
                         return <TextField

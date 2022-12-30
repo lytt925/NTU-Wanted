@@ -119,15 +119,15 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
             setComments([...comments, { 'name': name, 'content': content, 'reply': [] }])
             // comments.push({ 'name': name, 'content': content, 'reply': [] });
 
-            const firstName = document.getElementById('content');
-            const firstNameInput = document.getElementById('name');
+            // const firstName = document.getElementById('content');
+            // const firstNameInput = document.getElementById('name');
 
             // Send value to server
             // console.log(firstNameInput.value);
 
             // 👇️ clear input field
-            firstName.value = '';
-            firstNameInput.value = '';
+            // firstName.value = '';
+            // firstNameInput.value = '';
 
             setName('');
             setContent('');
@@ -279,7 +279,7 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
 
             <Box sx={BoxCss} >
                 <Box sx={{ float: 'left' }} >
-                    <TextField fullWidth id="name" label="Name" variant="standard" defaultValue={name} onChange={e => setName(e.target.value)} />
+                    <TextField fullWidth id="name" label="Name" variant="standard" value={name} onChange={e => setName(e.target.value)} />
                 </Box>
                 <TextField
                     fullWidth
@@ -287,7 +287,7 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
                     label="Type your comment"
                     multiline
                     rows={4}
-                    defaultValue={content}
+                    value={content}
                     sx={{ mt: '20px' }}
                     onChange={e => setContent(e.target.value)}
                     error={error === true}
