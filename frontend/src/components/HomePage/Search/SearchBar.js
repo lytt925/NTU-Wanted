@@ -10,6 +10,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import axios from '../../../containers/api';
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const SearchInput = styled(TextField)`
   margin: 10px 10px 10px 10px;
@@ -33,8 +34,6 @@ const searchBoxCss = {
     minWidth: '600px',
 }
 
-
-
 const SearchBar = ({ expList, setExpList }) => {
     const { setSearchName, setTimeRange, searchName, timeRange, locationTagsSelected, rewardTagsSelected, typeTagsSelected, } = useFilter()
     const [loading, setLoading] = useState(false)
@@ -42,6 +41,13 @@ const SearchBar = ({ expList, setExpList }) => {
     const searchNameHandler = (e) => {
         setSearchName(e.target.value)
     }
+
+    const { state } = useLocation();
+
+
+    useEffect(() => {
+        sendSearch()
+    }, [state])
 
     const sendSearch = async () => {
         console.log({
@@ -52,8 +58,8 @@ const SearchBar = ({ expList, setExpList }) => {
             typeTagsSelected,
         })
         setLoading(true)
-        const { data } =
-            await axios.get('/experiment', {
+        const { data: { message, contents } } =
+            await axios.get('/getExpList', {
                 params: {
                     searchName,
                     locationTagsSelected,
@@ -62,7 +68,10 @@ const SearchBar = ({ expList, setExpList }) => {
                     typeTagsSelected,
                 },
             })
-        console.log(data)
+        if (message === 'success') {
+            console.log('success')
+            setExpList([...contents])
+        }
     }
 
 

@@ -1,5 +1,5 @@
 import express from 'express'
-// import ScoreCard from "../models/expInfo.js"
+import ExperimentModel from '../models/experiment'
 
 
 const router = express.Router()
@@ -25,15 +25,16 @@ const router = express.Router()
 //     }
 // }
 
-// const queryDB = async (type, queryString) => {
-//     try {
-//         const findList = await ScoreCard.find({ [type]: queryString })
-//         console.log(findList)
-//         return (findList)
-//     } catch (e) {
-//         throw new Error('something wrong')
-//     }
-// }
+const searchExp =
+    async (searchName, locationTagsSelected, timeRange, rewardTagsSelected, typeTagsSelected) => {
+        try {
+            const findList = await ExperimentModel.find({});
+            console.log('findList', findList)
+            return findList
+        } catch (e) {
+            throw new Error('something wrong')
+        }
+    }
 
 // const deleteDB = async () => {
 //     try {
@@ -52,7 +53,7 @@ const router = express.Router()
 //     res.send({ message: msg, card: msg })
 // })
 
-router.get('/experiment', async (req, res) => {
+router.get('/getExpList', async (req, res) => {
     const {
         searchName,
         locationTagsSelected,
@@ -60,23 +61,13 @@ router.get('/experiment', async (req, res) => {
         rewardTagsSelected,
         typeTagsSelected,
     } = req.query
-    const findList = await queryDB(type, queryString)
-    let msgList
-    if (type === 'name') {
-        msgList = findList.map(({ name, subject, score }) =>
-            `Found card with name: (${name}, ${subject}, ${score})`)
-    } else {
-        msgList = findList.map(({ name, subject, score }) =>
-            `Found card with subject: (${name}, ${subject}, ${score})`)
-    }
-    console.log(msgList)
-    res.json({ messages: msgList, message: `${type[0].toUpperCase() + type.substring(1)} (${queryString}) not found!` })
-
+    console.log('reward', rewardTagsSelected)
+    const findList = await searchExp(searchName, locationTagsSelected, timeRange, rewardTagsSelected, typeTagsSelected,)
+    res.status(200).send({ message: 'success', contents: findList, });
 })
 
 // router.delete('/cards', (req, res) => {
 //     deleteDB();
 //     res.json({ message: 'Database cleared' })
 // })
-
 export default router

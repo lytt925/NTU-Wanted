@@ -21,8 +21,6 @@ exports.GetSearch = async (req, res) => {
     // console.log(allSearch);
     res.status(200).send({ message: 'success', contents: allSearch, });
     // console.log('backend_info',allSearch)
-
-
 }
 
 exports.GetInfo = async (req, res) => {

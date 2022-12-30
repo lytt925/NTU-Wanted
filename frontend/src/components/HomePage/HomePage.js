@@ -33,10 +33,10 @@ const HomePage = () => {
 
     return (
         <Wrapper className='App'>
-            <SearchBar result={expList} setResult={setExpList} />
+            <SearchBar expList={expList} setExpList={setExpList} />
             <CheckTable />
             <Box sx={{ height: '1px', width: '99vw', borderTop: '1px solid lightgrey', position: 'sticky', top: '144px' }}></Box>
-            <ResultList result={expList} setResult={setExpList} />
+            <ResultList expList={expList} setExpList={setExpList} />
         </Wrapper >
     )
 }

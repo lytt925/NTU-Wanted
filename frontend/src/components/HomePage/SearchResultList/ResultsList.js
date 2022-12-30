@@ -7,29 +7,7 @@ import TaskInfo from './TaskInfo';
 import { useNavigate, useLocation } from 'react-router-dom'
 // import { ExpList } from '../../db';
 
-import axios from 'axios'
-// import { isHtmlElement } from 'react-router-dom/dist/dom';
-const instance = axios.create({
-    baseURL: 'http://localhost:4000/api'
-})
-
-
-
-export default function ResultList({ expList, setExpList }) {
-    const { state } = useLocation();
-    // const [expList, setExpList] = useState([])
-    // const getExpList = async () => {
-    //     // TODO Part I-3-b: get information of restaurants from DB
-    //     // const location = state.location
-    //     const { data } = await instance.get('/getSearch', { params: {} });
-    //     // console.log(data);
-    //     setExpList(data.contents);
-    // }
-
-    // useEffect(() => {
-    //     getExpList()
-    // }, [state])
-
+export default function ResultList({ expList, setExpList }) { // { expList, setExpList }
     const BoxCss = {
         display: 'flex',
         flexDirection: 'column',
