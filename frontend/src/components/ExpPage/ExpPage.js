@@ -7,11 +7,7 @@ import { styled } from '@mui/material/styles'
 import { Container } from '@mui/material';
 // import { ExpList } from '../db';
 
-import axios from 'axios'
-// import { isHtmlElement } from 'react-router-dom/dist/dom';
-const instance = axios.create({
-    baseURL: 'http://localhost:4000/api'
-})
+import axios from '../../containers/api'
 
 
 
@@ -54,7 +50,7 @@ const ExpPage = () => {
         // const { data } = await instance.get('/getInfo', { params: { id } });
         // console.log('restpage',data.contents[0].name);
 
-        const { data } = await instance.get('/getInfo', { params: { id } });
+        const { data } = await axios.get('/getInfo', { params: { id } });
         setInfo(data.contents[0]);
         // console.log(data.contents)
 
@@ -69,7 +65,7 @@ const ExpPage = () => {
         // const { data } = await instance.get('/getCommentsByRestaurantId', { params: { id } });
         // console.log('restpage',data);
 
-        const { data } = await instance.get('/getCommentsByExpId', { params: { id } });
+        const { data } = await axios.get('/getCommentsByExpId', { params: { id } });
         // console.log('restpage',data);
         setComments(data.contents);
 
