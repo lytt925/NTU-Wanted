@@ -44,7 +44,7 @@ export default function BasicTable() {
 
     const typeRows = ['實驗', '問卷', '訪談', '其他'];
     const tagRows = ['普心加分', '現金', '食物', '其他']
-    const locationRows = ['校總區', '城中校區', '家裡']
+    const locationRows = ['校總區', '城中校區', '線上']
 
     const checkBoxList = [
         { header: '報酬形式', checkBoxes: tagRows, boxState: tagSelected, setBoxState: setTagSelected },
