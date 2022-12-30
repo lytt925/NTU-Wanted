@@ -87,6 +87,13 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
         })
     }
 
+    const storeReply = async (expID, name, content, reply) => {
+        await instance.post('createReply/', {
+            // TODO Part III-3-b: store the comment to the DB
+            expID, name, content, reply
+        })
+    }
+
     // const displayStatus = (s) => {
     //     if (s.payload) {
     //         const { type, payload } = s;
@@ -110,26 +117,26 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
         // storeComment();
         // setComments([...comments, { 'name': name, 'content': content }])
         // console.log('submit', this);
+        if (content !== "") {
+            storeComment();
+            setComments([...comments, { 'name': name, 'content': content, 'reply': [] }])
+            // comments.push({ 'name': name, 'content': content, 'reply': [] });
 
-        storeComment();
-        setComments([...comments, { 'name': name, 'content': content, 'reply': [] }])
-        // comments.push({ 'name': name, 'content': content, 'reply': [] });
+            const firstName = document.getElementById('content');
+            const firstNameInput = document.getElementById('name');
 
-        const firstName = document.getElementById('content');
-        const firstNameInput = document.getElementById('name');
+            // Send value to server
+            // console.log(firstNameInput.value);
 
-        // Send value to server
-        // console.log(firstNameInput.value);
+            // 👇️ clear input field
+            firstName.value = '';
+            firstNameInput.value = '';
 
-        // 👇️ clear input field
-        firstName.value = '';
-        firstNameInput.value = '';
-
-        setName('');
-        setContent('');
-        setLoad(true);
-        setError(false);
-
+            setName('');
+            setContent('');
+            setLoad(true);
+            setError(false);
+        }
 
     }
 
@@ -156,9 +163,13 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
             //     setName("匿名");
             //     nname = "匿名"
             // }
-            // fake add comments
-            // console.log(comments[parseInt(e.target.id)])
+            // console.log(comments[parseInt(e.target.id)]);
+            const recentExpID = comments[parseInt(e.target.id)].expID;
+            const recentName = comments[parseInt(e.target.id)].name;
+            const recentContent = comments[parseInt(e.target.id)].content;
             comments[parseInt(e.target.id)].reply.push({ 'name': "匿名", 'content': replycontent });
+            const allreply = comments[parseInt(e.target.id)].reply;
+            storeReply(recentExpID, recentName, recentContent, allreply)
 
             const firstName = document.getElementById(`outlined-textarea${e.target.id}`);
             // const firstNameInput = document.getElementById('name');
