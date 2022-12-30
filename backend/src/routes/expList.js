@@ -24,17 +24,12 @@ const searchExp =
                 $and: filters
             })
             const data = findList.filter(({ timeRange: expTimeRange }) => {
-                // console.log('time', timeRange)
-                // if (timeRange) {
-                //     console.log('hi')
-                //     return isOverLap(timeRange, ...expTimeRange,)
-                // }
-                // else {
-                //     console.log('her')
-                //     return true
-                // }
+                if (timeRange) {
+                    return isOverLap(timeRange.from, timeRange.to, expTimeRange.from, expTimeRange.to,)
+                }
+                return true
             })
-            return findList
+            return data
         } catch (e) {
             throw e
         }

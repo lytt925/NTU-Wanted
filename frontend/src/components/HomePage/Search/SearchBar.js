@@ -41,13 +41,13 @@ const SearchBar = ({ expList, setExpList }) => {
     const { state } = useLocation();
 
     const sendSearch = async () => {
-        console.log({
-            searchTitle,
-            locationTagsSelected,
-            timeRange,
-            rewardTagsSelected,
-            typeTagsSelected,
-        })
+        // console.log({
+        //     searchTitle,
+        //     locationTagsSelected,
+        //     timeRange,
+        //     rewardTagsSelected,
+        //     typeTagsSelected,
+        // })
         setLoading(true)
         const { data: { message, contents } } =
             await axios.get('/getExpList', {
