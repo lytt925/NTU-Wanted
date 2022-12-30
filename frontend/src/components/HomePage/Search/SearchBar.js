@@ -35,7 +35,7 @@ const searchBoxCss = {
 
 
 
-const SearchBar = ({ result, setResult }) => {
+const SearchBar = ({ expList, setExpList }) => {
     const { setSearchName, setTimeRange, searchName, timeRange, locationTagsSelected, rewardTagsSelected, typeTagsSelected, } = useFilter()
     const [loading, setLoading] = useState(false)
 
@@ -67,10 +67,10 @@ const SearchBar = ({ result, setResult }) => {
 
 
     useEffect(() => {
-        if (result) {
+        if (expList) {
             setLoading(false)
         }
-    }, [result])
+    }, [expList])
 
 
     // const locations = ['校總區', '城中校區', '家裡'];

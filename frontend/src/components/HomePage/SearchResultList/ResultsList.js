@@ -15,21 +15,20 @@ const instance = axios.create({
 
 
 
-// export default function ResultList({ result, setResult }) {
-export default function ResultList() {
+export default function ResultList({ expList, setExpList }) {
     const { state } = useLocation();
-    const [expList, setExpList] = useState([])
-    const getExpList = async () => {
-        // TODO Part I-3-b: get information of restaurants from DB
-        // const location = state.location
-        const { data } = await instance.get('/getSearch', { params: {} });
-        // console.log(data);
-        setExpList(data.contents);
-    }
+    // const [expList, setExpList] = useState([])
+    // const getExpList = async () => {
+    //     // TODO Part I-3-b: get information of restaurants from DB
+    //     // const location = state.location
+    //     const { data } = await instance.get('/getSearch', { params: {} });
+    //     // console.log(data);
+    //     setExpList(data.contents);
+    // }
 
-    useEffect(() => {
-        getExpList()
-    }, [state])
+    // useEffect(() => {
+    //     getExpList()
+    // }, [state])
 
     const BoxCss = {
         display: 'flex',

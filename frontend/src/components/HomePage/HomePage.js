@@ -29,14 +29,14 @@ const HomePage = () => {
     const body = document.querySelector('body');
     body.style.backgroundColor = '#FFFFFF';
 
-    const [result, setResult] = useState([])
+    const [expList, setExpList] = useState([])
 
     return (
         <Wrapper className='App'>
-            <SearchBar result={result} setResult={setResult} />
+            <SearchBar result={expList} setResult={setExpList} />
             <CheckTable />
             <Box sx={{ height: '1px', width: '99vw', borderTop: '1px solid lightgrey', position: 'sticky', top: '144px' }}></Box>
-            <ResultList result={result} setResult={setResult} />
+            <ResultList result={expList} setResult={setExpList} />
         </Wrapper >
     )
 }
