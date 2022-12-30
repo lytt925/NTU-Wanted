@@ -3,7 +3,6 @@ import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { useState, useEffect } from 'react';
-import { ExpList } from '../../db';
 import { FavoriteBorder, Favorite } from '@mui/icons-material';
 import { Stack, Chip } from '@mui/material';
 import { useNavigate, useLocation } from 'react-router-dom'

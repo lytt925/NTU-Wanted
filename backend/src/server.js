@@ -5,8 +5,9 @@ import routes from './routes'
 import path from 'path'
 
 const app = express()
+// console.log(process.env.NODE_ENV)
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === undefined) {
     app.use(cors())
 }
 

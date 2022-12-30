@@ -5,9 +5,16 @@ import { useParams } from 'react-router-dom'
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles'
 import { Container } from '@mui/material';
+// import { ExpList } from '../db';
+
+import axios from 'axios'
+// import { isHtmlElement } from 'react-router-dom/dist/dom';
+const instance = axios.create({
+    baseURL: 'http://localhost:4000/api'
+})
 
 
-import { ExpList } from '../db';
+
 // const a = ExpList[0]
 // import axios from 'axios'
 // // import { isHtmlElement } from 'react-router-dom/dist/dom';
@@ -47,10 +54,14 @@ const ExpPage = () => {
         // const { data } = await instance.get('/getInfo', { params: { id } });
         // console.log('restpage',data.contents[0].name);
 
+        const { data } = await instance.get('/getInfo', { params: { id } });
+        setInfo(data.contents[0]);
+        // console.log(data.contents)
+
         // fake render data
-        for (var i = 0; i < ExpList.length; i++) {
-            if (ExpList[i].id === id) { setInfo(ExpList[i]); }
-        }
+        // for (var i = 0; i < ExpList.length; i++) {
+        //     if (ExpList[i].id === id) { setInfo(ExpList[i]); }
+        // }
 
     }
     const getComments = async () => {
@@ -58,10 +69,14 @@ const ExpPage = () => {
         // const { data } = await instance.get('/getCommentsByRestaurantId', { params: { id } });
         // console.log('restpage',data);
 
+        const { data } = await instance.get('/getCommentsByExpId', { params: { id } });
+        // console.log('restpage',data);
+        setComments(data.contents);
+
         // fake render data
-        for (var i = 0; i < ExpList.length; i++) {
-            if (ExpList[i].id === id) { setComments(ExpList[i].comments);; }
-        }
+        // for (var i = 0; i < ExpList.length; i++) {
+        //     if (ExpList[i].id === id) { setComments(ExpList[i].comments);; }
+        // }
 
 
     }
