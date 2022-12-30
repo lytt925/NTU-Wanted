@@ -123,7 +123,7 @@ const Comment = ({ restaurantId, comments, setComments, setLoad }) => {
                 nname = "匿名"
             }
             // fake add comments
-            comments.push({ 'name': nname, 'content': content });
+            comments.push({ 'name': nname, 'content': content, 'reply': [] });
 
             const firstName = document.getElementById('content');
             const firstNameInput = document.getElementById('name');

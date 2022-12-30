@@ -28,16 +28,19 @@ export const ExpList = [
         ],
         "comments": [
             {
-                "id": "01",
-                "content": "請問可以找朋友一起參加嗎？"
+                "name": "lytt",
+                "content": "請問可以找朋友一起參加嗎？",
+                "reply": []
             },
             {
-                "id": "02",
-                "content": "普心時數可以改拿現金ㄇ"
+                "name": "bb77",
+                "content": "普心時數可以改拿現金ㄇ",
+                "reply": []
             },
             {
-                "id": "03",
-                "content": "可樂有點少，希望可以加大"
+                "name": "欸冷",
+                "content": "可樂有點少，希望可以加大",
+                "reply": []
             }
         ]
     },
@@ -68,7 +71,7 @@ export const ExpList = [
             "MEG",
             "記憶"
         ],
-        "comments": null
+        "comments": []
     },
     {
         "id": "111(1)1003",
@@ -97,7 +100,7 @@ export const ExpList = [
             "抽獎",
             "MEG"
         ],
-        "comments": null
+        "comments": []
     },
     {
         "id": "111(1)1004",
@@ -126,7 +129,7 @@ export const ExpList = [
             "玩遊戲",
             "星巴克"
         ],
-        "comments": null
+        "comments": []
     },
     {
         "id": "111(1)1005",
@@ -155,7 +158,7 @@ export const ExpList = [
             "風險決策",
             "fMRI"
         ],
-        "comments": null
+        "comments": []
     },
     {
         "id": "111(1)1006",
@@ -184,7 +187,7 @@ export const ExpList = [
             "MEG",
             "抽獎"
         ],
-        "comments": null
+        "comments": []
     },
     {
         "id": "111(1)1007",
@@ -213,7 +216,7 @@ export const ExpList = [
             "星巴克",
             "抽獎"
         ],
-        "comments": null
+        "comments": []
     },
     {
         "id": "111(1)1010",
@@ -242,6 +245,6 @@ export const ExpList = [
             "風險決策",
             "fMRI"
         ],
-        "comments": null
+        "comments": []
     }
 ]
