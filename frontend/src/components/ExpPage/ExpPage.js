@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Information from './imformation';
+import Information from './information';
 import Comment from './comments';
 import { useParams } from 'react-router-dom'
 import Box from '@mui/material/Box';

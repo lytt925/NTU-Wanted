@@ -88,53 +88,6 @@ export default function BasicTable() {
         </TableRow>
     }
 
-    // const DatePickerRange = () => {
-    //     const DatePick = ({ date, from, to }) => (
-    //         <LocalizationProvider dateAdapter={AdapterDayjs}>
-    //             <DatePicker
-    //                 label={date ? '' : '期間'}
-    //                 value={date}
-    //                 onChange={(newDate) => {
-    //                     const newTimeRange = timeRange.slice()
-    //                     const YDMList = [newDate.$y, newDate.$M, newDate.$D]
-    //                     if (from) newTimeRange[0] = YDMList.join('/')
-    //                     else if (to) newTimeRange[1] = YDMList.join('/')
-    //                     console.log(newTimeRange)
-    //                     setTimeRange(newTimeRange);
-    //                 }}
-    //                 views={["year", "month", "day"]}
-    //                 inputFormat="YYYY/MM/DD"
-    //                 disableHighlightToday
-    //                 // InputProps={{ startAdornment: <InputAdornment position="start">自</InputAdornment> }}
-    //                 renderInput={(InputProps) => {
-    //                     let newParams = { ...InputProps, error: false }
-    //                     return <TextField
-    //                         size="small"
-    //                         sx={{ width: '180px', mr: '30px', ml: '10px' }}
-    //                         variant="outlined"
-    //                         InputProps={{ shrink: false }
-    //                         }
-    //                         {...newParams} />
-    //                 }}
-    //             />
-    //         </LocalizationProvider>
-    //     )
-
-    //     return (
-    //         <TableRow>
-    //             <HeaderTableCell component="th" scope="row">
-    //                 期間：
-    //             </HeaderTableCell>
-    //             <RowTableCell align='left' sx={{ display: 'flex', alignItems: 'center', fontSize: '1em' }}>
-    //                 自
-    //                 <DatePick date={timeRange[0]} from={true} />
-    //                 至
-    //                 <DatePick date={timeRange[1]} to={true} />
-    //             </RowTableCell>
-    //         </TableRow >
-    //     )
-    // }
-
     return (
         <Box sx={BoxCss}>
             <TableContainer component={Paper} variant={'outlined'}>

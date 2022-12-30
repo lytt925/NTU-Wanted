@@ -9,7 +9,7 @@ const FilterContext = createContext({
     setRewardTagsSelected: () => { },
     setTypeTagsSelected: () => { },
     searchTitle: '',
-    timeRange: [null, null],
+    timeRange: {},
     locationTagsSelected: [],
     rewardTagsSelected: [],
     typeTagsSelected: []
@@ -19,7 +19,7 @@ const FilterProvider = (props) => {
 
     // Search Filter //
     const [searchTitle, setSearchTitle] = useState('')
-    const [timeRange, setTimeRange] = useState([null, null])
+    const [timeRange, setTimeRange] = useState({})
     const [locationTagsSelected, setLocationTagsSelected] = useState([])
     const [rewardTagsSelected, setRewardTagsSelected] = useState([])
     const [typeTagsSelected, setTypeTagsSelected] = useState([])

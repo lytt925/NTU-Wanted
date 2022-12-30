@@ -79,21 +79,66 @@ const SearchBar = ({ expList, setExpList }) => {
         setSearchTitle(e.target.value)
     }
 
+    const formatDate = (newDate) => {
+        const date = newDate.$d.toLocaleDateString().split('/')
+        const year = date.pop()
+        date.unshift(year)
+        const displayDate = date.join('/')
+        return displayDate
+    }
+
+    const disableDay = (day, from, to, timeRange) => {
+        const date = formatDate(day)
+        if (timeRange.from && to) {
+            const d = new Date(date).getTime();
+            const f = new Date(timeRange.from).getTime()
+            if (d > f) {
+                return false
+            }
+            return true
+        } else if (timeRange.to && from) {
+            const d = new Date(date).getTime();
+            const f = new Date(timeRange.to).getTime()
+            if (d < f) {
+                return false
+            }
+            return true
+        }
+    }
 
     const DatePickerRange = () => {
         const DatePick = ({ date, from, to }) => (
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <LocalizationProvider dateAdapter={AdapterDayjs} dateFormats={{ fullDate: "YYYY/MM/DD" }} adapterLocale="zh-TW">
                 <DatePicker
                     label={date ? '' : '期間'}
                     value={date}
                     onChange={(newDate) => {
-                        const newTimeRange = timeRange.slice()
-                        const YDMList = [newDate.$y, newDate.$M, newDate.$D]
-                        if (from) newTimeRange[0] = YDMList.join('/')
-                        else if (to) newTimeRange[1] = YDMList.join('/')
-                        console.log(newTimeRange)
+                        // console.log(newDate.$d.toLocaleDateString())
+                        const displayDate = formatDate(newDate)
+                        const newTimeRange = { ...timeRange }
+                        if (from) newTimeRange.from = displayDate
+                        else if (to) newTimeRange.to = displayDate
                         setTimeRange(newTimeRange);
                     }}
+                    // shouldDisableYear={(year) => {
+                    //     year = formatDate(year)
+                    //     let thisYear = new Date(year).getTime();
+                    //     let from = new Date(timeRange.from).getTime();
+                    //     if (thisYear > from) {
+                    //         console.log('here')
+                    //         return false
+                    //     }
+                    //     return true
+                    // }}
+                    // shouldDisableMonth={(month) => {
+                    //     month = formatDate(month)
+                    //     let thisMonth = new Date(month).getTime();
+                    //     let from = new Date(timeRange.from).getTime();
+                    //     if (thisMonth > from)
+                    //         return false
+                    //     return true
+                    // }}
+                    shouldDisableDate={(day) => disableDay(day, from, to, timeRange)}
                     views={["year", "month", "day"]}
                     inputFormat="YYYY/MM/DD"
                     disableHighlightToday
@@ -108,15 +153,15 @@ const SearchBar = ({ expList, setExpList }) => {
                             {...newParams} />
                     }}
                 />
-            </LocalizationProvider>
+            </LocalizationProvider >
         )
 
         return (
             <>
                 <RangeLabel>自</RangeLabel>
-                <DatePick date={timeRange[0]} from={true} />
+                <DatePick date={timeRange.from} from={true} />
                 <RangeLabel>至</RangeLabel>
-                <DatePick date={timeRange[1]} to={true} />
+                <DatePick date={timeRange.to} to={true} />
             </>
         )
     }
@@ -128,7 +173,7 @@ const SearchBar = ({ expList, setExpList }) => {
             noValidate
             autoComplete="on"
         >
-            <SearchInput placeholder="搜尋" variant="outlined" sx={{ width: '300px' }} onChange={searchTitleHandler} value={searchTitle} size='small' />
+            <SearchInput placeholder="搜尋" variant="outlined" sx={{ width: '300px', flexShrink: "2" }} onChange={searchTitleHandler} value={searchTitle} size='small' />
             <DatePickerRange />
             <LoadingButton
                 onClick={sendSearch}

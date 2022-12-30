@@ -76,7 +76,7 @@ const Information = ({ info }) => {
                             實驗資訊
                         </Typography>
                         <li>時長：{info.length}</li>
-                        <li>時間：{info.time}</li>
+                        <li>時間：{info.timeRange.from} ~ {info.timeRange.to}</li>
                         <li>地點：{info.location}</li>
                     </List>
                 </Box>
