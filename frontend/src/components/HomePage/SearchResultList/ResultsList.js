@@ -3,9 +3,34 @@ import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box';
 import { useState, useEffect } from 'react';
 import TaskInfo from './TaskInfo';
-import { ExpList } from '../../db';
 
-export default function ResultList({ result, setResult }) {
+import { useNavigate, useLocation } from 'react-router-dom'
+// import { ExpList } from '../../db';
+
+import axios from 'axios'
+// import { isHtmlElement } from 'react-router-dom/dist/dom';
+const instance = axios.create({
+    baseURL: 'http://localhost:4000/api'
+})
+
+
+
+// export default function ResultList({ result, setResult }) {
+export default function ResultList() {
+    const { state } = useLocation();
+    const [expList, setExpList] = useState([])
+    const getExpList = async () => {
+        // TODO Part I-3-b: get information of restaurants from DB
+        // const location = state.location
+        const { data } = await instance.get('/getSearch', { params: {} });
+        // console.log(data);
+        setExpList(data.contents);
+    }
+
+    useEffect(() => {
+        getExpList()
+    }, [state])
+
     const BoxCss = {
         display: 'flex',
         flexDirection: 'column',
@@ -22,7 +47,7 @@ export default function ResultList({ result, setResult }) {
     return (
         <Box sx={BoxCss}>
             {
-                ExpList.map((a, key) => (
+                expList.map((a, key) => (
                     <TaskInfo a={a} key={key} />
                 ))
             }

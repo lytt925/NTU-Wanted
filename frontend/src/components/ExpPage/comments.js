@@ -12,11 +12,11 @@ import TextField from '@mui/material/TextField';
 import SendIcon from '@mui/icons-material/Send';
 import { message, Input } from "antd";
 import ReplyIcon from '@mui/icons-material/Reply';
-// import axios from 'axios'
+import axios from 'axios'
 
-// const instance = axios.create({
-//     baseURL: 'http://localhost:4000/api'
-// })
+const instance = axios.create({
+    baseURL: 'http://localhost:4000/api'
+})
 
 const BoxCss = {
     px: '25px',
@@ -68,7 +68,7 @@ const List = styled('ul')({
     padding: 0,
 })
 
-const Comment = ({ restaurantId, comments, setComments, setLoad }) => {
+const Comment = ({ expID, comments, setComments, setLoad }) => {
     // const [rating, setRating] = useState(0)
     const [name, setName] = useState('')
     const [content, setContent] = useState('')
@@ -80,12 +80,19 @@ const Comment = ({ restaurantId, comments, setComments, setLoad }) => {
     // };
 
 
-    // const storeComment = async () => {
-    //     await instance.post('createComment/', {
-    //         // TODO Part III-3-b: store the comment to the DB
-    //         restaurantId, name, content, rating
-    //     })
-    // }
+    const storeComment = async () => {
+        await instance.post('createComment/', {
+            // TODO Part III-3-b: store the comment to the DB
+            expID, name, content
+        })
+    }
+
+    const storeReply = async (expID, name, content, reply) => {
+        await instance.post('createReply/', {
+            // TODO Part III-3-b: store the comment to the DB
+            expID, name, content, reply
+        })
+    }
 
     // const displayStatus = (s) => {
     //     if (s.payload) {
@@ -110,20 +117,10 @@ const Comment = ({ restaurantId, comments, setComments, setLoad }) => {
         // storeComment();
         // setComments([...comments, { 'name': name, 'content': content }])
         // console.log('submit', this);
-
-
-
-        if (content === "") {
-            setError(true);
-        }
-        else {
-            var nname = name;
-            if (name === "") {
-                setName("匿名");
-                nname = "匿名"
-            }
-            // fake add comments
-            comments.push({ 'name': nname, 'content': content, 'reply': [] });
+        if (content !== "") {
+            storeComment();
+            setComments([...comments, { 'name': name, 'content': content, 'reply': [] }])
+            // comments.push({ 'name': name, 'content': content, 'reply': [] });
 
             const firstName = document.getElementById('content');
             const firstNameInput = document.getElementById('name');
@@ -140,7 +137,6 @@ const Comment = ({ restaurantId, comments, setComments, setLoad }) => {
             setLoad(true);
             setError(false);
         }
-
 
     }
 
@@ -167,9 +163,13 @@ const Comment = ({ restaurantId, comments, setComments, setLoad }) => {
             //     setName("匿名");
             //     nname = "匿名"
             // }
-            // fake add comments
-            // console.log(comments[parseInt(e.target.id)])
+            // console.log(comments[parseInt(e.target.id)]);
+            const recentExpID = comments[parseInt(e.target.id)].expID;
+            const recentName = comments[parseInt(e.target.id)].name;
+            const recentContent = comments[parseInt(e.target.id)].content;
             comments[parseInt(e.target.id)].reply.push({ 'name': "匿名", 'content': replycontent });
+            const allreply = comments[parseInt(e.target.id)].reply;
+            storeReply(recentExpID, recentName, recentContent, allreply)
 
             const firstName = document.getElementById(`outlined-textarea${e.target.id}`);
             // const firstNameInput = document.getElementById('name');
