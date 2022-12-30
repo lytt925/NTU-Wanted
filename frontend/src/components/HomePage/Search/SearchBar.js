@@ -44,7 +44,6 @@ const SearchBar = ({ expList, setExpList }) => {
 
     const { state } = useLocation();
 
-
     useEffect(() => {
         sendSearch()
     }, [state])
@@ -80,9 +79,6 @@ const SearchBar = ({ expList, setExpList }) => {
             setLoading(false)
         }
     }, [expList])
-
-
-    // const locations = ['校總區', '城中校區', '家裡'];
 
     const DatePickerRange = () => {
         const DatePick = ({ date, from, to }) => (
@@ -135,7 +131,6 @@ const SearchBar = ({ expList, setExpList }) => {
         >
             <SearchInput placeholder="搜尋" variant="outlined" sx={{ width: '300px' }} onChange={searchNameHandler} value={searchName} size='small' />
             <DatePickerRange />
-            {/* <MultipleSelect types={locations} label={"地點"} value={location} setValue={setLocation} /> */}
             <LoadingButton
                 onClick={sendSearch}
                 endIcon={<SearchIcon />}

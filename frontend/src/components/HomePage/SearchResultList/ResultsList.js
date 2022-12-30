@@ -3,7 +3,6 @@ import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box';
 import { useState, useEffect } from 'react';
 import TaskInfo from './TaskInfo';
-
 import { useNavigate, useLocation } from 'react-router-dom'
 // import { ExpList } from '../../db';
 
