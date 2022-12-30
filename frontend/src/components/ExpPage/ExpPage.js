@@ -8,7 +8,7 @@ import { Container } from '@mui/material';
 
 
 import { ExpList } from '../db';
-const a = ExpList[0]
+// const a = ExpList[0]
 // import axios from 'axios'
 // // import { isHtmlElement } from 'react-router-dom/dist/dom';
 // const instance = axios.create({
@@ -46,14 +46,23 @@ const ExpPage = () => {
         // TODO Part III-2: get a restaurant's info
         // const { data } = await instance.get('/getInfo', { params: { id } });
         // console.log('restpage',data.contents[0].name);
-        setInfo(a);
-        // console.log('restpage',info);
+
+        // fake render data
+        for (var i = 0; i < ExpList.length; i++) {
+            if (ExpList[i].id === id) { setInfo(ExpList[i]); }
+        }
+
     }
     const getComments = async () => {
         // TODO Part III-3: get a restaurant's comments
         // const { data } = await instance.get('/getCommentsByRestaurantId', { params: { id } });
         // console.log('restpage',data);
-        setComments(a.comments);
+
+        // fake render data
+        for (var i = 0; i < ExpList.length; i++) {
+            if (ExpList[i].id === id) { setComments(ExpList[i].comments);; }
+        }
+
 
     }
     useEffect(() => {
