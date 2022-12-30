@@ -19,12 +19,15 @@ const ExpSchema = new Schema({
     locationTags: [{ type: String, required: true },],
     otherTags: [{ type: String }],
     // comments: [{ type: mongoose.Types.ObjectId, ref: 'Comment' }],
-    comments: [{ user: { type: String }, content: { type: String }, reply: [{ user: { type: String }, content: { type: String } }] }]
+    comments: [{
+        user: { type: mongoose.Types.ObjectId, ref: 'User' },
+        content: { type: String },
+        reply: [{ user: { type: mongoose.Types.ObjectId, ref: 'User' }, content: { type: String } }]
+    }]
 }, {
     collection: 'Experiment',
     timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
 });
 
 const ExperimentModel = mongoose.model('Experiment', ExpSchema);
-
 export default ExperimentModel;

@@ -52,21 +52,27 @@ const router = express.Router()
 //     res.send({ message: msg, card: msg })
 // })
 
-// router.get('/cards', async (req, res) => {
-//     const { type, queryString } = req.query
-//     const findList = await queryDB(type, queryString)
-//     let msgList
-//     if (type === 'name') {
-//         msgList = findList.map(({ name, subject, score }) =>
-//             `Found card with name: (${name}, ${subject}, ${score})`)
-//     } else {
-//         msgList = findList.map(({ name, subject, score }) =>
-//             `Found card with subject: (${name}, ${subject}, ${score})`)
-//     }
-//     console.log(msgList)
-//     res.json({ messages: msgList, message: `${type[0].toUpperCase() + type.substring(1)} (${queryString}) not found!` })
+router.get('/experiment', async (req, res) => {
+    const {
+        searchName,
+        locationTagsSelected,
+        timeRange,
+        rewardTagsSelected,
+        typeTagsSelected,
+    } = req.query
+    const findList = await queryDB(type, queryString)
+    let msgList
+    if (type === 'name') {
+        msgList = findList.map(({ name, subject, score }) =>
+            `Found card with name: (${name}, ${subject}, ${score})`)
+    } else {
+        msgList = findList.map(({ name, subject, score }) =>
+            `Found card with subject: (${name}, ${subject}, ${score})`)
+    }
+    console.log(msgList)
+    res.json({ messages: msgList, message: `${type[0].toUpperCase() + type.substring(1)} (${queryString}) not found!` })
 
-// })
+})
 
 // router.delete('/cards', (req, res) => {
 //     deleteDB();

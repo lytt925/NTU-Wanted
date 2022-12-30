@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles'
 import TextField from '@mui/material/TextField';
@@ -35,10 +35,9 @@ const searchBoxCss = {
 
 
 
-const SearchBar = () => {
-    const { setSearchName, setTimeRange, searchName, location, timeRange, tagSelected, typeSelected } = useFilter()
+const SearchBar = ({ result, setResult }) => {
+    const { setSearchName, setTimeRange, searchName, timeRange, locationTagsSelected, rewardTagsSelected, typeTagsSelected, } = useFilter()
     const [loading, setLoading] = useState(false)
-
 
     const searchNameHandler = (e) => {
         setSearchName(e.target.value)
@@ -47,12 +46,32 @@ const SearchBar = () => {
     const sendSearch = async () => {
         console.log({
             searchName,
-            location,
+            locationTagsSelected,
             timeRange,
-            tagSelected,
-            typeSelected,
+            rewardTagsSelected,
+            typeTagsSelected,
         })
-    };
+        setLoading(true)
+        const { data } =
+            await axios.get('/experiment', {
+                params: {
+                    searchName,
+                    locationTagsSelected,
+                    timeRange,
+                    rewardTagsSelected,
+                    typeTagsSelected,
+                },
+            })
+        console.log(data)
+    }
+
+
+    useEffect(() => {
+        if (result) {
+            setLoading(false)
+        }
+    }, [result])
+
 
     // const locations = ['校總區', '城中校區', '家裡'];
 

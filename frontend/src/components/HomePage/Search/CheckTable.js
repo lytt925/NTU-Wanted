@@ -40,16 +40,16 @@ const RowTableCell = styled(TableCell)({
 })
 
 export default function BasicTable() {
-    const { tagSelected, setTagSelected, typeSelected, setTypeSelected, locationSelected, setLocationSelected, timeRange, setTimeRange, } = useFilter()
+    const { rewardTagsSelected, setRewardTagsSelected, typeTagsSelected, setTypeTagsSelected, locationTagsSelected, setLocationTagsSelected } = useFilter()
 
-    const typeRows = ['實驗', '問卷', '訪談', '其他'];
-    const tagRows = ['普心加分', '現金', '食物', '其他']
-    const locationRows = ['校總區', '城中校區', '家裡']
+    const typeTagsRows = ['實驗', '問卷', '訪談', '其他'];
+    const rewardTagsRows = ['普心時數', '現金', '食物', '其他']
+    const locationTagsRows = ['校總區', '城中校區', '家裡']
 
     const checkBoxList = [
-        { header: '報酬形式', checkBoxes: tagRows, boxState: tagSelected, setBoxState: setTagSelected },
-        { header: '實驗類型', checkBoxes: typeRows, boxState: typeSelected, setBoxState: setTypeSelected },
-        { header: '地點', checkBoxes: locationRows, boxState: locationSelected, setBoxState: setLocationSelected }
+        { header: '報酬形式', checkBoxes: typeTagsRows, boxState: rewardTagsSelected, setBoxState: setRewardTagsSelected },
+        { header: '實驗類型', checkBoxes: rewardTagsRows, boxState: typeTagsSelected, setBoxState: setTypeTagsSelected },
+        { header: '地點', checkBoxes: locationTagsRows, boxState: locationTagsSelected, setBoxState: setLocationTagsSelected }
     ]
 
     const handleCheck = (e, boxState, setBoxState) => {

@@ -4,44 +4,41 @@ import {
 
 const FilterContext = createContext({
     setSearchName: () => { },
-    setLocationSelected: () => { },
     setTimeRange: () => { },
-    setTagSelected: () => { },
-    setTypeSelected: () => { },
+    setLocationTagSelected: () => { },
+    setRewardTagsSelected: () => { },
+    setTypeTagsSelected: () => { },
     searchName: '',
     timeRange: [null, null],
-    locationSelected: [],
-    tagSelected: [],
-    typeSelected: []
+    locationTagsSelected: [],
+    rewardTagsSelected: [],
+    typeTagsSelected: []
 })
 
 const FilterProvider = (props) => {
 
     // Search Filter //
     const [searchName, setSearchName] = useState('')
-    const [locationSelected, setLocationSelected] = useState([])
     const [timeRange, setTimeRange] = useState([null, null])
-    const [tagSelected, setTagSelected] = useState([])
-    const [typeSelected, setTypeSelected] = useState([])
-    // Search Filter //                  
+    const [locationTagsSelected, setLocationTagsSelected] = useState([])
+    const [rewardTagsSelected, setRewardTagsSelected] = useState([])
+    const [typeTagsSelected, setTypeTagsSelected] = useState([])
+    // Search Filter //
 
-    // const sendSearch = () => {
-    //     console.log(setSearchName, setLocation, setTimeRange, setTagSelected, setTypeSelected)
-    // }
 
     return (
         <FilterContext.Provider
             value={{
                 setSearchName,
-                setLocationSelected,
+                setLocationTagsSelected,
                 setTimeRange,
-                setTagSelected,
-                setTypeSelected,
+                setRewardTagsSelected,
+                setTypeTagsSelected,
                 searchName,
-                locationSelected,
+                locationTagsSelected,
                 timeRange,
-                tagSelected,
-                typeSelected,
+                rewardTagsSelected,
+                typeTagsSelected,
             }}
             {...props}
         />
