@@ -3,9 +3,9 @@ import ExperimentModel from '../models/experiment'
 exports.GetSearch = async (req, res) => {
     /*******    NOTE: DO NOT MODIFY   *******/
     // console.log(sortBy);
-    const priceFilter = req.query.priceFilter
-    const mealFilter = req.query.mealFilter
-    const typeFilter = req.query.typeFilter
+    // const priceFilter = req.query.priceFilter
+    // const mealFilter = req.query.mealFilter
+    // const typeFilter = req.query.typeFilter
     /****************************************/
 
     // NOTE Hint:
@@ -17,12 +17,10 @@ exports.GetSearch = async (req, res) => {
     // const checkData = await Info.find();
     // console.log(checkData);
     // TODO Part I-3-a: find the information to all restaurants
-    if (!priceFilter && !mealFilter && !typeFilter) {
-        const allSearch = await ExperimentModel.find({});
-        // console.log(allSearch);
-        res.status(200).send({ message: 'success', contents: allSearch, });
-        // console.log('backend_info',allSearch)
-    }
+    const allSearch = await ExperimentModel.find({});
+    // console.log(allSearch);
+    res.status(200).send({ message: 'success', contents: allSearch, });
+    // console.log('backend_info',allSearch)
 
 
 }

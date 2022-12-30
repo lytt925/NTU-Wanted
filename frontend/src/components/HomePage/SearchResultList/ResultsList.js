@@ -21,7 +21,7 @@ export default function ResultList() {
     const getExpList = async () => {
         // TODO Part I-3-b: get information of restaurants from DB
         // const location = state.location
-        const { data } = await instance.get('/getSearch', { params: { priceFilter: undefined, mealFilter: undefined, typeFilter: undefined } });
+        const { data } = await instance.get('/getSearch', { params: {} });
         // console.log(data);
         setExpList(data.contents);
     }
