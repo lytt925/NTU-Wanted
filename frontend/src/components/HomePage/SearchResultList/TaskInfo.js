@@ -8,7 +8,7 @@ import { FavoriteBorder, Favorite } from '@mui/icons-material';
 import { Stack, Chip } from '@mui/material';
 import { useNavigate, useLocation } from 'react-router-dom'
 
-const a = ExpList[0]
+// const a = ExpList[0]
 
 const BoxCss = {
     px: '25px',
@@ -23,7 +23,8 @@ const List = styled('ul')({
     margin: '10px 0'
 })
 
-const TaskInfo = () => {
+const TaskInfo = (a) => {
+    console.log(a.a);
     const { state } = useLocation();
     const [liked, setLiked] = useState(false)
 
@@ -42,24 +43,25 @@ const TaskInfo = () => {
 
     return (
         <Box sx={BoxCss} className='TaskInfo'>
-            <Box sx={{ mt: '3px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', "&:hover": { cursor: 'pointer' } }} onClick={() => ToExp(a.id)}>
+            <Box sx={{ mt: '3px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', "&:hover": { cursor: 'pointer' } }} onClick={() => ToExp(a.a.id)}>
                 <Typography variant="h6">
-                    {a.title}
+                    {a.a.title}
                 </Typography>
                 {liked ? <Favorite onClick={handleLike} sx={{ color: 'red', "&:hover": { cursor: 'pointer' } }} />
                     : <FavoriteBorder onClick={handleLike} sx={{ "&:hover": { cursor: 'pointer' } }} />}
             </Box>
             <List>
-                <li>時長：{a.length}</li>
-                <li>時間：{a.time}</li>
-                <li>地點：{a.location}</li>
+                <li>時長：{a.a.length}</li>
+                <li>時間：{a.a.time}</li>
+                <li>地點：{a.a.location}</li>
             </List>
             <Stack direction="row" spacing={1} sx={{ mb: "8px", verticalAlign: 'middle' }}>
-                {a.types.map((type) => (<Chip key={type} sx={{ padding: 'None', fontSize: '12px' }} label={type} color="primary" variant="outlined" />))}
-                {a.tags.map((tag) => (<Chip key={tag} sx={{ padding: 'None', fontSize: '12px' }} label={tag} color="success" variant="outlined" />))}
-                {a.locationTag.map((tag) => (<Chip key={tag} sx={{ padding: 'None', fontSize: '12px' }} label={tag} color="error" variant="outlined" />))}
+                {a.a.typeTags.map((type) => (<Chip key={type} sx={{ padding: 'None', fontSize: '12px' }} label={type} color="primary" variant="outlined" />))}
+                {a.a.rewardTags.map((tag) => (<Chip key={tag} sx={{ padding: 'None', fontSize: '12px' }} label={tag} color="success" variant="outlined" />))}
+                {a.a.locationTags.map((tag) => (<Chip key={tag} sx={{ padding: 'None', fontSize: '12px' }} label={tag} color="error" variant="outlined" />))}
             </Stack>
         </Box>
+
     )
 }
 

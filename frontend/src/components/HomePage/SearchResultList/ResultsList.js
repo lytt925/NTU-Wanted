@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box';
 import { useState, useEffect } from 'react';
 import TaskInfo from './TaskInfo';
+import { ExpList } from '../../db';
 
 export default function ResultList() {
     const BoxCss = {
@@ -18,14 +19,11 @@ export default function ResultList() {
     }
     return (
         <Box sx={BoxCss}>
-            <TaskInfo />
-            <TaskInfo />
-            <TaskInfo />
-            <TaskInfo />
-            <TaskInfo />
-            <TaskInfo />
-            <TaskInfo />
-            <TaskInfo />
+            {
+                ExpList.map((a, key) => (
+                    <TaskInfo a={a} key={key} />
+                ))
+            }
         </Box>
     )
 }
