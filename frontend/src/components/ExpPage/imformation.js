@@ -124,16 +124,18 @@ const Information = ({ info }) => {
                     </List>
                 </Box>
             </Box >
-            <Box sx={BoxCss} className='ExpInfo' component={Paper}>
-                <Box sx={{ float: 'left' }}>
-                    <List>
-                        <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
-                            實驗報名連結
-                        </Typography>
-                        <Button variant="outlined" href={info.link} target='_blank'>{info.link}</Button>
-                    </List>
-                </Box>
-            </Box >
+            {(info.link === undefined) ? <></> :
+                <Box sx={BoxCss} className='ExpInfo' component={Paper}>
+                    <Box sx={{ float: 'left' }}>
+                        <List>
+                            <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
+                                實驗報名連結
+                            </Typography>
+                            <Button variant="outlined" href={info.link} target='_blank'>{info.link}</Button>
+                        </List>
+                    </Box>
+                </Box >
+            }
         </Box>
     )
 }
