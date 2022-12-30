@@ -12,13 +12,14 @@ const ExpSchema = new Schema({
     time: { type: String, required: true },
     introduction: { type: String, required: [true, 'Introduction field is required.'] },
     memo: { type: String, required: true },
-    reward: [{ type: String, required: true }],
+    reward: { type: String, required: true },
     link: { type: String, required: true },
-    types: [{ type: String, required: true },],
-    tags: [{ type: String, required: true },],
-    locationTag: [{ type: String, required: true },],
+    typeTags: [{ type: String, required: true },],
+    rewardTags: [{ type: String, required: true },],
+    locationTags: [{ type: String, required: true },],
     otherTags: [{ type: String }],
-    comments: [{ type: mongoose.Types.ObjectId, ref: 'Comment' }]
+    // comments: [{ type: mongoose.Types.ObjectId, ref: 'Comment' }],
+    comments: [{ user: { type: String }, content: { type: String }, reply: [{ user: { type: String }, content: { type: String } }] }]
 }, {
     collection: 'Experiment',
     timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }

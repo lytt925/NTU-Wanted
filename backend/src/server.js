@@ -4,7 +4,6 @@ import db from './db';
 import routes from './routes'
 import path from 'path'
 
-
 const app = express()
 
 if (process.env.NODE_ENV === 'development') {

@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import dotenv from 'dotenv-defaults'
+import { dataInit } from "./dataInit";
 dotenv.config();
 
 export default {
