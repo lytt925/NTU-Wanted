@@ -12,11 +12,8 @@ import TextField from '@mui/material/TextField';
 import SendIcon from '@mui/icons-material/Send';
 import { message, Input } from "antd";
 import ReplyIcon from '@mui/icons-material/Reply';
-import axios from 'axios'
+import axios from '../../containers/api'
 
-const instance = axios.create({
-    baseURL: 'http://localhost:4000/api'
-})
 
 const BoxCss = {
     px: '25px',
@@ -81,14 +78,14 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
 
 
     const storeComment = async () => {
-        await instance.post('createComment/', {
+        await axios.post('createComment/', {
             // TODO Part III-3-b: store the comment to the DB
             expID, name, content
         })
     }
 
     const storeReply = async (expID, name, content, reply) => {
-        await instance.post('createReply/', {
+        await axios.post('createReply/', {
             // TODO Part III-3-b: store the comment to the DB
             expID, name, content, reply
         })

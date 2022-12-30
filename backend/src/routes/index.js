@@ -4,7 +4,7 @@ import InfoRouter from './expInfo'
 import commentRoute from './comment'
 
 const router = Router();
-router.use('/api/getExpList', ExpRouter.getExpList);
+router.get('/api/getExpList', ExpRouter.getExpList);
 router.use('/api/getInfo', InfoRouter.getInfo);
 router.use('/api/getCommentsByExpId', commentRoute.GetCommentsByExpId);
 router.post('/api/createComment', commentRoute.CreateComment);
