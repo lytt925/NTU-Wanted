@@ -68,12 +68,12 @@
             "MEG",
             "記憶"
         ],
-        "comments": "[]"
+        "comments": null
     },
     {
         "id": "111(1)1003",
         "title": "早期視覺經驗對視聽整合發展的影響",
-        "location": null,
+        "location": "線上",
         "experimenter": "黃莠樺",
         "length": "30分",
         "phone": "0984338269",
@@ -102,7 +102,7 @@
     {
         "id": "111(1)1004",
         "title": "早期視覺經驗對視聽整合發展的影響",
-        "location": null,
+        "location": "臺大心理系南館S329室",
         "experimenter": "王雅茵",
         "length": "30分",
         "phone": "02-3366-3955",
@@ -131,7 +131,7 @@
     {
         "id": "111(1)1005",
         "title": "擬人化於長者對機器人接受度的影響：基於經驗與基於知識的對話",
-        "location": null,
+        "location": "臺大心理系南館S329室",
         "experimenter": "劉彥柔",
         "length": "30分",
         "phone": "0975202346",
@@ -160,7 +160,7 @@
     {
         "id": "111(1)1006",
         "title": "多重學業歸因對學習適應的預測力：量測與理論議題",
-        "location": null,
+        "location": "臺大心理系南館S329室",
         "experimenter": "鄭澈",
         "length": "60分",
         "phone": "0910146746",
@@ -189,7 +189,7 @@
     {
         "id": "111(1)1007",
         "title": "社會性科學議題—知覺信念變化研究",
-        "location": null,
+        "location": "臺大心理系南館S329室",
         "experimenter": "簡秉凡",
         "length": "30分",
         "phone": "0919-665738",
@@ -218,7 +218,7 @@
     {
         "id": "111(1)1010",
         "title": "台灣大學生的滿足感與生活滿意度調查",
-        "location": null,
+        "location": "臺大心理系南館S329室",
         "experimenter": "林辰祐",
         "length": "30分",
         "phone": "0932268032",
