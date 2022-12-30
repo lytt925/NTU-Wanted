@@ -24,7 +24,7 @@ const List = styled('ul')({
 })
 
 const TaskInfo = (a) => {
-    console.log(a.a);
+    // console.log(a.a);
     const { state } = useLocation();
     const [liked, setLiked] = useState(false)
 
