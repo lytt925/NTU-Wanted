@@ -35,15 +35,14 @@ const searchBoxCss = {
 }
 
 const SearchBar = ({ expList, setExpList }) => {
-    const { setSearchName, setTimeRange, searchName, timeRange, locationTagsSelected, rewardTagsSelected, typeTagsSelected, } = useFilter()
+    const { setSearchTitle, setTimeRange, searchTitle, timeRange, locationTagsSelected, rewardTagsSelected, typeTagsSelected, } = useFilter()
     const [loading, setLoading] = useState(false)
 
     const { state } = useLocation();
 
-
     const sendSearch = async () => {
         console.log({
-            searchName,
+            searchTitle,
             locationTagsSelected,
             timeRange,
             rewardTagsSelected,
@@ -53,7 +52,7 @@ const SearchBar = ({ expList, setExpList }) => {
         const { data: { message, contents } } =
             await axios.get('/getExpList', {
                 params: {
-                    searchName,
+                    searchTitle,
                     locationTagsSelected,
                     timeRange,
                     rewardTagsSelected,
@@ -61,7 +60,8 @@ const SearchBar = ({ expList, setExpList }) => {
                 },
             })
         if (message === 'success') {
-            setExpList([...contents])
+            console.log(contents)
+            setExpList(contents)
         }
     }
 
@@ -75,8 +75,8 @@ const SearchBar = ({ expList, setExpList }) => {
         }
     }, [expList])
 
-    const searchNameHandler = (e) => {
-        setSearchName(e.target.value)
+    const searchTitleHandler = (e) => {
+        setSearchTitle(e.target.value)
     }
 
 
@@ -128,7 +128,7 @@ const SearchBar = ({ expList, setExpList }) => {
             noValidate
             autoComplete="on"
         >
-            <SearchInput placeholder="搜尋" variant="outlined" sx={{ width: '300px' }} onChange={searchNameHandler} value={searchName} size='small' />
+            <SearchInput placeholder="搜尋" variant="outlined" sx={{ width: '300px' }} onChange={searchTitleHandler} value={searchTitle} size='small' />
             <DatePickerRange />
             <LoadingButton
                 onClick={sendSearch}

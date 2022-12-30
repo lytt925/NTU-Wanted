@@ -3,12 +3,12 @@ import {
 } from "react";
 
 const FilterContext = createContext({
-    setSearchName: () => { },
+    setSearchTitle: () => { },
     setTimeRange: () => { },
     setLocationTagSelected: () => { },
     setRewardTagsSelected: () => { },
     setTypeTagsSelected: () => { },
-    searchName: '',
+    searchTitle: '',
     timeRange: [null, null],
     locationTagsSelected: [],
     rewardTagsSelected: [],
@@ -18,7 +18,7 @@ const FilterContext = createContext({
 const FilterProvider = (props) => {
 
     // Search Filter //
-    const [searchName, setSearchName] = useState('')
+    const [searchTitle, setSearchTitle] = useState('')
     const [timeRange, setTimeRange] = useState([null, null])
     const [locationTagsSelected, setLocationTagsSelected] = useState([])
     const [rewardTagsSelected, setRewardTagsSelected] = useState([])
@@ -29,12 +29,12 @@ const FilterProvider = (props) => {
     return (
         <FilterContext.Provider
             value={{
-                setSearchName,
+                setSearchTitle,
                 setLocationTagsSelected,
                 setTimeRange,
                 setRewardTagsSelected,
                 setTypeTagsSelected,
-                searchName,
+                searchTitle,
                 locationTagsSelected,
                 timeRange,
                 rewardTagsSelected,
