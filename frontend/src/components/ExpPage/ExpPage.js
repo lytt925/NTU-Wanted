@@ -106,7 +106,7 @@ const ExpPage = () => {
     return (
         <Wrapper className='ExpPage'>
             {Object.keys(info).length === 0 ? <></> : <Information info={info} />}
-            <Comment restaurantId={id} comments={comments} setComments={setComments} setLoad={setLoading} />
+            <Comment expID={id} comments={comments} setComments={setComments} setLoad={setLoading} />
         </Wrapper>
     )
 }

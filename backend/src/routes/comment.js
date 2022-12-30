@@ -28,10 +28,11 @@ exports.GetCommentsByExpId = async (req, res) => {
 exports.CreateComment = async (req, res) => {
     /*******    NOTE: DO NOT MODIFY   *******/
     const body = req.body
+    console.log(req.body);
     /****************************************/
     // TODO Part III-3-b: create a new comment to a restaurant
-    const { expID, name, content, rating } = req.body;
-    const newComment = new CommentModel({ expID, name, content, rating });
+    const { expID, name, content } = req.body;
+    const newComment = new CommentModel({ expID, name, content, 'reply': [] });
     await newComment.save();
     console.log('Comment created', newComment);
 }

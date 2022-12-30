@@ -8,5 +8,6 @@ router.use('/experiment', ExpRouter);
 router.use('/api/getInfo', InfoRouter.GetInfo);
 router.use('/api/getSearch', InfoRouter.GetSearch);
 router.use('/api/getCommentsByExpId', commentRoute.GetCommentsByExpId);
+router.post('/api/createComment', commentRoute.CreateComment);
 
 export default router;

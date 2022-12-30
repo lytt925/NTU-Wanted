@@ -12,11 +12,11 @@ import TextField from '@mui/material/TextField';
 import SendIcon from '@mui/icons-material/Send';
 import { message, Input } from "antd";
 import ReplyIcon from '@mui/icons-material/Reply';
-// import axios from 'axios'
+import axios from 'axios'
 
-// const instance = axios.create({
-//     baseURL: 'http://localhost:4000/api'
-// })
+const instance = axios.create({
+    baseURL: 'http://localhost:4000/api'
+})
 
 const BoxCss = {
     px: '25px',
@@ -68,7 +68,7 @@ const List = styled('ul')({
     padding: 0,
 })
 
-const Comment = ({ restaurantId, comments, setComments, setLoad }) => {
+const Comment = ({ expID, comments, setComments, setLoad }) => {
     // const [rating, setRating] = useState(0)
     const [name, setName] = useState('')
     const [content, setContent] = useState('')
@@ -80,12 +80,12 @@ const Comment = ({ restaurantId, comments, setComments, setLoad }) => {
     // };
 
 
-    // const storeComment = async () => {
-    //     await instance.post('createComment/', {
-    //         // TODO Part III-3-b: store the comment to the DB
-    //         restaurantId, name, content, rating
-    //     })
-    // }
+    const storeComment = async () => {
+        await instance.post('createComment/', {
+            // TODO Part III-3-b: store the comment to the DB
+            expID, name, content
+        })
+    }
 
     // const displayStatus = (s) => {
     //     if (s.payload) {
@@ -111,35 +111,24 @@ const Comment = ({ restaurantId, comments, setComments, setLoad }) => {
         // setComments([...comments, { 'name': name, 'content': content }])
         // console.log('submit', this);
 
+        storeComment();
+        setComments([...comments, { 'name': name, 'content': content, 'reply': [] }])
+        // comments.push({ 'name': name, 'content': content, 'reply': [] });
 
+        const firstName = document.getElementById('content');
+        const firstNameInput = document.getElementById('name');
 
-        if (content === "") {
-            setError(true);
-        }
-        else {
-            var nname = name;
-            if (name === "") {
-                setName("匿名");
-                nname = "匿名"
-            }
-            // fake add comments
-            comments.push({ 'name': nname, 'content': content, 'reply': [] });
+        // Send value to server
+        // console.log(firstNameInput.value);
 
-            const firstName = document.getElementById('content');
-            const firstNameInput = document.getElementById('name');
+        // 👇️ clear input field
+        firstName.value = '';
+        firstNameInput.value = '';
 
-            // Send value to server
-            // console.log(firstNameInput.value);
-
-            // 👇️ clear input field
-            firstName.value = '';
-            firstNameInput.value = '';
-
-            setName('');
-            setContent('');
-            setLoad(true);
-            setError(false);
-        }
+        setName('');
+        setContent('');
+        setLoad(true);
+        setError(false);
 
 
     }
