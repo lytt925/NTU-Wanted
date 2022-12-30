@@ -11,6 +11,7 @@ const ExpSchema = new Schema({
     phone: { type: String, required: true },
     email: { type: String, required: true },
     time: { type: String, required: true },
+    timeRange: { from: { type: String, required: true }, to: { type: String, required: true } },
     introduction: { type: String, required: [true, 'Introduction field is required.'] },
     memo: { type: String, required: true },
     reward: { type: String, required: true },

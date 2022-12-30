@@ -1,5 +1,15 @@
 import ExperimentModel from '../models/experiment'
 
+const isOverLap = (rangeStart, rangeEnd, thisStart, thisEnd) => {
+    let startDay = new Date(rangeStart).getTime();
+    let endDay = new Date(rangeEnd).getTime();
+    let expStart = new Date(thisStart).getTime();
+    let expEnd = new Date(thisEnd).getTime();
+
+    if ((startDay <= expEnd) && (endDay >= expStart)) return true
+    else return false
+}
+
 const searchExp =
     async (searchTitle, locationTagsSelected, timeRange, rewardTagsSelected, typeTagsSelected) => {
         const filters = []
@@ -12,10 +22,21 @@ const searchExp =
         try {
             const findList = await ExperimentModel.find({
                 $and: filters
-            });
+            })
+            const data = findList.filter(({ timeRange: expTimeRange }) => {
+                // console.log('time', timeRange)
+                // if (timeRange) {
+                //     console.log('hi')
+                //     return isOverLap(timeRange, ...expTimeRange,)
+                // }
+                // else {
+                //     console.log('her')
+                //     return true
+                // }
+            })
             return findList
         } catch (e) {
-            throw new Error('something wrong')
+            throw e
         }
     }
 
@@ -27,10 +48,10 @@ exports.getExpList = async (req, res) => {
         rewardTagsSelected,
         typeTagsSelected,
     } = req.query
-    const findList = await searchExp(searchTitle, locationTagsSelected, timeRange, rewardTagsSelected, typeTagsSelected,)
-    if (findList) {
-        res.status(200).send({ message: 'success', contents: findList, });
+    const data = await searchExp(searchTitle, locationTagsSelected, timeRange, rewardTagsSelected, typeTagsSelected,)
+    if (data) {
+        res.status(200).send({ message: 'success', contents: data, });
     } else {
-        res.status(403).send({ message: 'failed', content: none, })
+        res.status(403).send({ message: 'failed', contents: null, })
     }
 }
