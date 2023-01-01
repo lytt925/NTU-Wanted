@@ -1,8 +1,13 @@
 import axios from 'axios'
-const instance = axios.create({
-    baseURL: 'http://localhost:4000/api'
-})
 
-export default instance;
+const API_ROOT =
+    process.env.NODE_ENV === "production"
+        ? "/api"
+        : "http://localhost:4000/api";
 
-// instance.get('/hi').then((data) => console.log(data));
+// const WS_URL =
+//   process.env.NODE_ENV === "production"
+//     ? window.location.origin.replace(/^http/, "ws")
+//     : "ws://localhost:4000";
+
+export const api = axios.create({ baseURL: API_ROOT });
