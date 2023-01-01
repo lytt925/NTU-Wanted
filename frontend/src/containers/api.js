@@ -10,4 +10,4 @@ const API_ROOT =
 //     ? window.location.origin.replace(/^http/, "ws")
 //     : "ws://localhost:4000";
 
-export default api = axios.create({ baseURL: API_ROOT });
+export default axios.create({ baseURL: API_ROOT });
