@@ -32,6 +32,7 @@ const validateMessages = {
 
 const InfoForm = () => {
 
+    const [form] = Form.useForm();
     const navigate = useNavigate();
     const navigateToHome = () => {
         navigate('/');
@@ -59,6 +60,8 @@ const InfoForm = () => {
           'time': `${rangeValue[0].format('YYYY年MM月DD日')} 至 ${rangeValue[1].format('YYYY年MM月DD日')} 止`,
           'timeRange': { from: rangeValue[0].format('YYYY/MM/DD') , to: rangeValue[1].format('YYYY/MM/DD') },
         };
+        delete values.address;
+        delete values.len;
         if (!fieldsValue['upper'] && !fieldsValue['lower']) delete values.age;
         submitForm(values);
         console.log('Received values of form: ', values);
@@ -71,7 +74,7 @@ const InfoForm = () => {
 
     return (
 
-        <Form {...layout} id='infoForm' name="infoForm" onFinish={onFinish} validateMessages={validateMessages}>
+        <Form {...layout} form={form} id='infoForm' name="infoForm" onFinish={onFinish} validateMessages={validateMessages}>
             <div className='infoBox'>
                 <div className='infoName'><h3>基本資料</h3></div>
                 <Form.Item name='experimenter' label="研究單位" rules={[{ required: true }]} 
@@ -84,14 +87,14 @@ const InfoForm = () => {
                 <Form.Item name='phone' label="聯絡電話" wrapperCol={{ span: 7, offset: 1 }}>
                     <Input />
                 </Form.Item>
-                <Form.Item label="研究地點" rules={[{ required: true }]}>
+                <Form.Item label="研究地點" name="address" rules={[{ required: true }]} >
                     <Input.Group compact>
                         <Form.Item
                             name='locationTags'
                             noStyle
                             rules={[{ required: true, message: "請選擇研究地點" }]}
                         >
-                            <Select placeholder="選擇區域">
+                            <Select placeholder="選擇區域" onChange={ (value) => {form.setFieldsValue({address: value})}}>
                                 <Option value="校總區">校總區</Option>
                                 <Option value="城中校區">城中校區</Option>
                                 <Option value="線上">線上</Option>
@@ -129,35 +132,29 @@ const InfoForm = () => {
                     <Input.TextArea />
                 </Form.Item>
             </div>
+
             <div className='infoBox'>
                 <div className='infoName'><h3>研究內容</h3></div>
                 <Form.Item name='title' label="標題"  rules={[{ required: true }]} wrapperCol={{ span: 7, offset: 1 }}>
                     <Input />
                 </Form.Item>
+
                 <Form.Item name='time' label="研究時間" rules={[{ required: true }]} >
                     <RangePicker placeholder={["開始時間", "結束時間"]} style={{ width: "300px" }} />
                 </Form.Item>
-                <Form.Item label="研究時長" rules={[{ required: true }]}>
-                    <Form.Item name="length" rules={[{ required: true, message: "請填寫您的研究時長" }]}
-                                style={{ display: 'inline-block' }}>
-                        <InputNumber />
-                    </Form.Item>
-                    <span style={{ marginLeft: 8 }}>
-                        分鐘
-                    </span>
+
+                <Form.Item label="研究時長" name="length" rules={[{ required: true, message: "請填寫您的研究時長" }]}
+                             wrapperCol={{ span: 4, offset: 1 }}>
+                    <InputNumber addonAfter="分鐘" />
                 </Form.Item>
 
-                {/* <Form.Item label="研究時間" name="length" rules={[{ required: true, message: "請填寫您的研究時長" }]}
-                            style={{ display: 'inline-block' }} >
-                        <InputNumber placeholder='以分鐘為單位'/>
-                </Form.Item> */}
-
-                <Form.Item name='typeTags' label="研究類型" rules={[{ required: true }]} wrapperCol={{ span: 7, offset: 1 }}>
+                <Form.Item name='typeTags' label="研究類型" rules={[{ required: true }]} 
+                            wrapperCol={{ span: 7, offset: 1 }}>
                     <Select
                         mode="tags"
                         allowClear
                         style={{ width: '100%' }}
-                        placeholder="請選擇或新增研究類型"
+                        placeholder="請選擇或輸入研究類型"
                         options={[{ label: "實驗", value: "實驗" },
                                     { label: "問卷", value: "問卷" },
                                     { label: "訪談", value: "訪談" }]}
@@ -168,7 +165,7 @@ const InfoForm = () => {
                         mode="tags"
                         allowClear
                         style={{ width: '100%' }}
-                        placeholder="請選擇或新增報酬形式"
+                        placeholder="請選擇或輸入報酬形式"
                         options={[{ label: "普心加分", value: "普心加分" },
                                     { label: "食物", value: "食物" },
                                     { label: "現金", value: "現金" }]}
