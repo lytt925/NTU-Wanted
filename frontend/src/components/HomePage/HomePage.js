@@ -2,10 +2,10 @@ import ResponsiveAppBar from '../Navbar/Navbar'
 import SearchBar from './Search/SearchBar';
 import CheckTable from './Search/CheckTable'
 import { styled } from '@mui/material/styles'
-import ResultList from './SearchResultList/ResultsList'
 import Box from '@mui/material/Box';
 import { Container } from '@mui/material';
 import React, { useState, useEffect } from 'react'
+import ResultPage from '../../containers/ResultPage';
 
 const BoxCss = {
     display: 'flex',
@@ -30,13 +30,14 @@ const HomePage = () => {
     body.style.backgroundColor = '#FFFFFF';
 
     const [expList, setExpList] = useState([])
+    const [count, setCount] = useState(0);
 
     return (
         <Wrapper className='App'>
-            <SearchBar expList={expList} setExpList={setExpList} />
+            <SearchBar expList={expList} setExpList={setExpList} setCount={setCount}/>
             <CheckTable />
             <Box sx={{ height: '1px', width: '99vw', borderTop: '1px solid lightgrey', position: 'sticky', top: '144px' }}></Box>
-            <ResultList expList={expList} setExpList={setExpList} />
+            <ResultPage expList={expList} count={count} />
         </Wrapper >
     )
 }

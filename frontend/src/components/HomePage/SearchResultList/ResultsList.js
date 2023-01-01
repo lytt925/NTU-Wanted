@@ -4,9 +4,12 @@ import Box from '@mui/material/Box';
 import { useState, useEffect } from 'react';
 import TaskInfo from './TaskInfo';
 import { useNavigate, useLocation } from 'react-router-dom'
+import Pagination from '@mui/material/Pagination';
+
 // import { ExpList } from '../../db';
 
-export default function ResultList({ expList, setExpList }) { // { expList, setExpList }
+
+export default function ResultList({ pageList }) { // { expList, setExpList }
     const BoxCss = {
         display: 'flex',
         flexDirection: 'column',
@@ -21,12 +24,14 @@ export default function ResultList({ expList, setExpList }) { // { expList, setE
     }
 
     return (
+        <>
         <Box sx={BoxCss}>
             {
-                expList.map((a, key) => (
+                pageList.map((a, key) => (
                     <TaskInfo a={a} key={key} />
                 ))
             }
         </Box>
+        </>
     )
 }

@@ -11,6 +11,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import axios from '../../../containers/api';
 import { useNavigate, useLocation } from 'react-router-dom'
+import { PER_PAGE } from "../../../utils/constants";
 
 const SearchInput = styled(TextField)`
   margin: 10px 10px 10px 10px;
@@ -34,7 +35,7 @@ const searchBoxCss = {
     minWidth: '600px',
 }
 
-const SearchBar = ({ expList, setExpList }) => {
+const SearchBar = ({ expList, setExpList, setCount }) => {
     const { setSearchTitle, setTimeRange, searchTitle, timeRange, locationTagsSelected, rewardTagsSelected, typeTagsSelected, } = useFilter()
     const [loading, setLoading] = useState(false)
 
@@ -62,6 +63,9 @@ const SearchBar = ({ expList, setExpList }) => {
         if (message === 'success') {
             console.log(contents)
             setExpList(contents)
+            //計算分頁數
+            const newCount = Math.ceil(contents.length / PER_PAGE);
+            setCount(newCount);
         }
     }
 
