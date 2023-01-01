@@ -109,10 +109,10 @@ const SearchBar = ({ expList, setExpList }) => {
 
     const DatePickerRange = () => {
         const DatePick = ({ date, from, to }) => (
-            <LocalizationProvider dateAdapter={AdapterDayjs} dateFormats={{ fullDate: "YYYY/MM/DD" }} adapterLocale="zh-TW">
+            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="zh-TW">
                 <DatePicker
                     label={date ? '' : '日期'}
-                    value={date ? date : ''}
+                    value={date}
                     onChange={(newDate) => {
                         // console.log(newDate.$d.toLocaleDateString())
                         const displayDate = formatDate(newDate)
