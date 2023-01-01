@@ -34,7 +34,7 @@ const validateMessages = {
 const InfoForm = () => {
 
     const c = Context;
-    console.log('InfoForm', c.name);
+    // console.log('InfoForm', c.name);
 
     const [form] = Form.useForm();
     const navigate = useNavigate();
@@ -45,7 +45,7 @@ const InfoForm = () => {
     const submitForm = async (values) => {
         console.log("submit form")
         const { data: { message } } =
-            await axios.post("/postForm", values)
+            await axios.post("/postForm", { values, c })
 
         if (message === 'success') {
             navigateToHome();

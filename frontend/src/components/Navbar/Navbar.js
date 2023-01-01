@@ -103,7 +103,7 @@ function ResponsiveAppBar() {
 
     }
 
-    console.log('responseGoogle', { name, email, login, pic });
+    // console.log('responseGoogle', { name, email, login, pic });
 
     useEffect(() => {
         Context = { 'name': name, 'email': email, 'login': login, 'pic': pic }
