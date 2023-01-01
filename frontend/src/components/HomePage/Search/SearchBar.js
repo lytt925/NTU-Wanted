@@ -120,24 +120,6 @@ const SearchBar = ({ expList, setExpList }) => {
                         else if (to) newTimeRange.to = displayDate
                         setTimeRange(newTimeRange);
                     }}
-                    // shouldDisableYear={(year) => {
-                    //     year = formatDate(year)
-                    //     let thisYear = new Date(year).getTime();
-                    //     let from = new Date(timeRange.from).getTime();
-                    //     if (thisYear > from) {
-                    //         console.log('here')
-                    //         return false
-                    //     }
-                    //     return true
-                    // }}
-                    // shouldDisableMonth={(month) => {
-                    //     month = formatDate(month)
-                    //     let thisMonth = new Date(month).getTime();
-                    //     let from = new Date(timeRange.from).getTime();
-                    //     if (thisMonth > from)
-                    //         return false
-                    //     return true
-                    // }}
                     shouldDisableDate={(day) => disableDay(day, from, to, timeRange)}
                     views={["year", "month", "day"]}
                     inputFormat="YYYY/MM/DD"
