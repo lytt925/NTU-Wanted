@@ -60,9 +60,10 @@ const InfoForm = () => {
           'time': `${rangeValue[0].format('YYYY年MM月DD日')} 至 ${rangeValue[1].format('YYYY年MM月DD日')} 止`,
           'timeRange': { from: rangeValue[0].format('YYYY/MM/DD') , to: rangeValue[1].format('YYYY/MM/DD') },
         };
-        delete values.address;
-        delete values.len;
-        if (!fieldsValue['upper'] && !fieldsValue['lower']) delete values.age;
+        // delete values.address;
+        // delete values.len;
+        // if (!fieldsValue['upper'] && !fieldsValue['lower']) delete values.age;
+        // else if (!fieldsValue['upper']) values.age.upper = 99
         submitForm(values);
         console.log('Received values of form: ', values);
     }

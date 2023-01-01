@@ -57,6 +57,15 @@ const Information = ({ info }) => {
     const handleLike = () => {
         setLiked(!liked)
     }
+    
+    const age = info.age? 
+                    info.age.lower==0 || !info.age.lower? 
+                        (info.age.upper==99 || !info.age.upper? "無":`限${info.age.upper}歲以下`)
+                        :  
+                        info.age.upper==99 || !info.age.upper?
+                            `限${info.age.lower}歲以上`: `限${info.age.lower}歲至${info.age.upper}歲`
+                    :
+                    "無"
 
     return (
         <Box sx={bigBoxCss}>
@@ -81,6 +90,17 @@ const Information = ({ info }) => {
                     </List>
                 </Box>
 
+            </Box >
+            <Box sx={BoxCss} className='ExpInfo' component={Paper} elevation={1}>
+                <Box sx={{ float: 'left' }}>
+                    <List>
+                        <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
+                            受試者條件
+                        </Typography>
+                        <li>{age}</li>
+                        <li>{info.requirements? info.requirements:""}</li>
+                    </List>
+                </Box>
             </Box >
             <Box sx={BoxCss} className='ExpInfo' component={Paper} elevation={1}>
                 <Box sx={{ float: 'left' }}>
