@@ -41,13 +41,13 @@ const SearchBar = ({ expList, setExpList }) => {
     const { state } = useLocation();
 
     const sendSearch = async () => {
-        console.log({
-            searchTitle,
-            locationTagsSelected,
-            timeRange,
-            rewardTagsSelected,
-            typeTagsSelected,
-        })
+        // console.log({
+        //     searchTitle,
+        //     locationTagsSelected,
+        //     timeRange,
+        //     rewardTagsSelected,
+        //     typeTagsSelected,
+        // })
         setLoading(true)
         const { data: { message, contents } } =
             await axios.get('/getExpList', {
@@ -92,26 +92,27 @@ const SearchBar = ({ expList, setExpList }) => {
         if (timeRange.from && to) {
             const d = new Date(date).getTime();
             const f = new Date(timeRange.from).getTime()
-            if (d > f) {
+            if (d >= f) {
                 return false
             }
             return true
         } else if (timeRange.to && from) {
             const d = new Date(date).getTime();
             const f = new Date(timeRange.to).getTime()
-            if (d < f) {
+            if (d <= f) {
                 return false
             }
             return true
         }
+        return false
     }
 
     const DatePickerRange = () => {
         const DatePick = ({ date, from, to }) => (
             <LocalizationProvider dateAdapter={AdapterDayjs} dateFormats={{ fullDate: "YYYY/MM/DD" }} adapterLocale="zh-TW">
                 <DatePicker
-                    label={date ? '' : '期間'}
-                    value={date}
+                    label={date ? '' : '日期'}
+                    value={date ? date : ''}
                     onChange={(newDate) => {
                         // console.log(newDate.$d.toLocaleDateString())
                         const displayDate = formatDate(newDate)
@@ -120,24 +121,6 @@ const SearchBar = ({ expList, setExpList }) => {
                         else if (to) newTimeRange.to = displayDate
                         setTimeRange(newTimeRange);
                     }}
-                    // shouldDisableYear={(year) => {
-                    //     year = formatDate(year)
-                    //     let thisYear = new Date(year).getTime();
-                    //     let from = new Date(timeRange.from).getTime();
-                    //     if (thisYear > from) {
-                    //         console.log('here')
-                    //         return false
-                    //     }
-                    //     return true
-                    // }}
-                    // shouldDisableMonth={(month) => {
-                    //     month = formatDate(month)
-                    //     let thisMonth = new Date(month).getTime();
-                    //     let from = new Date(timeRange.from).getTime();
-                    //     if (thisMonth > from)
-                    //         return false
-                    //     return true
-                    // }}
                     shouldDisableDate={(day) => disableDay(day, from, to, timeRange)}
                     views={["year", "month", "day"]}
                     inputFormat="YYYY/MM/DD"
@@ -155,7 +138,6 @@ const SearchBar = ({ expList, setExpList }) => {
                 />
             </LocalizationProvider >
         )
-
         return (
             <>
                 <RangeLabel>自</RangeLabel>
