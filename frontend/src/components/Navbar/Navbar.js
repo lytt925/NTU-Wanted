@@ -19,6 +19,7 @@ import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
 import axios from '../../containers/api'
+import { width } from "@mui/system";
 // import { getDecodedOAuthJwtGoogle } from "../../containers/hooks/useLogin";
 
 
@@ -74,6 +75,14 @@ function ResponsiveAppBar() {
         navigate('/myexperiment');
         setAnchorElUser(null);
     }
+
+    const backtoHome = () => {
+        navigate('/');
+        // setLogin(true);
+        // setEmail(email);
+        // setName(name);
+        // setPic(pic);
+    }
     // function onSignIn(googleUser) {
     //     var profile = googleUser.getBasicProfile();
     //     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -119,22 +128,27 @@ function ResponsiveAppBar() {
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="a"
-                        href="/"
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        NTU-Wanted
+                    <Typography>
+                        <Button
+                            key='NTU-Wanted'
+                            onClick={backtoHome}
+                            variant="outlined"
+                            sx={{
+                                // mr: 2,
+                                display: { xs: 'none', md: 'flex' },
+                                fontFamily: 'monospace',
+                                fontWeight: 700,
+                                letterSpacing: '.3rem',
+                                color: 'inherit',
+                                textDecoration: 'none',
+                                fontSize: '100%',
+                                width: '100%',
+                                height: '100%'
+                            }}
+                        >
+                            NTU-Wanted
+                        </Button>
+
                     </Typography>
                     {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton

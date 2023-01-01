@@ -2,9 +2,9 @@ import ExperimentModel from '../models/experiment'
 import UserModel from '../models/user'
 
 const validateUser = async (name, email) => {
-    console.log("Finding user..." + name);
+    // console.log("Finding user..." + name);
     const existing = await UserModel.findOne({ name, email });
-    console.log(existing);
+    // console.log(existing);
     if (existing) return existing;
     const user = new UserModel({ name, email }).save();
     return user;

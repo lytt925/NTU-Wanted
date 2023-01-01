@@ -39,14 +39,17 @@ const InfoForm = () => {
     const [form] = Form.useForm();
     const navigate = useNavigate();
     const navigateToHome = () => {
+        // console.log('home')
         navigate('/');
     };
 
     const submitForm = async (values) => {
         console.log("submit form")
+        // navigateToHome();
         const { data: { message } } =
             await axios.post("/postForm", { values, c })
 
+        // console.log('submitForm', message);
         if (message === 'success') {
             navigateToHome();
             console.log(" submitted successfully ")
@@ -70,7 +73,7 @@ const InfoForm = () => {
         // if (!fieldsValue['upper'] && !fieldsValue['lower']) delete values.age;
         // else if (!fieldsValue['upper']) values.age.upper = 99
         submitForm(values);
-        console.log('Received values of form: ', values);
+        // console.log('Received values of form: ', values);
     }
 
 
