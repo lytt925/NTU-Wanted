@@ -70,6 +70,10 @@ function ResponsiveAppBar() {
         setAnchorElUser(null);
     }
 
+    const myexp = () => {
+        navigate('/myexperiment');
+        setAnchorElUser(null);
+    }
     // function onSignIn(googleUser) {
     //     var profile = googleUser.getBasicProfile();
     //     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -258,7 +262,7 @@ function ResponsiveAppBar() {
                                     <MenuItem key="新增實驗" onClick={navigateToPost}>
                                         <Typography textAlign="center"> + 新實驗</Typography>
                                     </MenuItem>
-                                    <MenuItem key="我發布的實驗" onClick={handleCloseUserMenu}>
+                                    <MenuItem key="我發布的實驗" onClick={myexp}>
                                         <Typography textAlign="center">我發布的實驗</Typography>
                                     </MenuItem>
                                     <MenuItem key="登出" onClick={logoutevent}>
