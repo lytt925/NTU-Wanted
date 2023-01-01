@@ -39,16 +39,15 @@ const InfoForm = () => {
 
     const submitForm = async(values) => {
         console.log("submit form")
-        const { data: message}  = 
+        const { data: { message } }  = 
             await axios.post("/postForm", values)
 
-        console.log(message)
-        // if (message === 'success') {
-        //     navigateToHome();
-        //     console.log(" submitted successfully ") }
-        // else {
-        //     console.log(" submission failed ")
-        // }
+        if (message === 'success') {
+            navigateToHome();
+            console.log(" submitted successfully ") }
+        else {
+            console.log(" submission failed ")
+        }
     }
 
     const onFinish = (fieldsValue) => {
