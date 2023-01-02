@@ -2,6 +2,8 @@ import {
     useState, createContext, useContext, useEffect
 } from "react";
 
+import axios from '../../containers/api'
+
 const LOCALSTORAGE_KEY = "save-me";
 var savedMe = null;
 try {
@@ -33,10 +35,20 @@ const UserProvider = (props) => {
     const [likedList, setLikedList] = useState([])
     //  User //
 
+    const getLikedList = async () => {
+        const { data: { message, likedList: newLikeList } } = await axios.get('/getLikedList', {
+            params: {
+                email
+            }
+        })
+        setLikedList(newLikeList)
+    }
+
     useEffect(() => {
         if (login) {
             const newme = [email, name, pic]
             localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(newme));
+            getLikedList()
         }
     }, [login]);
 
