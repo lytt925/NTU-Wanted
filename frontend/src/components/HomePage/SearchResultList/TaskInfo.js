@@ -22,8 +22,7 @@ const List = styled('ul')({
     margin: '10px 0'
 })
 
-const TaskInfo = (a) => {
-    // console.log(a.a);
+const TaskInfo = ({ task }) => {
     const { state } = useLocation();
     const [liked, setLiked] = useState(false)
 
@@ -42,22 +41,22 @@ const TaskInfo = (a) => {
 
     return (
         <Box sx={BoxCss} className='TaskInfo'>
-            <Box sx={{ mt: '3px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', "&:hover": { cursor: 'pointer' } }} onClick={() => ToExp(a.a.id)}>
+            <Box sx={{ mt: '3px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', "&:hover": { cursor: 'pointer' } }} onClick={() => ToExp(task.id)}>
                 <Typography variant="h6">
-                    {a.a.title}
+                    {task.title}
                 </Typography>
                 {liked ? <Favorite onClick={handleLike} sx={{ color: 'red', "&:hover": { cursor: 'pointer' } }} />
                     : <FavoriteBorder onClick={handleLike} sx={{ "&:hover": { cursor: 'pointer' } }} />}
             </Box>
             <List>
-                <li>時長：{a.a.length}</li>
-                <li>時間：{a.a.time}</li>
-                <li>地點：{a.a.location}</li>
+                <li>時長：{task.length}</li>
+                <li>時間：{task.time}</li>
+                <li>地點：{task.location}</li>
             </List>
             <Stack direction="row" spacing={1} sx={{ mb: "8px", verticalAlign: 'middle' }}>
-                {a.a.typeTags.map((type) => (<Chip key={type} sx={{ padding: 'None', fontSize: '12px' }} label={type} color="primary" variant="outlined" />))}
-                {a.a.rewardTags.map((tag) => (<Chip key={tag} sx={{ padding: 'None', fontSize: '12px' }} label={tag} color="success" variant="outlined" />))}
-                {a.a.locationTags.map((tag) => (<Chip key={tag} sx={{ padding: 'None', fontSize: '12px' }} label={tag} color="error" variant="outlined" />))}
+                {task.typeTags.map((type) => (<Chip key={type} sx={{ padding: 'None', fontSize: '12px' }} label={type} color="primary" variant="outlined" />))}
+                {task.rewardTags.map((tag) => (<Chip key={tag} sx={{ padding: 'None', fontSize: '12px' }} label={tag} color="success" variant="outlined" />))}
+                {task.locationTags.map((tag) => (<Chip key={tag} sx={{ padding: 'None', fontSize: '12px' }} label={tag} color="error" variant="outlined" />))}
             </Stack>
         </Box>
 

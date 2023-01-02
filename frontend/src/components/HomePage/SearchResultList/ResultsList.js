@@ -14,8 +14,8 @@ export default function ResultList({ pageList }) { // { expList, setExpList }
     return (
         <>
             {
-                pageList.map((a, key) => (
-                    <TaskInfo a={a} key={key} />
+                pageList.map((task, key) => (
+                    <TaskInfo task={task} key={key} />
                 ))
             }
         </>
