@@ -21,7 +21,7 @@ exports.getLikedList = async (req, res) => {
     if (email) {
         const user = await UserModel.findOne({ email });
         try {
-            res.json({ message: "success", likedList: user.likedResearch });
+            res.json({ message: "success", likedList: user.likedList });
         } catch (e) {
             res.json({ message: "error" });
         }
@@ -29,15 +29,32 @@ exports.getLikedList = async (req, res) => {
 }
 
 exports.updateLikeList = async (req, res) => {
-    const { userEmail, expId } = req.body
-    if (userEmail) {
-        const user = await UserModel.findOne({ email: userEmail });
-        const likeExp = await ExperimentModel.findOne({ _id: expId })
-        if (user && likeExp)
-            user.likedResearch.push(likeExp)
+    const { email, expId, action } = req.body
+    if (email) {
+        const user = await UserModel.findOne({ email })
+        const exp = await ExperimentModel.findOne({ _id: expId })
+        if (user && exp && action === 'like') {
+            console.log('like')
+            user.likedList.push(exp)
+        }
+        else if (user && exp && action === 'unlike') {
+            console.log('exp', exp._id)
+            const remove = await UserModel.updateOne(
+                {
+                    _id: user._id
+                },
+                {
+                    $pull: { 'likedList': exp._id }
+                },
+                {
+                    upsert: true
+                }
+            );
+        }
         try {
             await user.save()
-            res.json({ message: "success" });
+            const updatedUser = await UserModel.findOne({ _id: user._id })
+            res.json({ message: "success", likedList: updatedUser.likedList });
         } catch (e) {
             res.json({ message: 'error' })
             console.error(e)

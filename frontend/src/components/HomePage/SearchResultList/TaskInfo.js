@@ -26,22 +26,23 @@ const List = styled('ul')({
 })
 
 
-const TaskInfo = ({ task }) => {
+const TaskInfo = ({ task, liked }) => {
     const { state } = useLocation();
-    const [liked, setLiked] = useState(false)
-    const { email } = useUser()
+    // const [liked, setLiked] = useState(false)
+    const { email, setLikedList } = useUser()
 
-    const handleLike = async (e, expId) => {
+    const handleLike = async (e, expId, action) => {
         e.stopPropagation()
-        setLiked(!liked)
-        const { data: { message } } =
-            await axios.post("/updateLikeList", { email, expId })
+        const { data: { message, likedList: newLikedList } } =
+            await axios.post("/updateLikeList", { email, expId, action })
         if (message === 'success') {
-            console.log(" liked successfully ")
+            console.log(action, " successfully ")
+            console.log(newLikedList)
         }
         else {
-            console.log(" liked failed ")
+            console.log(action, "failed ")
         }
+        setLikedList(newLikedList)
     }
 
     const navigate = useNavigate();
@@ -58,8 +59,8 @@ const TaskInfo = ({ task }) => {
                 <Typography className="Title" variant="h6" sx={{ "&:hover": { color: '#4267B2' } }} onClick={() => ToExp(task.id)}>
                     {task.title}
                 </Typography>
-                {liked ? <Favorite onClick={(e) => handleLike(e, task._id)} sx={{ color: 'red' }} />
-                    : <FavoriteBorder onClick={(e) => handleLike(e, task._id)} />}
+                {liked ? <Favorite onClick={(e) => handleLike(e, task._id, 'unlike')} sx={{ color: 'red' }} />
+                    : <FavoriteBorder onClick={(e) => handleLike(e, task._id, 'like')} />}
             </Box>
             <List>
                 <li>時長：{task.length}</li>

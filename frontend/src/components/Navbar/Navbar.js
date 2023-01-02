@@ -111,12 +111,12 @@ function ResponsiveAppBar() {
             name: n, email: e
         })
 
-        const thisLikedList = await axios.get('/getLikedList', {
+        const { data: { message, likedList: newLikeList } } = await axios.get('/getLikedList', {
             params: {
                 email: e
             }
         })
-        console.log('likedlist', thisLikedList)
+        setLikedList(newLikeList)
     }
 
     // console.log('responseGoogle', { name, email, login, pic });

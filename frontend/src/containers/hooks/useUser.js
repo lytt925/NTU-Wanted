@@ -7,7 +7,7 @@ const UserContext = createContext({
     setEmail: () => { },
     setName: () => { },
     setPic: () => { },
-    setTypeTagsSelected: () => { },
+    setLikedList: () => { },
     login: false,
     email: '',
     name: '',
