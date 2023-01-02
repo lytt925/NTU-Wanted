@@ -3,8 +3,7 @@ import {
 } from "react";
 
 const LOCALSTORAGE_KEY = "save-me";
-const savedMe = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY))
-// console.log(savedMe)
+const savedMe = null
 
 
 const UserContext = createContext({
@@ -23,10 +22,10 @@ const UserContext = createContext({
 const UserProvider = (props) => {
 
     //  User //
-    const [email, setEmail] = useState(((savedMe === null) ? "" : savedMe[0]));
-    const [name, setName] = useState(((savedMe === null) ? "" : savedMe[1]));
-    const [pic, setPic] = useState(((savedMe === null) ? "" : savedMe[2]));
-    const [login, setLogin] = useState(((savedMe === null) ? false : true))
+    const [email, setEmail] = useState(savedMe ? savedMe[0] : '');
+    const [name, setName] = useState(savedMe ? savedMe[1] : "");
+    const [pic, setPic] = useState(savedMe ? savedMe[2] : "");
+    const [login, setLogin] = useState(savedMe ? true : false)
     const [likedList, setLikedList] = useState([])
     //  User //
 

@@ -7,7 +7,7 @@ import { Box } from '@mui/material';
 const ResultPage = ({ expList, count }) => {
 
     const [page, setPage] = useState(1);
-
+    console.log('result', expList)
     const begin = (page - 1) * PER_PAGE;
     const end = begin + PER_PAGE;
     const pageList = expList.slice(begin, end);

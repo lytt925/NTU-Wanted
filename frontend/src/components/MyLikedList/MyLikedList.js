@@ -36,8 +36,8 @@ const LikedListPage = () => {
 
     return (
         <Wrapper className='App'>
-            <SearchBar expList={likedList} setExpList={setLikedList} setCount={setCount} />
-            <CheckTable />
+            {/* <SearchBar expList={likedList} setExpList={setLikedList} setCount={setCount} />
+            <CheckTable /> */}
             <ResultPage expList={likedList} count={count} />
         </Wrapper >
     )
