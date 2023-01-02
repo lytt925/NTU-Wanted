@@ -230,8 +230,9 @@ function ResponsiveAppBar() {
 
                     {/* full screen { xs: 'none', md: 'flex' } login */}
                     {(login === false) ?
-                        <Button id='login' sx={{ flexGrow: 0, xs: 'none', md: 'flex', display: 'flex' }}>
-                            {/* <Tooltip title="Login"> */}
+                        <Button id='login' style={{ backgroundColor: "#FFFFFF", padding: "3px 3px", }}
+                            variant='contained' color='info' sx={{ flexGrow: 0, xs: 'none', md: 'flex', display: 'flex' }}>
+
                             <GoogleOAuthProvider clientId="705967299189-hj61h5r94cmlkljemcg45v1cq5anhhuj.apps.googleusercontent.com">
                                 <GoogleLogin
                                     type='icon'
@@ -246,8 +247,8 @@ function ResponsiveAppBar() {
                                     cookiePolicy={'single_host_origin'}
                                 />
                             </GoogleOAuthProvider>
-                            <Typography sx={{ color: 'white', ml: '9px', display: { xs: 'none', md: 'flex' } }}>登入</Typography>
-                            {/* </Tooltip> */}
+                            <Typography sx={{ color: 'black', ml: '8px', mr: '12px', display: { xs: 'none', md: 'flex' } }}>登入</Typography>
+
                         </Button> :
                         <>
                             <Box sx={{ flexGrow: 0, xs: 'none', md: 'flex' }}>
