@@ -1,3 +1,9 @@
 .rangePicker input {
     font-size: 16px;
 }
+
+@media (max-width: 630px) {
+    .ant-picker-panels {
+        flex-direction: column
+    }
+}
