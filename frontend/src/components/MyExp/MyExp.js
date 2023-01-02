@@ -11,14 +11,6 @@ import { PER_PAGE } from '../../utils/constants';
 import { Context } from '../Navbar/Navbar';
 import { useNavigate, useLocation } from 'react-router-dom'
 
-const BoxCss = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'sticky', top: '68px', left: 0, // 68px is the height of the Appbar
-    backgroundColor: 'white',
-}
 
 const Wrapper = styled(Container)({
     display: 'flex',

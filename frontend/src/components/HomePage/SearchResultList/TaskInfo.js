@@ -6,6 +6,8 @@ import { useState, useEffect } from 'react';
 import { FavoriteBorder, Favorite } from '@mui/icons-material';
 import { Stack, Chip } from '@mui/material';
 import { useNavigate, useLocation } from 'react-router-dom'
+import { Context } from '../../Navbar/Navbar';
+import axios from '../../../containers/api'
 
 // const a = ExpList[0]
 
@@ -22,13 +24,25 @@ const List = styled('ul')({
     margin: '10px 0'
 })
 
+const userEmail = Context.email
+
 const TaskInfo = ({ task }) => {
     const { state } = useLocation();
     const [liked, setLiked] = useState(false)
 
-    const handleLike = (e) => {
+
+    const handleLike = async (e, expId) => {
         e.stopPropagation()
         setLiked(!liked)
+
+        const { data: { message } } =
+            await axios.post("/updateLikeList", { userEmail, expId })
+        if (message === 'success') {
+            console.log(" submitted successfully ")
+        }
+        else {
+            console.log(" submission failed ")
+        }
     }
 
     const navigate = useNavigate();
@@ -41,12 +55,12 @@ const TaskInfo = ({ task }) => {
 
     return (
         <Box sx={BoxCss} className='TaskInfo'>
-            <Box sx={{ mt: '3px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', "&:hover": { cursor: 'pointer', '&, .Title': { color: '#4267B2' } } }} onClick={() => ToExp(task.id)}>
-                <Typography className="Title" variant="h6" sx={{ "&:hover": { color: '#4267B2' } }}>
+            <Box sx={{ mt: '3px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', "&:hover": { cursor: 'pointer', '&.Title': { color: '#4267B2' } } }}>
+                <Typography className="Title" variant="h6" sx={{ "&:hover": { color: '#4267B2' } }} onClick={() => ToExp(task.id)}>
                     {task.title}
                 </Typography>
-                {liked ? <Favorite onClick={handleLike} sx={{ color: 'red' }} />
-                    : <FavoriteBorder onClick={handleLike} />}
+                {liked ? <Favorite onClick={(e) => handleLike(e, task._id)} sx={{ color: 'red' }} />
+                    : <FavoriteBorder onClick={(e) => handleLike(e, task._id)} />}
             </Box>
             <List>
                 <li>時長：{task.length}</li>

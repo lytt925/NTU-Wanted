@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles'
 import axios from '../../containers/api';
 import { textAlign } from '@mui/system';
-import { Context } from '../Navbar/Navbar';
+import { useUser } from '../../containers/hooks/useUser';
 
 const { RangePicker } = DatePicker;
 const { Option } = Select;
@@ -33,7 +33,7 @@ const validateMessages = {
 
 const InfoForm = () => {
 
-    const c = Context;
+    const c = useUser();
     // console.log('InfoForm', c.name);
 
     const [form] = Form.useForm();

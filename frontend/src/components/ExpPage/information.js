@@ -57,15 +57,15 @@ const Information = ({ info }) => {
     const handleLike = () => {
         setLiked(!liked)
     }
-    
-    const age = info.age? 
-                    info.age.lower==0 || !info.age.lower? 
-                        (info.age.upper==99 || !info.age.upper? "無":`限${info.age.upper}歲以下`)
-                        :  
-                        info.age.upper==99 || !info.age.upper?
-                            `限${info.age.lower}歲以上`: `限${info.age.lower}歲至${info.age.upper}歲`
-                    :
-                    "無"
+
+    const age = info.age ?
+        info.age.lower == 0 || !info.age.lower ?
+            (info.age.upper == 99 || !info.age.upper ? "無" : `限${info.age.upper}歲以下`)
+            :
+            info.age.upper == 99 || !info.age.upper ?
+                `限${info.age.lower}歲以上` : `限${info.age.lower}歲至${info.age.upper}歲`
+        :
+        "無"
 
     return (
         <Box sx={bigBoxCss}>
@@ -82,7 +82,7 @@ const Information = ({ info }) => {
                 <Box sx={{ float: 'left' }}>
                     <List>
                         <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
-                            實驗資訊
+                            研究資訊
                         </Typography>
                         <li>時長：{info.length}</li>
                         <li>時間：{info.timeRange.from} ~ {info.timeRange.to}</li>
@@ -95,10 +95,10 @@ const Information = ({ info }) => {
                 <Box sx={{ float: 'left' }}>
                     <List>
                         <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
-                            受試者條件
+                            參與者條件
                         </Typography>
                         <li>{age}</li>
-                        <li>{info.requirements? info.requirements:""}</li>
+                        <li>{info.requirements ? info.requirements : ""}</li>
                     </List>
                 </Box>
             </Box >
@@ -106,7 +106,7 @@ const Information = ({ info }) => {
                 <Box sx={{ float: 'left' }}>
                     <List>
                         <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
-                            實驗報酬
+                            研究報酬
                         </Typography>
                         <li>{info.reward}</li>
                     </List>
@@ -116,7 +116,7 @@ const Information = ({ info }) => {
                 <Box sx={{ float: 'left' }}>
                     <List>
                         <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
-                            實驗內容
+                            研究內容
                         </Typography>
                         <li>{info.introduction}</li>
                     </List>
@@ -139,7 +139,7 @@ const Information = ({ info }) => {
                         <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
                             聯絡資訊
                         </Typography>
-                        <li>實驗主試人員：{info.experimenter}</li>
+                        <li>研究主試人員：{info.experimenter}</li>
                         <li>聯絡電話：{info.phone}</li>
                         <li>電子郵件：{info.email}</li>
                     </List>
@@ -150,7 +150,7 @@ const Information = ({ info }) => {
                     <Box sx={{ float: 'left' }}>
                         <List>
                             <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
-                                實驗報名連結
+                                研究報名連結
                             </Typography>
                             <Button variant="outlined" href={info.link} target='_blank'>{info.link}</Button>
                         </List>

@@ -28,7 +28,6 @@ const SearchInput = styled(TextField)`
 
 const searchBoxCss = {
     mx: 'auto',
-    marginTop: '70px',
     pb: '5px',
     display: 'flex',
     alignItems: 'center',
@@ -45,13 +44,13 @@ const SearchBar = ({ expList, setExpList, setCount }) => {
     const { state } = useLocation();
 
     const sendSearch = async () => {
-        console.log({
-            searchTitle,
-            locationTagsSelected,
-            timeRange,
-            rewardTagsSelected,
-            typeTagsSelected,
-        })
+        // console.log({
+        //     searchTitle,
+        //     locationTagsSelected,
+        //     timeRange,
+        //     rewardTagsSelected,
+        //     typeTagsSelected,
+        // })
         setLoading(true)
         const { data: { message, contents } } =
             await axios.get('/getExpList', {

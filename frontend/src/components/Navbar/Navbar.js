@@ -20,23 +20,21 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
 import axios from '../../containers/api'
 import { width } from "@mui/system";
+import { useUser } from "../../containers/hooks/useUser";
 // import { getDecodedOAuthJwtGoogle } from "../../containers/hooks/useLogin";
 
 
 var Context = [];
 
 const pages = ['聯絡我們'];
-const settings = ['我發布的實驗', '登出'];
+const settings = ['我發布的研究', '登出'];
 // var postPage = false;
 
 function ResponsiveAppBar() {
 
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
-    const [login, setLogin] = useState(false);
-    const [email, setEmail] = useState('');
-    const [name, setName] = useState('');
-    const [pic, setPic] = useState('');
+    const { login, setLogin, email, setEmail, name, setName, pic, setPic } = useUser()
     const port = (window.location.origin) + "/newpost";
     // console.log(port);
 
@@ -124,7 +122,7 @@ function ResponsiveAppBar() {
 
 
     return (// sticky
-        <AppBar position="fixed">
+        <AppBar position="sticky" sx={{ mb: '5px' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -255,7 +253,7 @@ function ResponsiveAppBar() {
                                         color="success"
                                         sx={{ my: 2, color: 'white', display: 'block' }}
                                     >
-                                        + 新實驗
+                                        + 新研究
                                     </Button>
                                 </Tooltip>
                             </Box> */}
@@ -282,11 +280,14 @@ function ResponsiveAppBar() {
                                     open={Boolean(anchorElUser)}
                                     onClose={handleCloseUserMenu}
                                 >
-                                    <MenuItem key="新增實驗" onClick={navigateToPost}>
-                                        <Typography textAlign="center"> + 新實驗</Typography>
+                                    <MenuItem key="新增研究" onClick={navigateToPost}>
+                                        <Typography textAlign="center"> + 新研究</Typography>
                                     </MenuItem>
-                                    <MenuItem key="我發布的實驗" onClick={myexp}>
-                                        <Typography textAlign="center">我發布的實驗</Typography>
+                                    <MenuItem key="我發布的研究" onClick={myexp}>
+                                        <Typography textAlign="center">我發布的研究</Typography>
+                                    </MenuItem>
+                                    <MenuItem key="我收藏的研究" onClick={myexp}>
+                                        <Typography textAlign="center">我收藏的研究</Typography>
                                     </MenuItem>
                                     <MenuItem key="登出" onClick={logoutevent}>
                                         <Typography textAlign="center">登出</Typography>
