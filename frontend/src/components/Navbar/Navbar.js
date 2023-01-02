@@ -69,6 +69,7 @@ function ResponsiveAppBar() {
         setAnchorElUser(null);
         setLikedList([])
         setPic('')
+        localStorage.clear();
     }
 
     const myexp = () => {
