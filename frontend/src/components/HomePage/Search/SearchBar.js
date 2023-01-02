@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import './SearchBar.css'
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles'
 import TextField from '@mui/material/TextField';
@@ -6,12 +7,15 @@ import TextField from '@mui/material/TextField';
 import { useFilter } from "../../../containers/hooks/useFilter";
 import LoadingButton from '@mui/lab/LoadingButton';
 import SearchIcon from '@mui/icons-material/Search';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import axios from '../../../containers/api';
 import { useNavigate, useLocation } from 'react-router-dom'
 import { PER_PAGE } from "../../../utils/constants";
+import { Button, Form, Input, InputNumber, DatePicker, Select } from 'antd';
+import { border } from "@mui/system";
+const { RangePicker } = DatePicker;
 
 const SearchInput = styled(TextField)`
   margin: 10px 10px 10px 10px;
@@ -25,7 +29,7 @@ const searchBoxCss = {
     mx: 'auto',
     pb: '12px',
     display: 'flex',
-    alignItems: 'end',
+    alignItems: 'center',
     justifyContent: 'center',
     position: 'sticky',
     top: '68px',
@@ -111,63 +115,72 @@ const SearchBar = ({ expList, setExpList, setCount }) => {
         return false
     }
 
-    const DatePickerRange = () => {
-        const DatePick = ({ date, from, to }) => (
-            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="zh-TW">
-                <DatePicker
-                    label={date ? '' : '日期'}
-                    value={date}
-                    onChange={(newDate) => {
-                        // console.log(newDate.$d.toLocaleDateString())
-                        const displayDate = formatDate(newDate)
-                        const newTimeRange = { ...timeRange }
-                        if (from) newTimeRange.from = displayDate
-                        else if (to) newTimeRange.to = displayDate
-                        setTimeRange(newTimeRange);
-                    }}
-                    shouldDisableDate={(day) => disableDay(day, from, to, timeRange)}
-                    views={["year", "month", "day"]}
-                    inputFormat="YYYY/MM/DD"
-                    disableHighlightToday
-                    renderInput={(InputProps) => {
-                        let newParams = { ...InputProps, error: false }
-                        return <TextField
-                            size="small"
-                            sx={{ width: '160px', margin: '10px' }}
-                            variant="outlined"
-                            InputProps={{ shrink: false }
-                            }
-                            {...newParams} />
-                    }}
-                />
-            </LocalizationProvider >
-        )
-        return (
-            <>
-                <RangeLabel>自</RangeLabel>
-                <DatePick date={timeRange.from} from={true} />
-                <RangeLabel>至</RangeLabel>
-                <DatePick date={timeRange.to} to={true} />
-            </>
-        )
-    }
+    // const DatePickerRange = () => {
+    //     const DatePick = ({ date, from, to }) => (
+    //         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="zh-TW">
+    //             <DatePicker
+    //                 label={date ? '' : '日期'}
+    //                 value={date}
+    //                 onChange={(newDate) => {
+    //                     // console.log(newDate.$d.toLocaleDateString())
+    //                     const displayDate = formatDate(newDate)
+    //                     const newTimeRange = { ...timeRange }
+    //                     if (from) newTimeRange.from = displayDate
+    //                     else if (to) newTimeRange.to = displayDate
+    //                     setTimeRange(newTimeRange);
+    //                 }}
+    //                 shouldDisableDate={(day) => disableDay(day, from, to, timeRange)}
+    //                 views={["year", "month", "day"]}
+    //                 inputFormat="YYYY/MM/DD"
+    //                 disableHighlightToday
+    //                 renderInput={(InputProps) => {
+    //                     let newParams = { ...InputProps, error: false }
+    //                     return <TextField
+    //                         size="small"
+    //                         sx={{ width: '160px', margin: '10px' }}
+    //                         variant="outlined"
+    //                         InputProps={{ shrink: false }
+    //                         }
+    //                         {...newParams} />
+    //                 }}
+    //             />
+    //         </LocalizationProvider >
+    //     )
+    //     return (
+    //         <>
+    //             <RangeLabel>自</RangeLabel>
+    //             <DatePick date={timeRange.from} from={true} />
+    //             <RangeLabel>至</RangeLabel>
+    //             <DatePick date={timeRange.to} to={true} />
+    //         </>
+    //     )
+    // }
+
+    const DateRangePicker = () => (
+        <Form name="dateForm" style={{ width: "360px", height: '41.3px', margin: '10px' }}>
+            <Form.Item name='time' rules={[{ required: false }]} >
+                <RangePicker placeholder={["開始時間", "結束時間"]} className='rangePicker' style={{ width: "360px", height: '41px', padding: '9px 14px' }} />
+            </Form.Item>
+        </Form >
+    )
+
 
     return (
         <Box
-            component="form"
             sx={searchBoxCss}
             noValidate
             autoComplete="on"
         >
-            <SearchInput placeholder="搜尋" variant="outlined" sx={{ width: '300px', flexShrink: "2" }} onChange={searchTitleHandler} value={searchTitle} size='small' />
-            <DatePickerRange />
+            <SearchInput placeholder="搜尋" variant="outlined" sx={{ width: '360px', flexShrink: "2" }} onChange={searchTitleHandler} value={searchTitle} size='small' />
+            {/* <DatePickerRange /> */}
+            <DateRangePicker />
             <LoadingButton
                 onClick={sendSearch}
                 endIcon={<SearchIcon />}
                 loading={loading}
                 loadingPosition="end"
                 variant="contained"
-                sx={{ height: '43px', width: "90px", margin: '10px' }}
+                sx={{ height: '43px', width: "90px", margin: '7px' }}
             >
                 搜尋
             </LoadingButton>
