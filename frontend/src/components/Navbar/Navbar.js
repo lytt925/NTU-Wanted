@@ -221,15 +221,18 @@ function ResponsiveAppBar() {
 
                     {(login === false) ?
                         <Box id='login' sx={{
+                            minWidth: '100px',
+                            borderRadius: '6px',
                             mr: 3, flexGrow: 0, display: {
-                                width: '6%', xs: 'none', md: 'flex', backgroundColor: 'black',
-                            }
+                                width: '6%', xs: 'none', md: 'flex'
+                            }, backgroundColor: 'black',
                         }}>
                             {/* <Tooltip title="Login"> */}
                             <GoogleOAuthProvider clientId="705967299189-hj61h5r94cmlkljemcg45v1cq5anhhuj.apps.googleusercontent.com">
                                 <GoogleLogin
                                     type='icon'
                                     theme="filled_black"
+                                    logo_alignment="left"
                                     clientId="705967299189-hj61h5r94cmlkljemcg45v1cq5anhhuj.apps.googleusercontent.com"
                                     // render={renderProps => (
                                     //     <Button onClick={renderProps.onClick} disabled={renderProps.disabled} variant='contained' color='info' sx={{ my: 2, color: 'white', display: 'block' }}>登入</Button>
@@ -239,7 +242,7 @@ function ResponsiveAppBar() {
                                     cookiePolicy={'single_host_origin'}
                                 />
                             </GoogleOAuthProvider>
-                            <Typography sx={{ color: 'white', mt: '7px', ml: '2px' }}>登入</Typography>
+                            <Typography sx={{ color: 'white', mt: '8px', ml: '12px' }}>登入</Typography>
                             {/* </Tooltip> */}
                         </Box> :
                         <>
