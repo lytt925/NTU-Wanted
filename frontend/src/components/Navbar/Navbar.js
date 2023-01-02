@@ -96,8 +96,9 @@ function ResponsiveAppBar() {
     const responseGoogle = async (response) => {
         // const realUserData = getDecodedOAuthJwtGoogle(response.credential)
         // console.log('responseGoogle', response.credential);
+
         const userObject = jwt_decode(response.credential);
-        // console.log('responseGoogle', userObject);
+
         setLogin(true);
         setEmail(userObject.email);
         setName(userObject.name);
@@ -107,7 +108,6 @@ function ResponsiveAppBar() {
         const e = userObject.email;
 
         axios.post('/checkUser', {
-            // TODO Part III-3-b: store the comment to the DB
             name: n, email: e
         })
 
@@ -130,6 +130,8 @@ function ResponsiveAppBar() {
         <AppBar position="sticky" sx={{ mb: '5px' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
+
+                    {/* full screen { xs: 'none', md: 'flex' } NTU logo and name */}
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                     <Typography>
                         <Button
@@ -151,15 +153,16 @@ function ResponsiveAppBar() {
                         >
                             NTU-Wanted
                         </Button>
-
                     </Typography>
+
+                    {/* smartphone screen { xs: 'flex', md: 'none' } three lines */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
                             aria-label="account of current user"
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
+                            onClick={backtoHome}
                             color="inherit"
                         >
                             <MenuIcon />
@@ -189,7 +192,8 @@ function ResponsiveAppBar() {
                             ))}
                         </Menu>
                     </Box>
-                    {/*  */}
+
+                    {/* smartphone screen { xs: 'flex', md: 'none' } NTU logo and name */}
                     <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
                         variant="h5"
@@ -209,6 +213,8 @@ function ResponsiveAppBar() {
                     >
                         NTU Wanted
                     </Typography>
+
+                    {/* full screen { xs: 'none', md: 'flex' } 聯絡我們 */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
                             <Button
@@ -222,6 +228,7 @@ function ResponsiveAppBar() {
                         ))}
                     </Box>
 
+                    {/* full screen { xs: 'none', md: 'flex' } login */}
                     {(login === false) ?
                         <Box id='login' sx={{
                             minWidth: '100px',
@@ -229,6 +236,7 @@ function ResponsiveAppBar() {
                             mr: 3, flexGrow: 0, display: {
                                 width: '6%', xs: 'none', md: 'flex'
                             }, backgroundColor: 'black',
+                            display: { xs: 'none', md: 'flex' }
                         }}>
                             {/* <Tooltip title="Login"> */}
                             <GoogleOAuthProvider clientId="705967299189-hj61h5r94cmlkljemcg45v1cq5anhhuj.apps.googleusercontent.com">
@@ -249,25 +257,10 @@ function ResponsiveAppBar() {
                             {/* </Tooltip> */}
                         </Box> :
                         <>
-                            {/* <Box id='newExp' sx={{ mr: 3, flexGrow: 0, display: { xs: 'none', md: 'flex' } }} visibility={(window.location.href === port) ? 'hidden' : 'visiable'}>
-                                <Tooltip title="Post experiments">
-                                    <Button
-                                        key='Post'
-                                        variant="contained"
-                                        onClick={navigateToPost}
-                                        color="success"
-                                        sx={{ my: 2, color: 'white', display: 'block' }}
-                                    >
-                                        + 新研究
-                                    </Button>
-                                </Tooltip>
-                            </Box> */}
-
-
-                            <Box sx={{ flexGrow: 0 }}>
+                            <Box sx={{ flexGrow: 0, xs: 'none', md: 'flex' }}>
                                 <Tooltip title="Open settings">
                                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                        <Avatar src={pic} />
+                                        <Avatar src={pic} sx={{ display: { xs: 'none', md: 'flex' } }} />
                                     </IconButton>
                                 </Tooltip>
                                 <Menu
@@ -300,6 +293,64 @@ function ResponsiveAppBar() {
                                 </Menu>
                             </Box></>
                     }
+
+                    {/* smartphone screen { xs: 'flex', md: 'none' } login */}
+                    {(login === false) ?
+                        <Box id='login' sx={{
+                            xs: 'flex', md: 'none',
+                            backgroundColor: 'white',
+                            display: { xs: 'flex', md: 'none' }
+                        }}>
+                            {/* <Tooltip title="Login"> */}
+                            <GoogleOAuthProvider clientId="705967299189-hj61h5r94cmlkljemcg45v1cq5anhhuj.apps.googleusercontent.com">
+                                <GoogleLogin
+                                    type='icon'
+                                    clientId="705967299189-hj61h5r94cmlkljemcg45v1cq5anhhuj.apps.googleusercontent.com"
+                                    onSuccess={responseGoogle}
+                                    onFailure={responseGoogle}
+                                    cookiePolicy={'single_host_origin'}
+                                />
+                            </GoogleOAuthProvider>
+                            {/* </Tooltip> */}
+                        </Box> :
+                        <>
+                            <Box sx={{ xs: 'flex', md: 'none' }}>
+                                <Tooltip title="Open settings">
+                                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                        <Avatar src={pic} sx={{ display: { xs: 'flex', md: 'none' } }} />
+                                    </IconButton>
+                                </Tooltip>
+                                <Menu
+                                    sx={{ mt: '45px' }}
+                                    anchorEl={anchorElUser}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    open={Boolean(anchorElUser)}
+                                    onClose={handleCloseUserMenu}
+                                >
+                                    <MenuItem key="新增研究" onClick={navigateToPost}>
+                                        <Typography textAlign="center"> + 新研究</Typography>
+                                    </MenuItem>
+                                    <MenuItem key="我發布的研究" onClick={myexp}>
+                                        <Typography textAlign="center">我發布的研究</Typography>
+                                    </MenuItem>
+                                    <MenuItem key="我收藏的研究" onClick={myexp}>
+                                        <Typography textAlign="center">我收藏的研究</Typography>
+                                    </MenuItem>
+                                    <MenuItem key="登出" onClick={logoutevent}>
+                                        <Typography textAlign="center">登出</Typography>
+                                    </MenuItem>
+                                </Menu>
+                            </Box></>
+                    }
+
                 </Toolbar>
             </Container>
         </AppBar >
