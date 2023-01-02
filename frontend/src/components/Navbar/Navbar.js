@@ -105,7 +105,7 @@ function ResponsiveAppBar() {
 
 
     return (// sticky
-        <AppBar position="sticky" sx={{ mb: '5px' }}>
+        <AppBar position="fixed" sx={{ mb: '5px' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
 

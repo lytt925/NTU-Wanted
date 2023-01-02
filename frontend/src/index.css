@@ -3,7 +3,17 @@
     height: 100%;
 } */
 
-body {
+/* body {
     overflow-x: hidden;
+    height: 100%;
+} */
+
+html {
+    overflow: auto;
+    height: 100%;
+}
+
+body {
+    overflow: auto;
     height: 100%;
 }

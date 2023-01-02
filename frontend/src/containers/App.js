@@ -5,11 +5,17 @@ import HomePage from '../components/HomePage/HomePage';
 import ExpPage from '../components/ExpPage/ExpPage';
 import MyExp from '../components/MyExp/MyExp';
 import MyLikedListPage from '../components/MyLikedList/MyLikedList'
+import AppBar from '@mui/material/AppBar';
+import Container from '@mui/material/Container';
 
 function App() {
 
     return (
         <Router>
+            <AppBar position="static" sx={{ mb: '10px', height: '60px', backgroundColor: '#FFFFFF', border: 'none', 'boxShadow': 'none' }}>
+                <Container maxWidth="xl" sx={{ height: '60px', backgroundColor: '#FFFFFF', border: 'none' }}>
+                </Container>
+            </AppBar>
             <ResponsiveAppBar />
             <Routes>
                 <Route path="/" element={<HomePage />} />
