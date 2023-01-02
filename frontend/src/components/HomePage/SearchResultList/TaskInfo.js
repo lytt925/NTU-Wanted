@@ -25,7 +25,6 @@ const List = styled('ul')({
     margin: '10px 0'
 })
 
-const userEmail = Context.email
 
 const TaskInfo = ({ task }) => {
     const { state } = useLocation();
