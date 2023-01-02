@@ -15,7 +15,13 @@ import { useUser } from '../../../containers/hooks/useUser';
 export default function ResultList({ pageList }) { // { expList, setExpList }
 
     const { likedList } = useUser()
-    const likedIDList = likedList.map((task) => task._id)
+
+    let likedIDList
+    try {
+        likedIDList = likedList.map((task) => task._id)
+    } catch (e) {
+        likedIDList = []
+    }
 
     return (
         <>
