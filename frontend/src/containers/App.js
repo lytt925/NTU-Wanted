@@ -1,10 +1,11 @@
-import ResponsiveAppBar from '../components/Navbar/Navbar'
+import { ResponsiveAppBar } from '../components/Navbar/Navbar'
 import { useNavigate, useLocation } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
 import InfoForm from '../components/CreatePost/InfoForm';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from '../components/HomePage/HomePage';
 import ExpPage from '../components/ExpPage/ExpPage';
+import MyExp from '../components/MyExp/MyExp';
 
 function App() {
     // const navigate = useNavigate();
@@ -25,6 +26,7 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/newpost" element={<InfoForm />} />
                 <Route path="/experiment/:id" element={<ExpPage />} />
+                <Route path='/myexperiment' element={<MyExp />} />
             </Routes>
         </Router>
     );

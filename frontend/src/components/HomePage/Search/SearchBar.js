@@ -61,7 +61,7 @@ const SearchBar = ({ expList, setExpList, setCount }) => {
                 },
             })
         if (message === 'success') {
-            console.log(contents)
+            // console.log(contents)
             setExpList(contents)
             //計算分頁數
             const newCount = Math.ceil(contents.length / PER_PAGE);
