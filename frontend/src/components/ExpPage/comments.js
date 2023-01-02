@@ -1,16 +1,11 @@
 import React from 'react'
-import { useState, useEffect } from "react";
-import Paper from '@mui/material/Paper';
+import { useState } from "react";
 import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { FavoriteBorder, Favorite } from '@mui/icons-material';
-import { Stack, Chip } from '@mui/material';
-import { useNavigate, useLocation } from 'react-router-dom'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import SendIcon from '@mui/icons-material/Send';
-import { message, Input } from "antd";
 import ReplyIcon from '@mui/icons-material/Reply';
 import axios from '../../containers/api'
 import { useUser } from '../../containers/hooks/useUser';

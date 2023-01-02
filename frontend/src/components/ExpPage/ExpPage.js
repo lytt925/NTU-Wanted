@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import Information from './information';
 import Comment from './comments';
 import { useParams } from 'react-router-dom'
-import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles'
 import { Container } from '@mui/material';
 // import { ExpList } from '../db';
@@ -16,18 +15,6 @@ const Wrapper = styled(Container)({
     alignItems: 'center',
     backgroundColor: '#f2f2f2'
 })
-
-const bigBoxCss = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'sticky',
-    top: '150px',
-    width: '69.5%',
-    minWidth: '310px',
-    '&, .TaskInfo:first-of-type': { marginTop: "10px" },
-}
 
 const ExpPage = () => {
     const { id } = useParams()

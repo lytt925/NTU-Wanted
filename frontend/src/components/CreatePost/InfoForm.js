@@ -2,9 +2,7 @@
 import { Button, Form, Input, InputNumber, DatePicker, Select } from 'antd';
 import "./infoForm.css";
 import { useNavigate } from 'react-router-dom';
-import { styled } from '@mui/material/styles'
 import axios from '../../containers/api';
-import { textAlign } from '@mui/system';
 import { useUser } from '../../containers/hooks/useUser';
 
 const { RangePicker } = DatePicker;

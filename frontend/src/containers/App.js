@@ -1,10 +1,6 @@
 import { ResponsiveAppBar } from '../components/Navbar/Navbar'
-import { useNavigate, useLocation } from 'react-router-dom';
-import React, { useState, useEffect } from 'react'
 import InfoForm from '../components/CreatePost/InfoForm';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import AppBar from '@mui/material/AppBar';
-import Container from '@mui/material/Container';
 import HomePage from '../components/HomePage/HomePage';
 import ExpPage from '../components/ExpPage/ExpPage';
 import MyExp from '../components/MyExp/MyExp';

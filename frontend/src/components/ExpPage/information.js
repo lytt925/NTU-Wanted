@@ -3,10 +3,8 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { FavoriteBorder, Favorite } from '@mui/icons-material';
-import { Stack, Chip } from '@mui/material';
-import { useNavigate, useLocation } from 'react-router-dom'
 import Button from '@mui/material/Button';
 
 const BoxCss = {
@@ -58,10 +56,10 @@ const Information = ({ info }) => {
     }
 
     const age = info.age ?
-        info.age.lower == 0 || !info.age.lower ?
-            (info.age.upper == 99 || !info.age.upper ? "無" : `限${info.age.upper}歲以下`)
+        info.age.lower === 0 || !info.age.lower ?
+            (info.age.upper === 99 || !info.age.upper ? "無" : `限${info.age.upper}歲以下`)
             :
-            info.age.upper == 99 || !info.age.upper ?
+            info.age.upper === 99 || !info.age.upper ?
                 `限${info.age.lower}歲以上` : `限${info.age.lower}歲至${info.age.upper}歲`
         :
         "無"

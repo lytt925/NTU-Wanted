@@ -1,11 +1,9 @@
-import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { useState, useEffect } from 'react';
 import { FavoriteBorder, Favorite } from '@mui/icons-material';
 import { Stack, Chip } from '@mui/material';
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import axios from '../../../containers/api'
 import { useUser } from '../../../containers/hooks/useUser';
 
@@ -25,7 +23,6 @@ const List = styled('ul')({
 
 
 const TaskInfo = ({ task, liked }) => {
-    const { state } = useLocation();
 
     const { email, setLikedList } = useUser()
 

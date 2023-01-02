@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, useContext } from "react"
+import { useState, useEffect } from "react"
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,33 +12,24 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { Password } from "@mui/icons-material";
-// import { GoogleLogin } from 'react-google-login';
+import { useNavigate } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
 import axios from '../../containers/api'
-import { width } from "@mui/system";
 import { useUser } from "../../containers/hooks/useUser";
-// import { getDecodedOAuthJwtGoogle } from "../../containers/hooks/useLogin";
 
 
 var Context = [];
 
 const pages = ['聯絡我們'];
-const settings = ['我發布的研究', '登出'];
 
 function ResponsiveAppBar() {
 
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
-    const { login, setLogin, email, setEmail, name, setName, pic, setPic, likedList, setLikedList } = useUser()
-    const port = (window.location.origin) + "/newpost";
+    const { login, setLogin, email, setEmail, name, setName, pic, setPic, setLikedList } = useUser()
 
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
