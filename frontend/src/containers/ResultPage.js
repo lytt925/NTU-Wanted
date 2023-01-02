@@ -21,15 +21,15 @@ const ResultPage = ({ expList, count }) => {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        width: '69.5%',
         minWidth: '350px',
+        width: '69.5%',
         maxWidth: '800px',
         '&, .TaskInfo:first-of-type': { marginTop: "10px", borderTopRightRadius: "5px", borderTopLeftRadius: "5px" },
         '&, .TaskInfo:last-of-type': { marginBottom: "20px", borderBottomRightRadius: "5px", borderBottomLeftRadius: "5px" },
     }
 
     return (
-        <Box sx={{ width: "100vw", display: 'flex', justifyContent: 'center', alignItems: 'center', borderTop: '1px solid lightgrey' }}>
+        <Box sx={{ width: "100vw", display: 'flex', justifyContent: 'center', alignItems: 'center', borderTop: '1px solid lightgrey', }}>
             <Box sx={BoxCss}>
                 <ResultList pageList={pageList} page={page} />
                 <Pagination count={count} page={page}

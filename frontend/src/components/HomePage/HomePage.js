@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import { Container } from '@mui/material';
 import React, { useState, useEffect } from 'react'
 import ResultPage from '../../containers/ResultPage';
+import ScrollToTop from './ScrollToTop';
 
 // const BoxCss = {
 //     display: 'flex',
@@ -34,13 +35,13 @@ const HomePage = () => {
 
     return (
         <Wrapper className='App'>
+            <ScrollToTop />
             <SearchBar expList={expList} setExpList={setExpList} setCount={setCount} />
             <CheckTable />
             <ResultPage expList={expList} count={count} />
         </Wrapper >
     )
 }
-
 
 
 export default HomePage
