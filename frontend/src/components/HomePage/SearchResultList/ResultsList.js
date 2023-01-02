@@ -7,27 +7,17 @@ import { Context } from '../../Navbar/Navbar';
 import { useNavigate, useLocation } from 'react-router-dom'
 import Pagination from '@mui/material/Pagination';
 import axios from '../../../containers/api'
+import { useUser } from '../../../containers/hooks/useUser';
 
 // import { ExpList } from '../../db';
 
 
 export default function ResultList({ pageList }) { // { expList, setExpList }
 
-    // let likedList
-    // const getLikedList = async () => {
-    //     if (Context.email) {
-    //         likedList = await axios.get('getLikedList', {
-    //             params: {
-    //                 email: Context.email
-    //             }
-    //         })
-    //         console.log(likedList)
-    //     }
-    // }
+    const { likedList } = useUser()
 
-    // useEffect(() => {
-    //     getLikedList()
-    // })
+
+    // liked = { likedList.includes(task._id) }
 
     return (
         <>

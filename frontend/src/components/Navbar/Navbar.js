@@ -34,7 +34,7 @@ function ResponsiveAppBar() {
 
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
-    const { login, setLogin, email, setEmail, name, setName, pic, setPic } = useUser()
+    const { login, setLogin, email, setEmail, name, setName, pic, setPic, likedList, setLikedList } = useUser()
     const port = (window.location.origin) + "/newpost";
     // console.log(port);
 
@@ -105,13 +105,18 @@ function ResponsiveAppBar() {
 
         const n = userObject.name;
         const e = userObject.email;
-        // console.log(n);
 
-        await axios.post('checkUser/', {
+        axios.post('/checkUser', {
             // TODO Part III-3-b: store the comment to the DB
             name: n, email: e
         })
 
+        const thisLikedList = await axios.get('/getLikedList', {
+            params: {
+                email: e
+            }
+        })
+        console.log('likedlist', thisLikedList)
     }
 
     // console.log('responseGoogle', { name, email, login, pic });

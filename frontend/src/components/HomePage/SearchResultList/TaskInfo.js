@@ -29,19 +29,18 @@ const List = styled('ul')({
 const TaskInfo = ({ task }) => {
     const { state } = useLocation();
     const [liked, setLiked] = useState(false)
-    const { email } = useUser
+    const { email } = useUser()
 
     const handleLike = async (e, expId) => {
         e.stopPropagation()
         setLiked(!liked)
-
         const { data: { message } } =
             await axios.post("/updateLikeList", { email, expId })
         if (message === 'success') {
-            console.log(" submitted successfully ")
+            console.log(" liked successfully ")
         }
         else {
-            console.log(" submission failed ")
+            console.log(" liked failed ")
         }
     }
 

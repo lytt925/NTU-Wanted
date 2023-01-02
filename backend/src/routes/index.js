@@ -15,6 +15,6 @@ router.post('/api/createReply', commentRoute.CreateReply);
 router.post('/api/postForm', postFormRouter.createInfo);
 router.post('/api/checkUser', userRouter.checkUser);
 router.post('/api/updateLikeList', userRouter.updateLikeList)
-router.post('/api/getLikedList', userRouter.getLikedList)
+router.get('/api/getLikedList', userRouter.getLikedList)
 
 export default router;
