@@ -15,6 +15,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import { useFilter } from "../../../containers/hooks/useFilter";
 
 
@@ -26,13 +27,14 @@ const BoxCss = {
     alignItems: 'center',
     paddingBottom: '20px',
     width: '69.5%',
-    minWidth: '600px',
-    zIndex: 1
+    minWidth: '330px',
 }
 
 const HeaderTableCell = styled(TableCell)({
     borderRight: '1px solid rgb(224,224,224)',
-    padding: '2px 6px 2px 15px'
+    padding: '2px 6px 2px 12px',
+    width: '120px',
+    minWidth: '96px'
 })
 
 const RowTableCell = styled(TableCell)({
@@ -75,12 +77,13 @@ export default function BasicTable() {
                     <FormControlLabel
                         control={
                             <Checkbox
+                                size="small"
                                 name={box}
                                 onChange={(e) => handleCheck(e, boxState, setBoxState)}
                                 checked={boxState.includes(box)}
                             />
                         }
-                        label={box}
+                        label={<Typography sx={{ fontSize: '15px' }}>{box}</Typography>}
                         key={box}
                     />
                 ))}

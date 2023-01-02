@@ -22,22 +22,20 @@ const SearchInput = styled(TextField)`
   margin: 10px 10px 10px 10px;
 `;
 
-const RangeLabel = styled('span')({
-    marginBottom: '16.4px'
-})
+// const RangeLabel = styled('span')({
+//     marginBottom: '16.4px'
+// })
 
 const searchBoxCss = {
     mx: 'auto',
-    pb: '12px',
+    marginTop: '70px',
+    pb: '5px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    position: 'sticky',
-    top: '68px',
-    backgroundColor: '#FFFFFF',
-    zIndex: 3,
-    width: '69.5%',
-    minWidth: '600px',
+    width: '71%',
+    minWidth: '310px',
+    flexWrap: 'wrap'
 }
 
 const SearchBar = ({ expList, setExpList, setCount }) => {
@@ -159,27 +157,23 @@ const SearchBar = ({ expList, setExpList, setCount }) => {
 
 
     const timeRangeHandler = (rangeValue) => {
-        console.log(rangeValue)
         const newTimeRange = {
             from: rangeValue[0]?.format('YYYY/MM/DD'),
             to: rangeValue[1]?.format('YYYY/MM/DD')
         }
-        console.log(newTimeRange)
         setTimeRange(newTimeRange)
     }
 
     const DateRangePicker = () => {
-
         const toDayjs = (formattedDate) => {
             if (formattedDate)
                 return dayjs(formattedDate, 'YYYY/MM/DD')
             return null
         }
-
         return (
-            <Form name="dateForm" style={{ width: "360px", height: '41.3px', margin: '10px' }}>
+            <Form name="dateForm" style={{ margin: '10px', display: 'flex', boxSizing: 'border-box', height: '41px', flex: '1 1', minWidth: '260px' }}>
                 <RangePicker placeholder={["開始時間", "結束時間"]} className='rangePicker'
-                    style={{ width: "360px", height: '41px', padding: '9px 14px' }}
+                    style={{ boxSizing: 'border-box', height: '41px', flex: '1 1 45%' }}
                     format='YYYY/MM/DD'
                     value={[toDayjs(timeRange?.from), toDayjs(timeRange?.to)]}
                     onChange={timeRangeHandler}
@@ -195,7 +189,7 @@ const SearchBar = ({ expList, setExpList, setCount }) => {
             noValidate
             autoComplete="on"
         >
-            <SearchInput placeholder="搜尋" variant="outlined" sx={{ width: '360px', flexShrink: "2" }} onChange={searchTitleHandler} value={searchTitle} size='small' />
+            <SearchInput placeholder="搜尋" variant="outlined" sx={{ boxSizing: 'border-box', flex: '1 1 45%' }} onChange={searchTitleHandler} value={searchTitle} size='small' />
             {/* <DatePickerRange /> */}
             <DateRangePicker />
             <LoadingButton
@@ -204,7 +198,7 @@ const SearchBar = ({ expList, setExpList, setCount }) => {
                 loading={loading}
                 loadingPosition="end"
                 variant="contained"
-                sx={{ height: '43px', width: "90px", margin: '7px' }}
+                sx={{ height: '40px', minWidth: '88px', width: "90px", margin: '7px', flex: '1 1 10%' }}
             >
                 搜尋
             </LoadingButton>

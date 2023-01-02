@@ -7,15 +7,15 @@ import { Container } from '@mui/material';
 import React, { useState, useEffect } from 'react'
 import ResultPage from '../../containers/ResultPage';
 
-const BoxCss = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'sticky', top: '68px', left: 0, // 68px is the height of the Appbar
-    backgroundColor: 'white',
-    zIndex: 3
-}
+// const BoxCss = {
+//     display: 'flex',
+//     flexDirection: 'column',
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     position: 'sticky', top: '68px', left: 0, // 68px is the height of the Appbar
+//     backgroundColor: 'white',
+//     zIndex: 3
+// }
 
 const Wrapper = styled(Container)({
     display: 'flex',
@@ -34,9 +34,8 @@ const HomePage = () => {
 
     return (
         <Wrapper className='App'>
-            <SearchBar expList={expList} setExpList={setExpList} setCount={setCount}/>
+            <SearchBar expList={expList} setExpList={setExpList} setCount={setCount} />
             <CheckTable />
-            <Box sx={{ height: '1px', width: '99vw', borderTop: '1px solid lightgrey', position: 'sticky', top: '144px' }}></Box>
             <ResultPage expList={expList} count={count} />
         </Wrapper >
     )

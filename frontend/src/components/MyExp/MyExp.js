@@ -18,7 +18,6 @@ const BoxCss = {
     alignItems: 'center',
     position: 'sticky', top: '68px', left: 0, // 68px is the height of the Appbar
     backgroundColor: 'white',
-    zIndex: 3
 }
 
 const Wrapper = styled(Container)({

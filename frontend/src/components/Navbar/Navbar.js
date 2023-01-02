@@ -124,7 +124,7 @@ function ResponsiveAppBar() {
 
 
     return (// sticky
-        <AppBar position="sticky">
+        <AppBar position="fixed">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -212,7 +212,7 @@ function ResponsiveAppBar() {
                                 key={page}
                                 onClick={handleCloseNavMenu}
                                 variant="outlined"
-                                sx={{ my: 2, color: 'white', display: 'block' }}
+                                sx={{ color: 'white', display: 'block' }}
                             >
                                 {page}
                             </Button>
@@ -220,7 +220,7 @@ function ResponsiveAppBar() {
                     </Box>
 
                     {(login === false) ?
-                        < Box id='login' sx={{
+                        <Box id='login' sx={{
                             mr: 3, flexGrow: 0, display: {
                                 width: '6%', xs: 'none', md: 'flex', backgroundColor: 'black',
                             }
@@ -234,7 +234,6 @@ function ResponsiveAppBar() {
                                     // render={renderProps => (
                                     //     <Button onClick={renderProps.onClick} disabled={renderProps.disabled} variant='contained' color='info' sx={{ my: 2, color: 'white', display: 'block' }}>登入</Button>
                                     // )}
-                                    // buttonText="Login"
                                     onSuccess={responseGoogle}
                                     onFailure={responseGoogle}
                                     cookiePolicy={'single_host_origin'}
