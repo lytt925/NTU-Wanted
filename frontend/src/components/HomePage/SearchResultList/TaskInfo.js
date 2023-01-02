@@ -6,11 +6,9 @@ import { useState, useEffect } from 'react';
 import { FavoriteBorder, Favorite } from '@mui/icons-material';
 import { Stack, Chip } from '@mui/material';
 import { useNavigate, useLocation } from 'react-router-dom'
-// import { Context } from '../../Navbar/Navbar';
 import axios from '../../../containers/api'
 import { useUser } from '../../../containers/hooks/useUser';
 
-// const a = ExpList[0]
 
 const BoxCss = {
     px: '25px',
@@ -28,7 +26,7 @@ const List = styled('ul')({
 
 const TaskInfo = ({ task, liked }) => {
     const { state } = useLocation();
-    // const [liked, setLiked] = useState(false)
+
     const { email, setLikedList } = useUser()
 
     const handleLike = async (e, expId, action) => {
@@ -36,8 +34,6 @@ const TaskInfo = ({ task, liked }) => {
         const { data: { message, likedList: newLikedList } } =
             await axios.post("/updateLikeList", { email, expId, action })
         if (message === 'success') {
-            console.log(action, " successfully ")
-            console.log(newLikedList)
         }
         else {
             console.log(action, "failed ")
@@ -47,7 +43,7 @@ const TaskInfo = ({ task, liked }) => {
 
     const navigate = useNavigate();
     const ToExp = (id) => {
-        // TODO Part III-1: navigate the user to restaurant page with the corresponding id
+
         navigate('/experiment/' + id);
         const body = document.querySelector('body');
         body.style.backgroundColor = '#f2f2f2';

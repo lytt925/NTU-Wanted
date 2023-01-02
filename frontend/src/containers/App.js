@@ -11,16 +11,6 @@ import MyExp from '../components/MyExp/MyExp';
 import MyLikedListPage from '../components/MyLikedList/MyLikedList'
 
 function App() {
-    // const navigate = useNavigate();
-    // const Topost = () => {
-    //     navigate('/newpost')
-    // }
-    // console.log(postPage);
-    // useEffect(() => {
-    //     if (postPage === true) {
-    //         Topost();
-    //     }
-    // }, [postPage])
 
     return (
         <Router>

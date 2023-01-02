@@ -5,7 +5,6 @@ dotenv.config();
 
 export default {
     connect: () => {
-        console.log(process.env.MONGO_URL)
         mongoose
             .connect(process.env.MONGO_URL, {
                 useNewUrlParser: true,

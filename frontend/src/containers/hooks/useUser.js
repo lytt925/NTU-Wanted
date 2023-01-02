@@ -8,7 +8,6 @@ try {
     savedMe = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY))
 }
 catch (e) { savedMe = null }
-// console.log(savedMe)
 
 
 const UserContext = createContext({
@@ -36,9 +35,7 @@ const UserProvider = (props) => {
 
     useEffect(() => {
         if (login) {
-            // console.log(savedMe)
             const newme = [email, name, pic]
-            // console.log(newme)
             localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(newme));
         }
     }, [login]);

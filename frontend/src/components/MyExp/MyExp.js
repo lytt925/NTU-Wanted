@@ -30,15 +30,6 @@ const HomePage = () => {
     const { name, email } = useUser()
 
     const sendmySearch = async () => {
-        // console.log({
-        //     searchTitle,
-        //     locationTagsSelected,
-        //     timeRange,
-        //     rewardTagsSelected,
-        //     typeTagsSelected,
-        // })
-        // setLoading(true)
-        // console.log({ name, email });
         const { data: { message, contents } } =
             await axios.get('/getMyexp', {
                 params: {
@@ -46,7 +37,6 @@ const HomePage = () => {
                 }
             },)
         if (message === 'success') {
-            // console.log(contents)
             setExpList(contents)
             //計算分頁數
             const newCount = Math.ceil(contents.length / PER_PAGE);
@@ -61,9 +51,6 @@ const HomePage = () => {
 
     return (
         <Wrapper className='App'>
-            {/* <SearchBar expList={expList} setExpList={setExpList} setCount={setCount} /> */}
-            {/* <CheckTable /> */}
-            {/* <Box sx={{ height: '1px', width: '99vw', borderTop: '1px solid lightgrey', position: 'sticky', top: '144px' }}></Box> */}
             <ResultPage expList={expList} count={count} />
         </Wrapper >
     )

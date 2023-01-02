@@ -64,7 +64,6 @@ export default function BasicTable() {
             }
         }
         setBoxState(newBoxSelected)
-        // console.log(newBoxSelected)
     }
 
     const CheckButtonRow = ({ header, checkBoxes, boxState, setBoxState }) => {

@@ -52,7 +52,6 @@ const List = styled('ul')({
 const Information = ({ info }) => {
 
     const [liked, setLiked] = useState(false)
-    // console.log(info)
 
     const handleLike = () => {
         setLiked(!liked)

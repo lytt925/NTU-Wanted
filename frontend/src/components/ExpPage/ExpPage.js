@@ -9,15 +9,6 @@ import { Container } from '@mui/material';
 
 import axios from '../../containers/api'
 
-
-
-// const a = ExpList[0]
-// import axios from 'axios'
-// // import { isHtmlElement } from 'react-router-dom/dist/dom';
-// const instance = axios.create({
-//     baseURL: 'http://localhost:4000/api'
-// })
-
 const Wrapper = styled(Container)({
     display: 'flex',
     flexDirection: 'column',
@@ -40,40 +31,18 @@ const bigBoxCss = {
 
 const ExpPage = () => {
     const { id } = useParams()
-    // console.log('RestaurantPageID',id);
     const [info, setInfo] = useState({})
     const [comments, setComments] = useState([])
     const [loading, setLoading] = useState(true)
     const getInfo = async () => {
-        // console.log('RestaurantPageID',id);
-        // TODO Part III-2: get a restaurant's info
-        // const { data } = await instance.get('/getInfo', { params: { id } });
-        // console.log('restpage',data.contents[0].name);
 
         const { data } = await axios.get('/getInfo', { params: { id } });
         setInfo(data.contents[0]);
-        // console.log(data.contents)
-
-        // fake render data
-        // for (var i = 0; i < ExpList.length; i++) {
-        //     if (ExpList[i].id === id) { setInfo(ExpList[i]); }
-        // }
-
     }
     const getComments = async () => {
-        // TODO Part III-3: get a restaurant's comments
-        // const { data } = await instance.get('/getCommentsByRestaurantId', { params: { id } });
-        // console.log('restpage',data);
 
         const { data } = await axios.get('/getCommentsByExpId', { params: { id } });
-        // console.log('restpage',data);
         setComments(data.contents);
-
-        // fake render data
-        // for (var i = 0; i < ExpList.length; i++) {
-        //     if (ExpList[i].id === id) { setComments(ExpList[i].comments);; }
-        // }
-
 
     }
     useEffect(() => {
@@ -83,18 +52,9 @@ const ExpPage = () => {
     }, [])
 
     useEffect(() => {
-        // TODO Part III-3-c: update the comment display immediately after submission
         getComments();
         setLoading(false);
     }, [comments])
-
-    // /* TODO Part III-2-b: calculate the average rating of the restaurant */
-    // let rating = 0;
-    // for (const comment of comments) {
-    //     // console.log('rating',comment);
-    //     rating += comment.rating
-    // }
-    // rating = rating / comments.length;
 
     const body = document.querySelector('body');
     body.style.backgroundColor = '#f2f2f2';

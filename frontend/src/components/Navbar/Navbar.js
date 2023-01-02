@@ -28,7 +28,6 @@ var Context = [];
 
 const pages = ['聯絡我們'];
 const settings = ['我發布的研究', '登出'];
-// var postPage = false;
 
 function ResponsiveAppBar() {
 
@@ -36,7 +35,6 @@ function ResponsiveAppBar() {
     const [anchorElUser, setAnchorElUser] = useState(null);
     const { login, setLogin, email, setEmail, name, setName, pic, setPic, likedList, setLikedList } = useUser()
     const port = (window.location.origin) + "/newpost";
-    // console.log(port);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -84,26 +82,9 @@ function ResponsiveAppBar() {
 
     const backtoHome = () => {
         navigate('/');
-        // setLogin(true);
-        // setEmail(email);
-        // setName(name);
-        // setPic(pic);
     }
-    // function onSignIn(googleUser) {
-    //     var profile = googleUser.getBasicProfile();
-    //     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    //     console.log('Name: ' + profile.getName());
-    //     console.log('Image URL: ' + profile.getImageUrl());
-    //     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    // }
-
-    // const checkuser = async () => {
-
-    // }
 
     const responseGoogle = async (response) => {
-        // const realUserData = getDecodedOAuthJwtGoogle(response.credential)
-        // console.log('responseGoogle', response.credential);
 
         const userObject = jwt_decode(response.credential);
 
@@ -126,8 +107,6 @@ function ResponsiveAppBar() {
         })
         setLikedList(newLikeList)
     }
-
-    // console.log('responseGoogle', { name, email, login, pic });
 
     useEffect(() => {
         Context = { 'name': name, 'email': email, 'login': login, 'pic': pic, 'login': login }

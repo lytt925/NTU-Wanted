@@ -2,10 +2,6 @@ import ExperimentModel from '../models/experiment';
 import UserModel from '../models/user'
 
 exports.checkUser = async (req, res) => {
-    /*******    NOTE: DO NOT MODIFY   *******/
-    // console.log(req.body);
-    /****************************************/
-    // TODO Part III-3-b: create a new comment to a restaurant
     const { name, email } = req.body;
 
     const existing = await UserModel.findOne({ name, email });
@@ -33,7 +29,6 @@ exports.updateLikeList = async (req, res) => {
         const user = await UserModel.findOne({ email })
         const exp = await ExperimentModel.findOne({ _id: expId })
         if (user && exp && action === 'like') {
-            console.log('like')
             if (!user.likedList.includes(exp))
                 user.likedList.push(exp)
         }
