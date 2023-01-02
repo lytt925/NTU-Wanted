@@ -22,9 +22,9 @@ exports.checkUser = async (req, res) => {
 }
 
 exports.getLikedList = async (req, res) => {
-    const { userEmail } = req.body
-    if (userEmail) {
-        const user = await UserModel.findOne({ email: userEmail });
+    const { email } = req.body
+    if (email) {
+        const user = await UserModel.findOne({ email });
         try {
             res.json({ message: "success", likedList: user.likedResearch });
         } catch (e) {

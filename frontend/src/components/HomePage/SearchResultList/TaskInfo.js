@@ -6,8 +6,9 @@ import { useState, useEffect } from 'react';
 import { FavoriteBorder, Favorite } from '@mui/icons-material';
 import { Stack, Chip } from '@mui/material';
 import { useNavigate, useLocation } from 'react-router-dom'
-import { Context } from '../../Navbar/Navbar';
+// import { Context } from '../../Navbar/Navbar';
 import axios from '../../../containers/api'
+import { useUser } from '../../../containers/hooks/useUser';
 
 // const a = ExpList[0]
 
@@ -24,19 +25,18 @@ const List = styled('ul')({
     margin: '10px 0'
 })
 
-const userEmail = Context.email
 
 const TaskInfo = ({ task }) => {
     const { state } = useLocation();
     const [liked, setLiked] = useState(false)
-
+    const { email } = useUser
 
     const handleLike = async (e, expId) => {
         e.stopPropagation()
         setLiked(!liked)
 
         const { data: { message } } =
-            await axios.post("/updateLikeList", { userEmail, expId })
+            await axios.post("/updateLikeList", { email, expId })
         if (message === 'success') {
             console.log(" submitted successfully ")
         }
