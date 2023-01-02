@@ -13,7 +13,7 @@ import SendIcon from '@mui/icons-material/Send';
 import { message, Input } from "antd";
 import ReplyIcon from '@mui/icons-material/Reply';
 import axios from '../../containers/api'
-import { Context } from '../Navbar/Navbar';
+import { useUser } from '../../containers/hooks/useUser';
 
 
 const BoxCss = {
@@ -73,8 +73,7 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
     const [replycontent, setReplycontent] = useState('')
     const [error, setError] = useState(false);
 
-    const name = Context.name
-    const login = Context.login
+    const { name, login } = useUser()
 
     // const changeRating = (newRating) => {
     //     setRating(newRating)

@@ -8,8 +8,8 @@ import React, { useState, useEffect } from 'react'
 import ResultPage from '../../containers/ResultPage';
 import axios from '../../containers/api';
 import { PER_PAGE } from '../../utils/constants';
-import { Context } from '../Navbar/Navbar';
 import { useNavigate, useLocation } from 'react-router-dom'
+import { useUser } from '../../containers/hooks/useUser';
 
 
 const Wrapper = styled(Container)({
@@ -27,9 +27,7 @@ const HomePage = () => {
     const { state } = useLocation();
     const [expList, setExpList] = useState([])
     const [count, setCount] = useState(0);
-    const c = Context;
-    const name = c.name;
-    const email = c.email
+    const { name, email } = useUser()
 
     const sendmySearch = async () => {
         // console.log({
