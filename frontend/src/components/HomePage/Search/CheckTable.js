@@ -49,8 +49,8 @@ export default function BasicTable() {
     const locationTagsRows = ['校總區', '城中校區', '家裡']
 
     const checkBoxList = [
-        { header: '報酬形式', checkBoxes: typeTagsRows, boxState: typeTagsSelected, setBoxState: setTypeTagsSelected },
-        { header: '研究類型', checkBoxes: rewardTagsRows, boxState: rewardTagsSelected, setBoxState: setRewardTagsSelected },
+        { header: '研究類型', checkBoxes: typeTagsRows, boxState: typeTagsSelected, setBoxState: setTypeTagsSelected },
+        { header: '報酬形式', checkBoxes: rewardTagsRows, boxState: rewardTagsSelected, setBoxState: setRewardTagsSelected },
         { header: '地點', checkBoxes: locationTagsRows, boxState: locationTagsSelected, setBoxState: setLocationTagsSelected }
     ]
 

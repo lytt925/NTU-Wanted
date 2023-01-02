@@ -103,9 +103,11 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
             const recentExpID = comments[parseInt(e.target.id)].expID;
             const recentName = comments[parseInt(e.target.id)].name;
             const recentContent = comments[parseInt(e.target.id)].content;
-            comments[parseInt(e.target.id)].reply.push({ 'name': name, 'content': replycontent });
-            const allreply = comments[parseInt(e.target.id)].reply;
+            const c = comments;
+            c[parseInt(e.target.id)].reply.push({ 'name': name, 'content': replycontent });
+            const allreply = c[parseInt(e.target.id)].reply;
             storeReply(recentExpID, recentName, recentContent, allreply)
+            setComments(c);
 
             const firstName = document.getElementById(`outlined-textarea${e.target.id}`);
             firstName.value = '';
