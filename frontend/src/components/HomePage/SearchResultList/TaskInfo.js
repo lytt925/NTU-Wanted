@@ -41,12 +41,12 @@ const TaskInfo = ({ task }) => {
 
     return (
         <Box sx={BoxCss} className='TaskInfo'>
-            <Box sx={{ mt: '3px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', "&:hover": { cursor: 'pointer' } }} onClick={() => ToExp(task.id)}>
-                <Typography variant="h6">
+            <Box sx={{ mt: '3px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', "&:hover": { cursor: 'pointer', '&, .Title': { color: '#4267B2' } } }} onClick={() => ToExp(task.id)}>
+                <Typography className="Title" variant="h6" sx={{ "&:hover": { color: '#4267B2' } }}>
                     {task.title}
                 </Typography>
-                {liked ? <Favorite onClick={handleLike} sx={{ color: 'red', "&:hover": { cursor: 'pointer' } }} />
-                    : <FavoriteBorder onClick={handleLike} sx={{ "&:hover": { cursor: 'pointer' } }} />}
+                {liked ? <Favorite onClick={handleLike} sx={{ color: 'red' }} />
+                    : <FavoriteBorder onClick={handleLike} />}
             </Box>
             <List>
                 <li>時長：{task.length}</li>
