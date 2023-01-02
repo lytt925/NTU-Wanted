@@ -3,7 +3,12 @@ import {
 } from "react";
 
 const LOCALSTORAGE_KEY = "save-me";
-const savedMe = null
+var savedMe = null;
+try {
+    savedMe = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY))
+}
+catch (e) { savedMe = null }
+// console.log(savedMe)
 
 
 const UserContext = createContext({
