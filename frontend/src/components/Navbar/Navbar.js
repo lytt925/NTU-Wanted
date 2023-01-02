@@ -230,19 +230,12 @@ function ResponsiveAppBar() {
 
                     {/* full screen { xs: 'none', md: 'flex' } login */}
                     {(login === false) ?
-                        <Box id='login' sx={{
-                            minWidth: '100px',
-                            borderRadius: '6px',
-                            mr: 3, flexGrow: 0, display: {
-                                width: '6%', xs: 'none', md: 'flex'
-                            }, backgroundColor: 'black',
-                            display: { xs: 'none', md: 'flex' }
-                        }}>
+                        <Button id='login' sx={{ flexGrow: 0, xs: 'none', md: 'flex', display: 'flex' }}>
                             {/* <Tooltip title="Login"> */}
                             <GoogleOAuthProvider clientId="705967299189-hj61h5r94cmlkljemcg45v1cq5anhhuj.apps.googleusercontent.com">
                                 <GoogleLogin
                                     type='icon'
-                                    theme="filled_black"
+                                    // theme="filled_black"
                                     logo_alignment="left"
                                     clientId="705967299189-hj61h5r94cmlkljemcg45v1cq5anhhuj.apps.googleusercontent.com"
                                     // render={renderProps => (
@@ -253,14 +246,14 @@ function ResponsiveAppBar() {
                                     cookiePolicy={'single_host_origin'}
                                 />
                             </GoogleOAuthProvider>
-                            <Typography sx={{ color: 'white', mt: '8px', ml: '12px' }}>登入</Typography>
+                            <Typography sx={{ color: 'white', ml: '9px', display: { xs: 'none', md: 'flex' } }}>登入</Typography>
                             {/* </Tooltip> */}
-                        </Box> :
+                        </Button> :
                         <>
                             <Box sx={{ flexGrow: 0, xs: 'none', md: 'flex' }}>
                                 <Tooltip title="Open settings">
                                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                        <Avatar src={pic} sx={{ display: { xs: 'none', md: 'flex' } }} />
+                                        <Avatar src={pic} />
                                     </IconButton>
                                 </Tooltip>
                                 <Menu
@@ -295,13 +288,12 @@ function ResponsiveAppBar() {
                     }
 
                     {/* smartphone screen { xs: 'flex', md: 'none' } login */}
-                    {(login === false) ?
+                    {/* {(login === false) ?
                         <Box id='login' sx={{
                             xs: 'flex', md: 'none',
                             backgroundColor: 'white',
                             display: { xs: 'flex', md: 'none' }
                         }}>
-                            {/* <Tooltip title="Login"> */}
                             <GoogleOAuthProvider clientId="705967299189-hj61h5r94cmlkljemcg45v1cq5anhhuj.apps.googleusercontent.com">
                                 <GoogleLogin
                                     type='icon'
@@ -311,7 +303,6 @@ function ResponsiveAppBar() {
                                     cookiePolicy={'single_host_origin'}
                                 />
                             </GoogleOAuthProvider>
-                            {/* </Tooltip> */}
                         </Box> :
                         <>
                             <Box sx={{ xs: 'flex', md: 'none' }}>
@@ -349,7 +340,7 @@ function ResponsiveAppBar() {
                                     </MenuItem>
                                 </Menu>
                             </Box></>
-                    }
+                    } */}
 
                 </Toolbar>
             </Container>
