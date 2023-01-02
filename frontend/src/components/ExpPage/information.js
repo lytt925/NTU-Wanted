@@ -76,7 +76,7 @@ const Information = ({ info }) => {
                 </Box>
             </Box >
             <Box sx={BoxCss} className='ExpInfo' component={Paper}>
-                <Box sx={{ float: 'left' }}>
+                <Box sx={{ wordWrap: 'break-word' }}>
                     <List>
                         <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
                             研究資訊
@@ -89,7 +89,7 @@ const Information = ({ info }) => {
 
             </Box >
             <Box sx={BoxCss} className='ExpInfo' component={Paper} elevation={1}>
-                <Box sx={{ float: 'left' }}>
+                <Box sx={{ wordWrap: 'break-word' }}>
                     <List>
                         <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
                             參與者條件
@@ -100,7 +100,7 @@ const Information = ({ info }) => {
                 </Box>
             </Box >
             <Box sx={BoxCss} className='ExpInfo' component={Paper} elevation={1}>
-                <Box sx={{ float: 'left' }}>
+                <Box sx={{ wordWrap: 'break-word' }}>
                     <List>
                         <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
                             研究報酬
@@ -110,7 +110,7 @@ const Information = ({ info }) => {
                 </Box>
             </Box >
             <Box sx={BoxCss} className='ExpInfo' component={Paper}>
-                <Box sx={{ float: 'left' }}>
+                <Box sx={{ wordWrap: 'break-word' }}>
                     <List>
                         <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
                             研究內容
@@ -120,7 +120,7 @@ const Information = ({ info }) => {
                 </Box>
             </Box >
             <Box sx={BoxCss} className='ExpInfo' component={Paper}>
-                <Box sx={{ float: 'left' }}>
+                <Box sx={{ wordWrap: 'break-word' }}>
                     <List>
                         <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
                             備註
@@ -131,7 +131,7 @@ const Information = ({ info }) => {
             </Box >
 
             <Box sx={BoxCss} className='ExpInfo' component={Paper}>
-                <Box sx={{ float: 'left' }}>
+                <Box sx={{ wordWrap: 'break-word' }}>
                     <List>
                         <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
                             聯絡資訊
@@ -144,12 +144,12 @@ const Information = ({ info }) => {
             </Box >
             {(info.link === undefined) ? <></> :
                 <Box sx={BoxCss} className='ExpInfo' component={Paper}>
-                    <Box sx={{ float: 'left' }}>
+                    <Box sx={{ wordWrap: 'break-word' }}>
                         <List>
                             <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
                                 研究報名連結
                             </Typography>
-                            <Button variant="outlined" href={info.link} target='_blank'>{info.link}</Button>
+                            <Button variant="outlined" href={info.link} target='_blank'>Link</Button>
                         </List>
                     </Box>
                 </Box >
