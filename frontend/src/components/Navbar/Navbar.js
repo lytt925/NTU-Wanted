@@ -74,6 +74,11 @@ function ResponsiveAppBar() {
         setAnchorElUser(null);
     }
 
+    const toLikedList = () => {
+        navigate('/mylikedlist')
+        setAnchorElUser(null)
+    }
+
     const backtoHome = () => {
         navigate('/');
         // setLogin(true);
@@ -291,7 +296,7 @@ function ResponsiveAppBar() {
                                     <MenuItem key="我發布的研究" onClick={myexp}>
                                         <Typography textAlign="center">我發布的研究</Typography>
                                     </MenuItem>
-                                    <MenuItem key="我收藏的研究" onClick={myexp}>
+                                    <MenuItem key="我收藏的研究" onClick={toLikedList}>
                                         <Typography textAlign="center">我收藏的研究</Typography>
                                     </MenuItem>
                                     <MenuItem key="登出" onClick={logoutevent}>

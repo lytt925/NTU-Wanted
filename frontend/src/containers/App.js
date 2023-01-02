@@ -8,6 +8,7 @@ import Container from '@mui/material/Container';
 import HomePage from '../components/HomePage/HomePage';
 import ExpPage from '../components/ExpPage/ExpPage';
 import MyExp from '../components/MyExp/MyExp';
+import MyLikedListPage from '../components/MyLikedList/MyLikedList'
 
 function App() {
     // const navigate = useNavigate();
@@ -29,6 +30,7 @@ function App() {
                 <Route path="/newpost" element={<InfoForm />} />
                 <Route path="/experiment/:id" element={<ExpPage />} />
                 <Route path='/myexperiment' element={<MyExp />} />
+                <Route path='/mylikedlist' element={<MyLikedListPage />} />
             </Routes>
         </Router>
     );
