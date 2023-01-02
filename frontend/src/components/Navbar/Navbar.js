@@ -231,7 +231,7 @@ function ResponsiveAppBar() {
                     {/* full screen { xs: 'none', md: 'flex' } login */}
                     {(login === false) ?
                         <Button id='login' style={{ backgroundColor: "#FFFFFF", padding: "3px 3px", }}
-                            variant='contained' color='info' sx={{ flexGrow: 0, xs: 'none', md: 'flex', display: 'flex' }}>
+                            variant='contained' color='info' sx={{ flexGrow: 0, xs: 'none', md: 'flex', display: 'flex', "&:hover": { cursor: 'pointer' } }}>
 
                             <GoogleOAuthProvider clientId="705967299189-hj61h5r94cmlkljemcg45v1cq5anhhuj.apps.googleusercontent.com">
                                 <GoogleLogin
