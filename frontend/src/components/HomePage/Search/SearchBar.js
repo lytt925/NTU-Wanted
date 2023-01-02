@@ -14,6 +14,7 @@ import axios from '../../../containers/api';
 import { useNavigate, useLocation } from 'react-router-dom'
 import { PER_PAGE } from "../../../utils/constants";
 import { Button, Form, Input, InputNumber, DatePicker, Select } from 'antd';
+import dayjs from 'dayjs'
 import { border } from "@mui/system";
 const { RangePicker } = DatePicker;
 
@@ -46,13 +47,13 @@ const SearchBar = ({ expList, setExpList, setCount }) => {
     const { state } = useLocation();
 
     const sendSearch = async () => {
-        // console.log({
-        //     searchTitle,
-        //     locationTagsSelected,
-        //     timeRange,
-        //     rewardTagsSelected,
-        //     typeTagsSelected,
-        // })
+        console.log({
+            searchTitle,
+            locationTagsSelected,
+            timeRange,
+            rewardTagsSelected,
+            typeTagsSelected,
+        })
         setLoading(true)
         const { data: { message, contents } } =
             await axios.get('/getExpList', {
@@ -87,33 +88,33 @@ const SearchBar = ({ expList, setExpList, setCount }) => {
         setSearchTitle(e.target.value)
     }
 
-    const formatDate = (newDate) => {
-        const date = newDate.$d.toLocaleDateString().split('/')
-        const year = date.pop()
-        date.unshift(year)
-        const displayDate = date.join('/')
-        return displayDate
-    }
+    // const formatDate = (newDate) => {
+    //     const date = newDate.$d.toLocaleDateString().split('/')
+    //     const year = date.pop()
+    //     date.unshift(year)
+    //     const displayDate = date.join('/')
+    //     return displayDate
+    // }
 
-    const disableDay = (day, from, to, timeRange) => {
-        const date = formatDate(day)
-        if (timeRange.from && to) {
-            const d = new Date(date).getTime();
-            const f = new Date(timeRange.from).getTime()
-            if (d >= f) {
-                return false
-            }
-            return true
-        } else if (timeRange.to && from) {
-            const d = new Date(date).getTime();
-            const f = new Date(timeRange.to).getTime()
-            if (d <= f) {
-                return false
-            }
-            return true
-        }
-        return false
-    }
+    // const disableDay = (day, from, to, timeRange) => {
+    //     const date = formatDate(day)
+    //     if (timeRange.from && to) {
+    //         const d = new Date(date).getTime();
+    //         const f = new Date(timeRange.from).getTime()
+    //         if (d >= f) {
+    //             return false
+    //         }
+    //         return true
+    //     } else if (timeRange.to && from) {
+    //         const d = new Date(date).getTime();
+    //         const f = new Date(timeRange.to).getTime()
+    //         if (d <= f) {
+    //             return false
+    //         }
+    //         return true
+    //     }
+    //     return false
+    // }
 
     // const DatePickerRange = () => {
     //     const DatePick = ({ date, from, to }) => (
@@ -156,13 +157,36 @@ const SearchBar = ({ expList, setExpList, setCount }) => {
     //     )
     // }
 
-    const DateRangePicker = () => (
-        <Form name="dateForm" style={{ width: "360px", height: '41.3px', margin: '10px' }}>
-            <Form.Item name='time' rules={[{ required: false }]} >
-                <RangePicker placeholder={["開始時間", "結束時間"]} className='rangePicker' style={{ width: "360px", height: '41px', padding: '9px 14px' }} />
-            </Form.Item>
-        </Form >
-    )
+
+    const timeRangeHandler = (rangeValue) => {
+        console.log(rangeValue)
+        const newTimeRange = {
+            from: rangeValue[0]?.format('YYYY/MM/DD'),
+            to: rangeValue[1]?.format('YYYY/MM/DD')
+        }
+        console.log(newTimeRange)
+        setTimeRange(newTimeRange)
+    }
+
+    const DateRangePicker = () => {
+
+        const toDayjs = (formattedDate) => {
+            if (formattedDate)
+                return dayjs(formattedDate, 'YYYY/MM/DD')
+            return null
+        }
+
+        return (
+            <Form name="dateForm" style={{ width: "360px", height: '41.3px', margin: '10px' }}>
+                <RangePicker placeholder={["開始時間", "結束時間"]} className='rangePicker'
+                    style={{ width: "360px", height: '41px', padding: '9px 14px' }}
+                    format='YYYY/MM/DD'
+                    value={[toDayjs(timeRange?.from), toDayjs(timeRange?.to)]}
+                    onChange={timeRangeHandler}
+                />
+            </Form >
+        )
+    }
 
 
     return (
