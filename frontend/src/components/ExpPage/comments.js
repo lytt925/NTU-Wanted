@@ -75,7 +75,6 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
 
     const name = Context.name
     const login = Context.login
-    console.log('Comment', Context);
 
     // const changeRating = (newRating) => {
     //     setRating(newRating)
