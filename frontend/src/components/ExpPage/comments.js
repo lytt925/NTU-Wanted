@@ -49,7 +49,7 @@ const bigBoxCss = {
     alignItems: 'center',
     top: '150px',
     width: '69.5%',
-    minWidth: '450px',
+    minWidth: '310px',
     marginBottom: "25px",
     border: "1px solid lightgray",
     backgroundColor: "#FFFFFF",
@@ -162,17 +162,17 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
 
                                         ))
                                     }
-                                    {(login === false) ? <></> : <>
+                                    {(login === false) ? <></> : <Box sx={{ display: 'flex', flexWrap: 'nowrap' }}>
                                         <TextField
                                             id={`outlined-textarea${key}`}
                                             placeholder="Type a reply here..."
                                             multiline
                                             variant="standard"
                                             onChange={e => handleReply(e.target.value)}
-                                            sx={{ width: '85%', marginRight: '10px' }}
+                                            sx={{ width: '85%', marginRight: '10px', flex: '1 1 160px' }}
                                         />
-                                        <Button variant='contained' size='small' id={key} endIcon={<ReplyIcon />} onClick={submitReply}>Reply</Button>
-                                    </>}
+                                        <Button variant='contained' size='small' id={key} endIcon={<ReplyIcon />} onClick={submitReply} sx={{ flex: '1 1 73px', maxWidth: '80px' }}>Reply</Button>
+                                    </Box>}
                                 </>
                         }
                     </Box >

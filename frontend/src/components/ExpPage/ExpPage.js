@@ -25,7 +25,7 @@ const bigBoxCss = {
     position: 'sticky',
     top: '150px',
     width: '69.5%',
-    minWidth: '450px',
+    minWidth: '310px',
     '&, .TaskInfo:first-of-type': { marginTop: "10px" },
 }
 
