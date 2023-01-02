@@ -13,6 +13,7 @@ import SendIcon from '@mui/icons-material/Send';
 import { message, Input } from "antd";
 import ReplyIcon from '@mui/icons-material/Reply';
 import axios from '../../containers/api'
+import { Context } from '../Navbar/Navbar';
 
 
 const BoxCss = {
@@ -67,10 +68,14 @@ const List = styled('ul')({
 
 const Comment = ({ expID, comments, setComments, setLoad }) => {
     // const [rating, setRating] = useState(0)
-    const [name, setName] = useState('')
+    // const [name, setName] = useState('')
     const [content, setContent] = useState('')
     const [replycontent, setReplycontent] = useState('')
     const [error, setError] = useState(false);
+
+    const name = Context.name
+    const login = Context.login
+    console.log('Comment', Context);
 
     // const changeRating = (newRating) => {
     //     setRating(newRating)
@@ -129,7 +134,7 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
             // firstName.value = '';
             // firstNameInput.value = '';
 
-            setName('');
+            // setName('');
             setContent('');
             setLoad(true);
             setError(false);
@@ -164,7 +169,7 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
             const recentExpID = comments[parseInt(e.target.id)].expID;
             const recentName = comments[parseInt(e.target.id)].name;
             const recentContent = comments[parseInt(e.target.id)].content;
-            comments[parseInt(e.target.id)].reply.push({ 'name': "匿名", 'content': replycontent });
+            comments[parseInt(e.target.id)].reply.push({ 'name': name, 'content': replycontent });
             const allreply = comments[parseInt(e.target.id)].reply;
             storeReply(recentExpID, recentName, recentContent, allreply)
 
@@ -178,7 +183,7 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
             firstName.value = '';
             // firstNameInput.value = '';
 
-            setName('');
+            // setName('');
             setReplycontent('');
             setLoad(true);
             setError(false);
@@ -217,19 +222,23 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
                         {
                             (comment.reply === undefined) ?
                                 <div style={{ marginBottom: "15px" }}>
+                                    {(login === false) ? <></> : <>
+                                        <TextField
+                                            id={`outlined-textarea${key}`}
+                                            // label="Multiline Placeholder"
+                                            placeholder="Type a reply here..."
+                                            multiline
+                                            variant="standard"
+                                            onChange={e => handleReply(e.target.value)}
+                                            // onChange={e => setReplycontent(e.target.value)}
+                                            // defaultValue={replycontent}
+                                            sx={{ width: '85%', marginRight: '10px' }}
+                                        />
+                                        <Button variant='contained' size='small' id={key} endIcon={<ReplyIcon />} onClick={submitReply}>Reply</Button>
+                                    </>}
                                     {/* <TextField id="standard-basic" label="Standard" size='small' variant="Standard" /> */}
-                                    <TextField
-                                        id={`outlined-textarea${key}`}
-                                        // label="Multiline Placeholder"
-                                        placeholder="Type a reply here..."
-                                        multiline
-                                        variant="standard"
-                                        onChange={e => handleReply(e.target.value)}
-                                        // onChange={e => setReplycontent(e.target.value)}
-                                        // defaultValue={replycontent}
-                                        sx={{ width: '85%', marginRight: '10px' }}
-                                    />
-                                    <Button variant='contained' size='small' id={key} endIcon={<ReplyIcon />} onClick={submitReply}>Reply</Button></div> :
+
+                                </div> :
                                 <>
                                     {
                                         comment.reply.map((childcomment, key1) => (
@@ -245,32 +254,20 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
 
                                         ))
                                     }
-                                    <TextField
-                                        id={`outlined-textarea${key}`}
-                                        // label="Multiline Placeholder"
-                                        placeholder="Type a reply here..."
-                                        multiline
-                                        variant="standard"
-                                        onChange={e => handleReply(e.target.value)}
-                                        // defaultValue={replycontent}
-                                        // onChange={e => setReplycontent(e.target.value)}
-                                        // defaultValue={replycontent}
-                                        sx={{
-                                            px: '25px',
-                                            // py: '10px',
-                                            width: "87%",
-                                            // borderTop: "1px solid lightgrey",
-                                            backgroundColor: "#FFFFFF",
-                                            // marginRight: '0px',
-                                            marginTop: '10px',
-                                            marginBottom: '20px',
-                                            // justify: 'left'
-                                        }}
-                                    />
-                                    <Button variant="contained" size='small' id={`${key}`} endIcon={<ReplyIcon />} onClick={submitReply} sx={{
-                                        marginTop: '10px',
-                                        marginBottom: '20px',
-                                    }}>Reply</Button>
+                                    {(login === false) ? <></> : <>
+                                        <TextField
+                                            id={`outlined-textarea${key}`}
+                                            // label="Multiline Placeholder"
+                                            placeholder="Type a reply here..."
+                                            multiline
+                                            variant="standard"
+                                            onChange={e => handleReply(e.target.value)}
+                                            // onChange={e => setReplycontent(e.target.value)}
+                                            // defaultValue={replycontent}
+                                            sx={{ width: '85%', marginRight: '10px' }}
+                                        />
+                                        <Button variant='contained' size='small' id={key} endIcon={<ReplyIcon />} onClick={submitReply}>Reply</Button>
+                                    </>}
                                 </>
                         }
                     </Box >
@@ -278,25 +275,27 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
             }
 
             <Box sx={BoxCss} >
-                <Box sx={{ float: 'left' }} >
+                {/* <Box sx={{ float: 'left' }} >
                     <TextField fullWidth id="name" label="Name" variant="standard" value={name} onChange={e => setName(e.target.value)} />
-                </Box>
-                <TextField
-                    fullWidth
-                    id="content"
-                    label="Type your comment"
-                    multiline
-                    rows={4}
-                    value={content}
-                    sx={{ mt: '20px' }}
-                    onChange={e => setContent(e.target.value)}
-                    error={error === true}
-                    helperText={(error === true) ? "Please enter comment." : ''}
-                />
+                </Box> */}
+                {(login === false) ? <></> : <>
+                    <TextField
+                        fullWidth
+                        id="content"
+                        label="Type your comment"
+                        multiline
+                        rows={4}
+                        value={content}
+                        sx={{ mt: '20px' }}
+                        onChange={e => setContent(e.target.value)}
+                        error={error === true}
+                        helperText={(error === true) ? "Please enter comment." : ''}
+                    />
 
-                <Box display="flex" justifyContent="flex-end">
-                    <Button variant="contained" sx={{ mt: '20px', mb: '20px', mr: '10px' }} endIcon={<SendIcon />} onClick={submitComment}>Submit</Button>
-                </Box>
+                    <Box display="flex" justifyContent="flex-end">
+                        <Button variant="contained" sx={{ mt: '20px', mb: '20px', mr: '10px' }} endIcon={<SendIcon />} onClick={submitComment}>Submit</Button>
+                    </Box>
+                </>}
             </Box >
         </Box>
     )
