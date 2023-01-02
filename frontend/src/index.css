@@ -9,11 +9,10 @@
 } */
 
 html {
-    overflow: auto;
     height: 100%;
 }
 
 body {
-    overflow: auto;
+    overflow-x: hidden;
     height: 100%;
 }
