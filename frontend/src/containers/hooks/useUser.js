@@ -1,6 +1,11 @@
 import {
-    useState, createContext, useContext
+    useState, createContext, useContext, useEffect
 } from "react";
+
+const LOCALSTORAGE_KEY = "save-me";
+const savedMe = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY))
+// console.log(savedMe)
+
 
 const UserContext = createContext({
     setLogin: () => { },
@@ -18,13 +23,21 @@ const UserContext = createContext({
 const UserProvider = (props) => {
 
     //  User //
-    const [login, setLogin] = useState(false);
-    const [email, setEmail] = useState('');
-    const [name, setName] = useState('');
-    const [pic, setPic] = useState('');
+    const [email, setEmail] = useState(((savedMe === null) ? "" : savedMe[0]));
+    const [name, setName] = useState(((savedMe === null) ? "" : savedMe[1]));
+    const [pic, setPic] = useState(((savedMe === null) ? "" : savedMe[2]));
+    const [login, setLogin] = useState(((savedMe === null) ? false : true))
     const [likedList, setLikedList] = useState([])
     //  User //
 
+    useEffect(() => {
+        if (login) {
+            // console.log(savedMe)
+            const newme = [email, name, pic]
+            // console.log(newme)
+            localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(newme));
+        }
+    }, [login]);
 
     return (
         <UserContext.Provider
