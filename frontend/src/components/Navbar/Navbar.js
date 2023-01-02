@@ -67,6 +67,8 @@ function ResponsiveAppBar() {
         setName("");
         navigate('/');
         setAnchorElUser(null);
+        setLikedList([])
+        setPic('')
     }
 
     const myexp = () => {
