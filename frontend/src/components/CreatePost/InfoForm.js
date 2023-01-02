@@ -22,45 +22,29 @@ const validateMessages = {
     },
 };
 
-// const prefixSelector = (
-//     <Form.Item name="prefix" noStyle>
-//         <Select style={{ width: 70 }}>
-//             <Option value="86">+86</Option>
-//             <Option value="87">+87</Option>
-//         </Select>
-//     </Form.Item>
-// );
-
 const InfoForm = () => {
 
     const c = useUser();
-    // console.log('InfoForm', c.name);
 
     const [form] = Form.useForm();
     const navigate = useNavigate();
     const navigateToHome = () => {
-        // console.log('home')
         navigate('/');
     };
 
     const submitForm = async (values) => {
-        console.log("submit form")
-        // navigateToHome();
         const { data: { message } } =
             await axios.post("/postForm", { values, c })
 
-        // console.log('submitForm', message);
         if (message === 'success') {
             navigateToHome();
-            console.log(" submitted successfully ")
         }
         else {
-            console.log(" submission failed ")
         }
     }
 
     const onFinish = (fieldsValue) => {
-        // Should format date value before submit.
+
         const rangeValue = fieldsValue['time'];
         const values = {
             ...fieldsValue,
@@ -68,12 +52,9 @@ const InfoForm = () => {
             'time': `${rangeValue[0].format('YYYY年MM月DD日')} 至 ${rangeValue[1].format('YYYY年MM月DD日')} 止`,
             'timeRange': { from: rangeValue[0].format('YYYY/MM/DD'), to: rangeValue[1].format('YYYY/MM/DD') },
         };
-        // delete values.address;
-        // delete values.len;
-        // if (!fieldsValue['upper'] && !fieldsValue['lower']) delete values.age;
-        // else if (!fieldsValue['upper']) values.age.upper = 99
+
         submitForm(values);
-        // console.log('Received values of form: ', values);
+
     }
 
 
