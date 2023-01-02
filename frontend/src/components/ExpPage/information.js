@@ -30,7 +30,7 @@ const bigBoxCss = {
     alignItems: 'center',
     top: '150px',
     width: '69.5%',
-    minWidth: '300px',
+    minWidth: '370px',
     '&, .ExpInfo:first-of-type': { marginTop: "10px" },
 }
 

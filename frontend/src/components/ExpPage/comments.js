@@ -44,7 +44,7 @@ const bigBoxCss = {
     alignItems: 'center',
     top: '150px',
     width: '69.5%',
-    minWidth: '310px',
+    minWidth: '370px',
     marginBottom: "25px",
     border: "1px solid lightgray",
     backgroundColor: "#FFFFFF",

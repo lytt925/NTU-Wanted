@@ -177,7 +177,7 @@ function ResponsiveAppBar() {
                         variant="h5"
                         noWrap
                         component="a"
-                        href=""
+                        onClick={backtoHome}
                         sx={{
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
