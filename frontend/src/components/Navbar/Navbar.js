@@ -26,10 +26,10 @@ const pages = ['✆ 聯絡我們'];
 
 var google_key = '';
 const getkey = async () => {
-    console.log('start getting key');
+    // console.log('start getting key');
     axios.get('/getKey')
         .then(response => {
-            console.log(response);
+            // console.log(response);
             google_key = response.data;
         })
         .catch(function (error) {
@@ -40,7 +40,7 @@ getkey();
 
 function ResponsiveAppBar() {
 
-    console.log(google_key)
+    // console.log(google_key)
 
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
