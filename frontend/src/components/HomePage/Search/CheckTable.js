@@ -17,10 +17,6 @@ import { Collapse } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import ListItemText from '@mui/material/ListItemText';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
-import { WidthFull } from '@mui/icons-material';
 
 
 const BoxCss = {
@@ -71,33 +67,41 @@ const BasicTable = React.forwardRef((props, ref) => {
 
     const CheckButtonRow = ({ header, checkBoxes, boxState, setBoxState }) => {
         return <TableRow >
-            <HeaderTableCell component="th" scope="row" sx={{fontWeight:"bold", 
-                                                                backgroundColor:"rgb(223, 230, 217)",
-                                                                textAlign:"left" }}>
-                {header}：
-            </HeaderTableCell>
-            <RowTableCell align='left'>
-                {checkBoxes.map((box) => (
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                size="small"
-                                name={box}
-                                onChange={(e) => handleCheck(e, boxState, setBoxState)}
-                                checked={boxState.includes(box)}
-                                sx={{
-                                    '&.Mui-checked': {
-                                      color: "#AEC17B",
-                                    }}}
-                            />
-                        }
-                        label={<Typography sx={{ fontSize: '15px' }}>{box}</Typography>}
-                        key={box}
-                    />
-                ))}
-            </RowTableCell>
+            <TableCell>
+            <Collapse in={open} timeout="auto" sx={{backgroundColor:"rgb(235, 242, 230)", border:2, borderColor:"white" }}>
+                <Table>
+                    <TableRow>
+                        <HeaderTableCell component="th" scope="row" sx={{fontWeight:"bold", 
+                                                                            backgroundColor:"rgb(223, 230, 217)",
+                                                                            textAlign:"left" }}>
+                            {header}：
+                        </HeaderTableCell>
+                        <RowTableCell align='left'>
+                            {checkBoxes.map((box) => (
+                                <FormControlLabel
+                                    control={
+                                        <Checkbox
+                                            size="small"
+                                            name={box}
+                                            onChange={(e) => handleCheck(e, boxState, setBoxState)}
+                                            checked={boxState.includes(box)}
+                                            sx={{
+                                                '&.Mui-checked': {
+                                                color: "#AEC17B",
+                                                }}}
+                                        />
+                                    }
+                                    label={<Typography sx={{ fontSize: '15px' }}>{box}</Typography>}
+                                    key={box}
+                                />
+                            ))}
+                        </RowTableCell>
+                    </TableRow>
+                </Table>
+            </Collapse>
+            </TableCell>
         </TableRow>
-    }
+        }
 
     const [open, setOpen] = useState(true);
     const handleClick = () => {
@@ -122,19 +126,18 @@ const BasicTable = React.forwardRef((props, ref) => {
                             </TableCell>
                         </TableRow>
                     </TableHead>
-                    <TableBody style={{width:"100%"}}>
                         {/* <DatePickerRange /> */}
                         {checkBoxList.map(({ header, checkBoxes, boxState, setBoxState }) => (
-                            <Collapse in={open} timeout="auto" sx={{backgroundColor:"rgb(235, 242, 230)", border:2, borderColor:"white" }}>
+                            <TableBody style={{width:"100%"}}>
                             <CheckButtonRow key={header} header={header} checkBoxes={checkBoxes} boxState={boxState} setBoxState={setBoxState} />
-                            </Collapse>
+                            </TableBody> 
                         ))}
                     
-                    </TableBody>
+                    
                     
                 </Table>
             </TableContainer>
         </Box>
     );
 })
- export default BasicTable;
+export default BasicTable;

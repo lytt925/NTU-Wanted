@@ -17,14 +17,14 @@ function App() {
                 <Container maxWidth="xl" sx={{ height: '60px', backgroundColor: '#FFFFFF', border: 'none' }}>
                 </Container>
             </AppBar>
-            <ResponsiveAppBar />
+            {/* <ResponsiveAppBar /> */}
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/newpost" element={<InfoForm />} />
                 <Route path="/experiment/:id" element={<ExpPage />} />
                 <Route path='/myexperiment' element={<MyExp />} />
                 <Route path='/mylikedlist' element={<MyLikedListPage />} />
-                <Route path='/contactus' element={<ContactUs/>} />
+                <Route path='/contactus' element={<ContactUs />} />
             </Routes>
         </Router>
     );
