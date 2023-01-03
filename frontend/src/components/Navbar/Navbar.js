@@ -23,7 +23,7 @@ import { resolveObjectURL } from "buffer";
 //// credited：<a href="https://www.flaticon.com/free-icons/poster" title="poster icons">Poster icons created by Freepik - Flaticon</a>
 
 
-const pages = ['✆ 聯絡我們'];
+const pages = ['✆ 關於我們'];
 const google_key = '705967299189-hj61h5r94cmlkljemcg45v1cq5anhhuj.apps.googleusercontent.com';
 
 function ResponsiveAppBar() {
