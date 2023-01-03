@@ -75,7 +75,7 @@ const HomePage = () => {
             {
               width > 540?
                 <Tour className="tour" open={open} onClose={() => setOpen(false)} 
-                        steps={steps} arrow={false} />
+                        steps={steps} />
                 :
                 <></>   
             } 
