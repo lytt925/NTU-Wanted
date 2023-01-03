@@ -80,6 +80,11 @@ function ResponsiveAppBar() {
         navigate('/');
     }
 
+    const toPage = (e) => {
+        if (e.target.innerHTML === '✆ 聯絡我們')
+            navigate('/contactus')
+    }
+
     const responseGoogle = async (response) => {
 
         const userObject = jwt_decode(response.credential);
@@ -168,7 +173,7 @@ function ResponsiveAppBar() {
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu} >
-                                    <Typography textAlign="center">{page}</Typography>
+                                    <Typography textAlign="center" onClick={toPage}>{page}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
