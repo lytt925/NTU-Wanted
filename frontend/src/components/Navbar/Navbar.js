@@ -18,6 +18,7 @@ import jwt_decode from "jwt-decode";
 import axios from '../../containers/api'
 import { useUser } from "../../containers/hooks/useUser";
 import { BoyRounded } from "@mui/icons-material";
+import Icon from '@mui/material/Icon';
 
 
 //// credited：<a href="https://www.flaticon.com/free-icons/poster" title="poster icons">Poster icons created by Freepik - Flaticon</a>
@@ -81,8 +82,8 @@ function ResponsiveAppBar() {
     }
 
     const toPage = (e) => {
-        if (e.target.innerHTML === '✆ 聯絡我們')
-            navigate('/contactus')
+        // if (e.target.innerHTML === '✆ 聯絡我們')
+        navigate('/contactus')
     }
 
     const responseGoogle = async (response) => {
@@ -117,7 +118,7 @@ function ResponsiveAppBar() {
 
                     {/* full screen { xs: 'none', md: 'flex' } NTU logo and name */}
                     {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
-                    <img src={require("./wanted.png")} style={{ width: "4%" }} />
+                    <Box component="img" src={require("./wanted.png")} style={{ width: "4%" }} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                     <Typography>
                         <Button
                             key='NTU-Wanted'
@@ -181,7 +182,7 @@ function ResponsiveAppBar() {
 
                     {/* smartphone screen { xs: 'flex', md: 'none' } NTU logo and name */}
                     {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
-
+                    <Box component="img" src={require("./wanted.png")} style={{ width: "4%" }} sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
                         variant="h5"
                         noWrap
@@ -209,7 +210,7 @@ function ResponsiveAppBar() {
                             <Button
                                 key={page}
                                 id={index}
-                                onClick={handleCloseNavMenu}
+                                onClick={toPage}
                                 // variant="outlined"
                                 sx={{
                                     color: 'white', display: 'block',
