@@ -41,18 +41,18 @@ const HomePage = () => {
         {
             title: '搜尋',
             description: '輸入您想尋找的研究標題關鍵字，並選取您有空的時段 (皆為選填)。',
-            target: () => searchBarRef.current,
+            target: () => document.querySelector("#searchbar"),
         },
         {
             title: '多重篩選',
             description: '自由篩選您想尋找的特定研究類型、報酬形式及研究地點。',
-            target: () => checkBoxRef.current,
+            target: () => document.querySelector("#checktable"),
             // placement: "leftBottom"
         },
         {
             title: '登入帳號',
             description: '連結google帳號以新增研究、查看您發佈和收藏的研究。',
-            target: () => document.querySelector(".css-1ogtxmm"),
+            target: () => document.querySelector("#login"),
             placement: "topRight"
         }
     ];
@@ -73,12 +73,12 @@ const HomePage = () => {
             <CheckTable ref={checkBoxRef} />
             <ResultPage expList={expList} count={count} />
             {
-              width > 540?
-                <Tour className="tour" open={open} onClose={() => setOpen(false)} 
+                width > 540 ?
+                    <Tour className="tour" open={open} onClose={() => setOpen(false)}
                         steps={steps} />
-                :
-                <></>   
-            } 
+                    :
+                    <></>
+            }
         </Wrapper >
     )
 }

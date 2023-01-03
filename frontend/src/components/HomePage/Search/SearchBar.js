@@ -107,6 +107,7 @@ const SearchBar = React.forwardRef(({ expList, setExpList, setCount }, ref) => {
 
     return (
         <Box
+            id='searchbar'
             sx={searchBoxCss}
             noValidate
             autoComplete="on"

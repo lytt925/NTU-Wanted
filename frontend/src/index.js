@@ -9,14 +9,14 @@ import { UserProvider } from './containers/hooks/useUser';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <React.StrictMode>
+    <>
         <CssBaseline />
         <UserProvider>
             <FilterProvider>
                 <App />
             </FilterProvider>
         </UserProvider>
-    </React.StrictMode>
+    </>
 );
 
 reportWebVitals();

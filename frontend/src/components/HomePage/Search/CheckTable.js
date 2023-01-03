@@ -113,7 +113,7 @@ const BasicTable = React.forwardRef((props, ref) => {
 
 
     return (
-        <Box sx={BoxCss} >
+        <Box id="checktable" sx={BoxCss} >
             <TableContainer component={Paper} variant={'outlined'}>
                 <Table sx={{ maxWidth: '100%' }} size="small" padding='none' aria-label="filter table" ref={ref}>
                     <TableHead>
