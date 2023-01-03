@@ -182,7 +182,7 @@ function ResponsiveAppBar() {
 
                     {/* smartphone screen { xs: 'flex', md: 'none' } NTU logo and name */}
                     {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
-                    <Box component="img" src={require("./wanted.png")} style={{ width: "4%" }} sx={{ display: { xs: 'flex', md: 'none' }, ml: 3 }} />
+                    {/* <Box component="img" src={require("./wanted.png")} style={{ width: "4%" }} sx={{ display: { xs: 'flex', md: 'none' }, ml: 3 }} /> */}
                     {/* <Typography> */}
                     <Button
                         key='NTU-Wanted'
