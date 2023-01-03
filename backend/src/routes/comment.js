@@ -9,8 +9,15 @@ exports.GetCommentsByExpId = async (req, res) => {
 exports.CreateComment = async (req, res) => {
     const body = req.body
     const { expID, name, content } = req.body;
-    const newComment = new CommentModel({ expID, name, content, 'reply': [] });
-    await newComment.save();
+    const existing = await CommentModel.findOne({ expID, name, content });
+    if (existing) {
+        res.status(200).send({ message: 'same message', contents: null, })
+    }
+    else {
+        const newComment = new CommentModel({ expID, name, content, 'reply': [] });
+        await newComment.save();
+    }
+
 }
 
 exports.CreateReply = async (req, res) => {
