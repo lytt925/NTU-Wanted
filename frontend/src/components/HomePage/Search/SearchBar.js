@@ -15,6 +15,8 @@ import { useLocation } from 'react-router-dom'
 import { PER_PAGE } from "../../../utils/constants";
 import { Form, DatePicker } from 'antd';
 import dayjs from 'dayjs'
+import React from "react";
+
 const { RangePicker } = DatePicker;
 
 const SearchInput = styled(TextField)`
@@ -36,7 +38,7 @@ const searchBoxCss = {
     flexWrap: 'wrap'
 }
 
-const SearchBar = ({ expList, setExpList, setCount }) => {
+const SearchBar = React.forwardRef(({ expList, setExpList, setCount }, ref ) => {
     const { setSearchTitle, setTimeRange, searchTitle, timeRange, locationTagsSelected, rewardTagsSelected, typeTagsSelected, } = useFilter()
     const [loading, setLoading] = useState(false)
 
@@ -108,6 +110,7 @@ const SearchBar = ({ expList, setExpList, setCount }) => {
             sx={searchBoxCss}
             noValidate
             autoComplete="on"
+            ref={ref}
         >
             <SearchInput placeholder="搜尋" variant="outlined" sx={{ boxSizing: 'border-box', flex: '1 1 45%',
                                                                         outlineColor:"red"}} 
@@ -132,6 +135,6 @@ const SearchBar = ({ expList, setExpList, setCount }) => {
             </LoadingButton>
         </Box >
     );
-}
+})
 
 export default SearchBar

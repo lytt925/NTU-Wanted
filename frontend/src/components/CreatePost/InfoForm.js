@@ -90,11 +90,6 @@ const InfoForm = () => {
 
 
     return (
-        // <Card style={{ width: "60%", position:"absolute", left: "20%", 
-        // px: '25px',
-        // py: '10px',
-        // border: "1px solid lightgrey",
-        // marginBottom: "10px"}}>
         <>
         <Box sx={BoxCss} component={Paper}>
             <h2>新增研究</h2>

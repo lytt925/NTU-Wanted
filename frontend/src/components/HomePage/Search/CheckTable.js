@@ -1,6 +1,7 @@
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
+import TableHead from '@mui/material/TableHead';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
@@ -10,8 +11,16 @@ import Checkbox from '@mui/material/Checkbox';
 import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography';
 import { useFilter } from "../../../containers/hooks/useFilter";
-import ScienceIcon from '@mui/icons-material/Science';
-
+import React from 'react';
+import { useState } from 'react';
+import { Collapse } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import ListItemText from '@mui/material/ListItemText';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+import { WidthFull } from '@mui/icons-material';
 
 
 const BoxCss = {
@@ -35,7 +44,7 @@ const RowTableCell = styled(TableCell)({
     padding: '2px 16px'
 })
 
-export default function BasicTable() {
+const BasicTable = React.forwardRef((props, ref) => {
     const { rewardTagsSelected, setRewardTagsSelected, typeTagsSelected, setTypeTagsSelected, locationTagsSelected, setLocationTagsSelected } = useFilter()
 
     const typeTagsRows = ['實驗', '問卷', '訪談', '其他'];
@@ -61,7 +70,7 @@ export default function BasicTable() {
     }
 
     const CheckButtonRow = ({ header, checkBoxes, boxState, setBoxState }) => {
-        return <TableRow sx={{backgroundColor:"rgb(235, 242, 230)", border:2, borderColor:"white" }}>
+        return <TableRow >
             <HeaderTableCell component="th" scope="row" sx={{fontWeight:"bold", 
                                                                 backgroundColor:"rgb(223, 230, 217)",
                                                                 textAlign:"left" }}>
@@ -90,18 +99,42 @@ export default function BasicTable() {
         </TableRow>
     }
 
+    const [open, setOpen] = useState(true);
+    const handleClick = () => {
+        setOpen(!open);
+    };
+
     return (
-        <Box sx={BoxCss}>
+        <Box sx={BoxCss} >
             <TableContainer component={Paper} variant={'outlined'}>
-                <Table sx={{ maxWidth: '100%' }} size="small" padding='none' aria-label="filter table">
-                    <TableBody>
+                <Table sx={{ maxWidth: '100%' }} size="small" padding='none' aria-label="filter table" ref={ref}>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>
+                                <IconButton
+                                    aria-label="expand row"
+                                    size="small"
+                                    onClick={() => setOpen(!open)}
+                                >
+                                    {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                                </IconButton>
+                                篩選條件
+                            </TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody style={{width:"100%"}}>
                         {/* <DatePickerRange /> */}
                         {checkBoxList.map(({ header, checkBoxes, boxState, setBoxState }) => (
+                            <Collapse in={open} timeout="auto" sx={{backgroundColor:"rgb(235, 242, 230)", border:2, borderColor:"white" }}>
                             <CheckButtonRow key={header} header={header} checkBoxes={checkBoxes} boxState={boxState} setBoxState={setBoxState} />
+                            </Collapse>
                         ))}
+                    
                     </TableBody>
+                    
                 </Table>
             </TableContainer>
         </Box>
     );
-}
+})
+ export default BasicTable;
