@@ -77,7 +77,7 @@ const HomePage = () => {
             {(width > 540) ?
                 <Tooltip title="How to use?">
                     <HelpCenterIcon className="tour" style={buttonStyle}
-                        sx={{ position: 'absolute', top: 85, left: '24%', "&:hover": { cursor: 'pointer' } }} onClick={() => setOpen(true)} />
+                        sx={{ position: '-webkit-sticky', "&:hover": { cursor: 'pointer' } }} onClick={() => setOpen(true)} />
                 </Tooltip>
                 : <></>}
             {/* </Fab> */}
