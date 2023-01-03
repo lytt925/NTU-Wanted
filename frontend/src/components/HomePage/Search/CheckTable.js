@@ -18,6 +18,7 @@ import IconButton from '@mui/material/IconButton';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
+import Tooltip from '@mui/material/Tooltip';
 
 
 const BoxCss = {
@@ -129,17 +130,19 @@ const BasicTable = React.forwardRef((props, ref) => {
                                     </IconButton>
                                     篩選條件
                                 </div>
-                                <div style={{ display: 'flex', alignItems: 'center' }}>
-                                    清除條件
-                                    <IconButton
-                                        aria-label="expand row"
-                                        size="small"
-                                        onClick={clearFilter}
-                                        sx={{ float: 'right' }}
-                                    >
-                                        <ClearAllIcon />
-                                    </IconButton>
-                                </div>
+                                <Tooltip title="一鍵清除所有搜尋條件">
+                                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                                        清除條件
+                                        <IconButton
+                                            aria-label="expand row"
+                                            size="small"
+                                            onClick={clearFilter}
+                                            sx={{ float: 'right' }}
+                                        >
+                                            <ClearAllIcon />
+                                        </IconButton>
+                                    </div>
+                                </Tooltip>
                             </TableCell>
                         </TableRow>
                     </TableHead>

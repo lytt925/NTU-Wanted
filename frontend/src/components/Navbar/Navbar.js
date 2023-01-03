@@ -111,29 +111,32 @@ function ResponsiveAppBar() {
 
                     {/* full screen { xs: 'none', md: 'flex' } NTU logo and name */}
                     {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
+
                     <Box component="img" src={require("./wanted.png")} style={{ width: "4%" }} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-                    <Typography>
-                        <Button
-                            key='NTU-Wanted'
-                            onClick={backtoHome}
-                            // variant="outlined"
-                            sx={{
-                                // mr: 2,
-                                display: { xs: 'none', md: 'flex' },
-                                fontFamily: 'arial black',
-                                fontWeight: 800,
-                                letterSpacing: '.3rem',
-                                color: 'black',
-                                textDecoration: 'none',
-                                fontSize: '100%',
-                                width: '100%',
-                                height: '100%'
-                            }}
-                        // style={{outlineColor:"orange"}}
-                        >
-                            NTU-Wanted
-                        </Button>
-                    </Typography>
+                    <Tooltip title="回首頁">
+                        <Typography>
+                            <Button
+                                key='NTU-Wanted'
+                                onClick={backtoHome}
+                                // variant="outlined"
+                                sx={{
+                                    // mr: 2,
+                                    display: { xs: 'none', md: 'flex' },
+                                    fontFamily: 'arial black',
+                                    fontWeight: 800,
+                                    letterSpacing: '.3rem',
+                                    color: 'black',
+                                    textDecoration: 'none',
+                                    fontSize: '100%',
+                                    width: '100%',
+                                    height: '100%'
+                                }}
+                            // style={{outlineColor:"orange"}}
+                            >
+                                NTU-Wanted
+                            </Button>
+                        </Typography>
+                    </Tooltip>
 
                     {/* smartphone screen { xs: 'flex', md: 'none' } three lines */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -223,26 +226,29 @@ function ResponsiveAppBar() {
 
                     {/* full screen { xs: 'none', md: 'flex' } login */}
                     {(login === false) ?
-                        <Button id='login' style={{ backgroundColor: "#FFFFFF", padding: "3px 3px", }}
-                            variant='contained' color='info' sx={{ flexGrow: 0, xs: 'none', md: 'flex', display: 'flex', "&:hover": { cursor: 'pointer' } }}>
-                            {(google_key === '') ? <></> : <GoogleOAuthProvider clientId={google_key}>
-                                <GoogleLogin
-                                    type='icon'
-                                    // theme="filled_black"
-                                    logo_alignment="left"
-                                    clientId={google_key}
-                                    // render={renderProps => (
-                                    //     <Button onClick={renderProps.onClick} disabled={renderProps.disabled} variant='contained' color='info' sx={{ my: 2, color: 'white', display: 'block' }}>登入</Button>
-                                    // )}
-                                    onSuccess={responseGoogle}
-                                    onFailure={responseGoogle}
-                                    cookiePolicy={'single_host_origin'}
-                                />
-                            </GoogleOAuthProvider>}
+                        <Tooltip title="點擊 Google icon 來登入">
+                            <Button id='login' style={{ backgroundColor: "#FFFFFF", padding: "3px 3px", }}
+                                variant='contained' color='info' sx={{ flexGrow: 0, xs: 'none', md: 'flex', display: 'flex', "&:hover": { cursor: 'pointer' } }}>
+                                {(google_key === '') ? <></> :
+                                    <GoogleOAuthProvider clientId={google_key}>
+                                        <GoogleLogin
+                                            type='icon'
+                                            // theme="filled_black"
+                                            logo_alignment="left"
+                                            clientId={google_key}
+                                            // render={renderProps => (
+                                            //     <Button onClick={renderProps.onClick} disabled={renderProps.disabled} variant='contained' color='info' sx={{ my: 2, color: 'white', display: 'block' }}>登入</Button>
+                                            // )}
+                                            onSuccess={responseGoogle}
+                                            onFailure={responseGoogle}
+                                            cookiePolicy={'single_host_origin'}
+                                        />
+                                    </GoogleOAuthProvider>}
 
-                            <Typography sx={{ color: 'black', ml: '8px', mr: '12px', display: { xs: 'none', md: 'flex' } }}>登入</Typography>
+                                <Typography sx={{ color: 'black', ml: '8px', mr: '12px', display: { xs: 'none', md: 'flex' } }}>登入</Typography>
 
-                        </Button>
+                            </Button>
+                        </Tooltip>
                         :
                         <>
                             <Box sx={{ flexGrow: 0, xs: 'none', md: 'flex' }}>
