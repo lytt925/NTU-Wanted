@@ -246,8 +246,7 @@ function ResponsiveAppBar() {
                     {(login === false) ?
                         <Button id='login' style={{ backgroundColor: "#FFFFFF", padding: "3px 3px", }}
                             variant='contained' color='info' sx={{ flexGrow: 0, xs: 'none', md: 'flex', display: 'flex', "&:hover": { cursor: 'pointer' } }}>
-
-                            <GoogleOAuthProvider clientId={google_key}>
+                            {(google_key === '') ? <></> : <GoogleOAuthProvider clientId={google_key}>
                                 <GoogleLogin
                                     type='icon'
                                     // theme="filled_black"
@@ -260,7 +259,8 @@ function ResponsiveAppBar() {
                                     onFailure={responseGoogle}
                                     cookiePolicy={'single_host_origin'}
                                 />
-                            </GoogleOAuthProvider>
+                            </GoogleOAuthProvider>}
+
                             <Typography sx={{ color: 'black', ml: '8px', mr: '12px', display: { xs: 'none', md: 'flex' } }}>登入</Typography>
 
                         </Button>
