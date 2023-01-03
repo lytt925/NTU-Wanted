@@ -13,11 +13,11 @@ function App() {
 
     return (
         <Router>
-            {/* <AppBar position="static" sx={{ mb: '10px', height: '60px', backgroundColor: '#FFFFFF', border: 'none', 'boxShadow': 'none' }}>
+            <AppBar position="static" sx={{ mb: '10px', height: '60px', backgroundColor: '#FFFFFF', border: 'none', 'boxShadow': 'none' }}>
                 <Container maxWidth="xl" sx={{ height: '60px', backgroundColor: '#FFFFFF', border: 'none' }}>
                 </Container>
-            </AppBar> */}
-            <ResponsiveAppBar />
+            </AppBar>
+            {/* <ResponsiveAppBar /> */}
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/newpost" element={<InfoForm />} />
