@@ -182,27 +182,29 @@ function ResponsiveAppBar() {
 
                     {/* smartphone screen { xs: 'flex', md: 'none' } NTU logo and name */}
                     {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
-                    <Box component="img" src={require("./wanted.png")} style={{ width: "4%" }} sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-                    <Typography
-                        variant="h5"
-                        noWrap
-                        component="a"
+                    <Box component="img" src={require("./wanted.png")} style={{ width: "4%" }} sx={{ display: { xs: 'flex', md: 'none' }, ml: 3 }} />
+                    {/* <Typography> */}
+                    <Button
+                        key='NTU-Wanted'
                         onClick={backtoHome}
+                        // variant="outlined"
                         sx={{
-                            mr: 2,
+                            mr: 3,
                             display: { xs: 'flex', md: 'none' },
-                            flexGrow: 1,
                             fontFamily: 'arial black',
-                            fontWeight: 700,
+                            fontWeight: 800,
                             letterSpacing: '.3rem',
-                            color: 'inherit',
+                            color: 'black',
                             textDecoration: 'none',
-                            fontSize: "100%",
-                            "&:hover": { cursor: 'pointer' }
+                            fontSize: '80%',
+                            width: '100%',
+                            height: '100%'
                         }}
+                    // style={{outlineColor:"orange"}}
                     >
-                        NTU Wanted
-                    </Typography>
+                        NTU-Wanted
+                    </Button>
+                    {/* </Typography> */}
 
                     {/* full screen { xs: 'none', md: 'flex' } 聯絡我們 */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
