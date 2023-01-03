@@ -32,11 +32,11 @@ const TaskInfo = ({ task, liked }) => {
         const { data: { message, likedList: newLikedList } } =
             await axios.post("/updateLikeList", { email, expId, action })
         if (message === 'success') {
+            setLikedList(newLikedList)
         }
         else {
             console.log(action, "failed ")
         }
-        setLikedList(newLikedList)
     }
 
     const navigate = useNavigate();

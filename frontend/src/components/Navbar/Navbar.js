@@ -101,13 +101,6 @@ function ResponsiveAppBar() {
         axios.post('/checkUser', {
             name: n, email: e
         })
-
-        const { data: { message, likedList: newLikeList } } = await axios.get('/getLikedList', {
-            params: {
-                email: e
-            }
-        })
-        setLikedList(newLikeList)
     }
 
     return (// sticky
