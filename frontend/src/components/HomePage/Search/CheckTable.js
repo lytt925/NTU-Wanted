@@ -17,10 +17,6 @@ import { Collapse } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import ListItemText from '@mui/material/ListItemText';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
-import { WidthFull } from '@mui/icons-material';
 
 
 const BoxCss = {
@@ -105,6 +101,7 @@ const BasicTable = React.forwardRef((props, ref) => {
             </Collapse>
             </TableCell>
         </TableRow>
+        }
 
     const [open, setOpen] = useState(true);
     const handleClick = () => {
