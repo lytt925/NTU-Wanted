@@ -109,7 +109,9 @@ const SearchBar = ({ expList, setExpList, setCount }) => {
             noValidate
             autoComplete="on"
         >
-            <SearchInput placeholder="搜尋" variant="outlined" sx={{ boxSizing: 'border-box', flex: '1 1 45%' }} onChange={searchTitleHandler} value={searchTitle} size='small' />
+            <SearchInput placeholder="搜尋" variant="outlined" sx={{ boxSizing: 'border-box', flex: '1 1 45%',
+                                                                        outlineColor:"red"}} 
+                            onChange={searchTitleHandler} value={searchTitle} size='small' />
             {/* <DatePickerRange /> */}
             <DateRangePicker />
             <LoadingButton
@@ -122,7 +124,7 @@ const SearchBar = ({ expList, setExpList, setCount }) => {
                 width: "90px", margin: '7px', flex: '1 1 10%',
                 backgroundColor:"#AEC17B",
                 '&:hover':{
-                    backgroundColor:"orange"
+                    backgroundColor:"orangeRed"
                 } 
                 }}
             >

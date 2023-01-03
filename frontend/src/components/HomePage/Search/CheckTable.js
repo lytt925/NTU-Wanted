@@ -10,6 +10,7 @@ import Checkbox from '@mui/material/Checkbox';
 import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography';
 import { useFilter } from "../../../containers/hooks/useFilter";
+import ScienceIcon from '@mui/icons-material/Science';
 
 
 
@@ -39,12 +40,12 @@ export default function BasicTable() {
 
     const typeTagsRows = ['實驗', '問卷', '訪談', '其他'];
     const rewardTagsRows = ['普心時數', '現金', '食物', '其他']
-    const locationTagsRows = ['校總區', '城中校區', '家裡']
+    const locationTagsRows = ['校總區', '城中校區', '線上']
 
     const checkBoxList = [
-        { header: '研究類型', checkBoxes: typeTagsRows, boxState: typeTagsSelected, setBoxState: setTypeTagsSelected },
-        { header: '報酬形式', checkBoxes: rewardTagsRows, boxState: rewardTagsSelected, setBoxState: setRewardTagsSelected },
-        { header: '地點', checkBoxes: locationTagsRows, boxState: locationTagsSelected, setBoxState: setLocationTagsSelected }
+        { header: '📃 研究類型', checkBoxes: typeTagsRows, boxState: typeTagsSelected, setBoxState: setTypeTagsSelected },
+        { header: '💰 報酬形式', checkBoxes: rewardTagsRows, boxState: rewardTagsSelected, setBoxState: setRewardTagsSelected },
+        { header: '🚗 地點', checkBoxes: locationTagsRows, boxState: locationTagsSelected, setBoxState: setLocationTagsSelected }
     ]
 
     const handleCheck = (e, boxState, setBoxState) => {
@@ -60,8 +61,10 @@ export default function BasicTable() {
     }
 
     const CheckButtonRow = ({ header, checkBoxes, boxState, setBoxState }) => {
-        return <TableRow sx={{backgroundColor:"rgb(223, 230, 217)"}}>
-            <HeaderTableCell component="th" scope="row">
+        return <TableRow sx={{backgroundColor:"rgb(235, 242, 230)", border:2, borderColor:"white" }}>
+            <HeaderTableCell component="th" scope="row" sx={{fontWeight:"bold", 
+                                                                backgroundColor:"rgb(223, 230, 217)",
+                                                                textAlign:"left" }}>
                 {header}：
             </HeaderTableCell>
             <RowTableCell align='left'>
