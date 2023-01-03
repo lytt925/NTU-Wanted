@@ -18,6 +18,7 @@ import jwt_decode from "jwt-decode";
 import axios from '../../containers/api'
 import { useUser } from "../../containers/hooks/useUser";
 import { BoyRounded } from "@mui/icons-material";
+import Icon from '@mui/material/Icon';
 
 
 //// credited：<a href="https://www.flaticon.com/free-icons/poster" title="poster icons">Poster icons created by Freepik - Flaticon</a>
@@ -81,8 +82,8 @@ function ResponsiveAppBar() {
     }
 
     const toPage = (e) => {
-        if (e.target.innerHTML === '✆ 聯絡我們')
-            navigate('/contactus')
+        // if (e.target.innerHTML === '✆ 聯絡我們')
+        navigate('/contactus')
     }
 
     const responseGoogle = async (response) => {
@@ -117,7 +118,7 @@ function ResponsiveAppBar() {
 
                     {/* full screen { xs: 'none', md: 'flex' } NTU logo and name */}
                     {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
-                    <img src={require("./wanted.png")} style={{ width: "4%" }} />
+                    <Box component="img" src={require("./wanted.png")} style={{ width: "4%" }} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                     <Typography>
                         <Button
                             key='NTU-Wanted'
@@ -181,27 +182,29 @@ function ResponsiveAppBar() {
 
                     {/* smartphone screen { xs: 'flex', md: 'none' } NTU logo and name */}
                     {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
-
-                    <Typography
-                        variant="h5"
-                        noWrap
-                        component="a"
+                    <Box component="img" src={require("./wanted.png")} style={{ width: "4%" }} sx={{ display: { xs: 'flex', md: 'none' }, ml: 3 }} />
+                    {/* <Typography> */}
+                    <Button
+                        key='NTU-Wanted'
                         onClick={backtoHome}
+                        // variant="outlined"
                         sx={{
-                            mr: 2,
+                            mr: 3,
                             display: { xs: 'flex', md: 'none' },
-                            flexGrow: 1,
                             fontFamily: 'arial black',
-                            fontWeight: 700,
+                            fontWeight: 800,
                             letterSpacing: '.3rem',
-                            color: 'inherit',
+                            color: 'black',
                             textDecoration: 'none',
-                            fontSize: "100%",
-                            "&:hover": { cursor: 'pointer' }
+                            fontSize: '80%',
+                            width: '100%',
+                            height: '100%'
                         }}
+                    // style={{outlineColor:"orange"}}
                     >
-                        NTU Wanted
-                    </Typography>
+                        NTU-Wanted
+                    </Button>
+                    {/* </Typography> */}
 
                     {/* full screen { xs: 'none', md: 'flex' } 聯絡我們 */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -209,7 +212,7 @@ function ResponsiveAppBar() {
                             <Button
                                 key={page}
                                 id={index}
-                                onClick={handleCloseNavMenu}
+                                onClick={toPage}
                                 // variant="outlined"
                                 sx={{
                                     color: 'white', display: 'block',
