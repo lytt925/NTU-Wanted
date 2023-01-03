@@ -50,6 +50,9 @@ const UserProvider = (props) => {
             localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(newme));
             getLikedList()
         }
+        else {
+            setLikedList([]);
+        }
     }, [login]);
 
     return (

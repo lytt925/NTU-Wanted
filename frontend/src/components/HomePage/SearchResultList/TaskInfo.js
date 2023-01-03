@@ -6,6 +6,7 @@ import { Stack, Chip } from '@mui/material';
 import { useNavigate } from 'react-router-dom'
 import axios from '../../../containers/api'
 import { useUser } from '../../../containers/hooks/useUser';
+import { message } from 'antd';
 
 
 const BoxCss = {
@@ -24,18 +25,30 @@ const List = styled('ul')({
 
 const TaskInfo = ({ task, liked }) => {
 
-    const { email, setLikedList } = useUser()
+    const { email, setLikedList, login } = useUser()
+    const [messageApi, contextHolder] = message.useMessage();
+
 
     const handleLike = async (e, expId, action) => {
-        e.stopPropagation()
-        const { data: { message, likedList: newLikedList } } =
-            await axios.post("/updateLikeList", { email, expId, action })
-        if (message === 'success') {
+        console.log(login)
+        if (!login) {
+            console.log(login)
+            messageApi.open({
+                type: 'warning',
+                content: '請先登入再收藏研究',
+              });
         }
         else {
-            console.log(action, "failed ")
+            e.stopPropagation()
+            const { data: { message, likedList: newLikedList } } =
+                await axios.post("/updateLikeList", { email, expId, action })
+            if (message === 'success') {
+            }
+            else {
+                console.log(action, "failed ")
+            }
+            setLikedList(newLikedList)
         }
-        setLikedList(newLikedList)
     }
 
     const navigate = useNavigate();
@@ -47,6 +60,8 @@ const TaskInfo = ({ task, liked }) => {
     }
 
     return (
+        <>
+        {contextHolder}
         <Box sx={BoxCss} className='TaskInfo'>
             <Box sx={{ mt: '3px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', "&:hover": { cursor: 'pointer', '&.Title': { color: '#4267B2' } } }}>
                 <Typography className="Title" variant="h6" sx={{ "&:hover": { color: '#4267B2' } }} onClick={() => ToExp(task.id)}>
@@ -66,7 +81,7 @@ const TaskInfo = ({ task, liked }) => {
                 {task.locationTags.map((tag) => (<Chip key={tag} sx={{ padding: 'None', fontSize: '12px' }} label={tag} color="error" variant="outlined" />))}
             </Stack>
         </Box>
-
+        </>
     )
 }
 

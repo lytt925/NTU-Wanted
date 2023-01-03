@@ -74,7 +74,8 @@ const HomePage = () => {
             <ResultPage expList={expList} count={count} />
             {
               width > 540?
-                <Tour className="tour" open={open} onClose={() => setOpen(false)} steps={steps} placement="bottom" />
+                <Tour className="tour" open={open} onClose={() => setOpen(false)} 
+                        steps={steps} arrow={false} />
                 :
                 <></>   
             } 
