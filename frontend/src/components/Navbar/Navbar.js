@@ -18,32 +18,20 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
 import axios from '../../containers/api'
 import { useUser } from "../../containers/hooks/useUser";
+import { BoyRounded } from "@mui/icons-material";
 
 
 //// credited：<a href="https://www.flaticon.com/free-icons/poster" title="poster icons">Poster icons created by Freepik - Flaticon</a>
 
 var Context = [];
 
-const pages = ['聯絡我們'];
+const pages = ['✆ 聯絡我們'];
 
 function ResponsiveAppBar() {
 
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
     const { login, setLogin, email, setEmail, name, setName, pic, setPic, setLikedList } = useUser()
-
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
-
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
-
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
-    };
-
 
 
     const navigate = useNavigate();
@@ -52,6 +40,20 @@ function ResponsiveAppBar() {
         setAnchorElUser(null);
 
     };
+    const handleOpenUserMenu = (event) => {
+        setAnchorElUser(event.currentTarget);
+    };
+
+    const handleCloseNavMenu = (event) => {
+        navigate('/contactus');
+        setAnchorElNav(null);
+        // event.currentTarget.style.display="none"
+    };
+
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
+    };
+
     const logoutevent = () => {
         setLogin(false);
         setEmail("");
@@ -170,7 +172,7 @@ function ResponsiveAppBar() {
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                                <MenuItem key={page} onClick={handleCloseNavMenu} >
                                     <Typography textAlign="center">{page}</Typography>
                                 </MenuItem>
                             ))}
@@ -202,12 +204,18 @@ function ResponsiveAppBar() {
 
                     {/* full screen { xs: 'none', md: 'flex' } 聯絡我們 */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
+                        {pages.map((page, index) => (
                             <Button
                                 key={page}
+                                id={index}
                                 onClick={handleCloseNavMenu}
                                 // variant="outlined"
-                                sx={{ color: 'white', display: 'block' ,backgroundColor:"orange" }}
+                                sx={{ color: 'white', display: 'block' ,
+                                        backgroundColor:"orange", boxShadow: "3",
+                                        '&:hover':{
+                                            backgroundColor:"orangeRed"
+                                        }, 
+                                        position:"relative", left: "3%" }}
                             >
                                 {page}
                             </Button>
