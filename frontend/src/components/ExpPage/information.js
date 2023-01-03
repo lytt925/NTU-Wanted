@@ -71,8 +71,8 @@ const Information = ({ info }) => {
                     <Typography variant="h5" fontWeight='bold' sx={{ mt: '10px', mb: '10px' }}>
                         {info.title}
                     </Typography>
-                    {liked ? <Favorite onClick={handleLike} sx={{ color: 'red', "&:hover": { cursor: 'pointer' } }} />
-                        : <FavoriteBorder onClick={handleLike} sx={{ "&:hover": { cursor: 'pointer' } }} />}
+                    {/* {liked ? <Favorite onClick={handleLike} sx={{ color: 'red', "&:hover": { cursor: 'pointer' } }} />
+                        : <FavoriteBorder onClick={handleLike} sx={{ "&:hover": { cursor: 'pointer' } }} />} */}
                 </Box>
             </Box >
             <Box sx={BoxCss} className='ExpInfo' component={Paper}>
