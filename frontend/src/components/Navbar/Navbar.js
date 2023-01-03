@@ -196,7 +196,8 @@ function ResponsiveAppBar() {
                             letterSpacing: '.3rem',
                             color: 'inherit',
                             textDecoration: 'none',
-                            fontSize: "100%"
+                            fontSize: "100%",
+                            "&:hover": { cursor: 'pointer' }
                         }}
                     >
                         NTU Wanted
