@@ -15,16 +15,16 @@ import { useNavigate } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
-import axios from '../../containers/api'
 import { useUser } from "../../containers/hooks/useUser";
-import { BoyRounded } from "@mui/icons-material";
-import Icon from '@mui/material/Icon';
+import axios from "../../containers/api";
+import { resolveObjectURL } from "buffer";
 
 
 //// credited：<a href="https://www.flaticon.com/free-icons/poster" title="poster icons">Poster icons created by Freepik - Flaticon</a>
 
 
-const pages = ['✆ 聯絡我們'];
+const pages = ['✆ 關於我們'];
+const google_key = '705967299189-hj61h5r94cmlkljemcg45v1cq5anhhuj.apps.googleusercontent.com';
 
 function ResponsiveAppBar() {
 
@@ -232,13 +232,12 @@ function ResponsiveAppBar() {
                     {(login === false) ?
                         <Button id='login' style={{ backgroundColor: "#FFFFFF", padding: "3px 3px", }}
                             variant='contained' color='info' sx={{ flexGrow: 0, xs: 'none', md: 'flex', display: 'flex', "&:hover": { cursor: 'pointer' } }}>
-
-                            <GoogleOAuthProvider clientId="705967299189-hj61h5r94cmlkljemcg45v1cq5anhhuj.apps.googleusercontent.com">
+                            {(google_key === '') ? <></> : <GoogleOAuthProvider clientId={google_key}>
                                 <GoogleLogin
                                     type='icon'
                                     // theme="filled_black"
                                     logo_alignment="left"
-                                    clientId="705967299189-hj61h5r94cmlkljemcg45v1cq5anhhuj.apps.googleusercontent.com"
+                                    clientId={google_key}
                                     // render={renderProps => (
                                     //     <Button onClick={renderProps.onClick} disabled={renderProps.disabled} variant='contained' color='info' sx={{ my: 2, color: 'white', display: 'block' }}>登入</Button>
                                     // )}
@@ -246,7 +245,8 @@ function ResponsiveAppBar() {
                                     onFailure={responseGoogle}
                                     cookiePolicy={'single_host_origin'}
                                 />
-                            </GoogleOAuthProvider>
+                            </GoogleOAuthProvider>}
+
                             <Typography sx={{ color: 'black', ml: '8px', mr: '12px', display: { xs: 'none', md: 'flex' } }}>登入</Typography>
 
                         </Button>
@@ -290,60 +290,6 @@ function ResponsiveAppBar() {
 
                     }
 
-                    {/* smartphone screen { xs: 'flex', md: 'none' } login */}
-                    {/* {(login === false) ?
-                        <Box id='login' sx={{
-                            xs: 'flex', md: 'none',
-                            backgroundColor: 'white',
-                            display: { xs: 'flex', md: 'none' }
-                        }}>
-                            <GoogleOAuthProvider clientId="705967299189-hj61h5r94cmlkljemcg45v1cq5anhhuj.apps.googleusercontent.com">
-                                <GoogleLogin
-                                    type='icon'
-                                    clientId="705967299189-hj61h5r94cmlkljemcg45v1cq5anhhuj.apps.googleusercontent.com"
-                                    onSuccess={responseGoogle}
-                                    onFailure={responseGoogle}
-                                    cookiePolicy={'single_host_origin'}
-                                />
-                            </GoogleOAuthProvider>
-                        </Box> :
-                        <>
-                            <Box sx={{ xs: 'flex', md: 'none' }}>
-                                <Tooltip title="Open settings">
-                                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                        <Avatar src={pic} sx={{ display: { xs: 'flex', md: 'none' } }} />
-                                    </IconButton>
-                                </Tooltip>
-                                <Menu
-                                    sx={{ mt: '45px' }}
-                                    anchorEl={anchorElUser}
-                                    anchorOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'right',
-                                    }}
-                                    keepMounted
-                                    transformOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'right',
-                                    }}
-                                    open={Boolean(anchorElUser)}
-                                    onClose={handleCloseUserMenu}
-                                >
-                                    <MenuItem key="新增研究" onClick={navigateToPost}>
-                                        <Typography textAlign="center"> + 新研究</Typography>
-                                    </MenuItem>
-                                    <MenuItem key="我發布的研究" onClick={myexp}>
-                                        <Typography textAlign="center">我發布的研究</Typography>
-                                    </MenuItem>
-                                    <MenuItem key="我收藏的研究" onClick={myexp}>
-                                        <Typography textAlign="center">我收藏的研究</Typography>
-                                    </MenuItem>
-                                    <MenuItem key="登出" onClick={logoutevent}>
-                                        <Typography textAlign="center">登出</Typography>
-                                    </MenuItem>
-                                </Menu>
-                            </Box></>
-                    } */}
 
                 </Toolbar>
             </Container>

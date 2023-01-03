@@ -4,8 +4,10 @@ import InfoRouter from './expInfo'
 import commentRoute from './comment'
 import postFormRouter from './postForm'
 import userRouter from './user'
+import googleRouter from './google'
 
 const router = Router();
+router.get('/api/getKey', googleRouter.getKey);
 router.get('/api/getExpList', ExpRouter.getExpList);
 router.use('/api/getInfo', InfoRouter.getInfo);
 router.get('/api/getMyexp', InfoRouter.getMyexp);
