@@ -47,7 +47,7 @@ const HomePage = () => {
             title: '多重篩選',
             description: '自由篩選您想尋找的特定研究類型、報酬形式及研究地點。',
             target: () => checkBoxRef.current,
-            placement: "leftBottom"
+            // placement: "leftBottom"
         },
         {
             title: '登入帳號',
@@ -63,6 +63,7 @@ const HomePage = () => {
         positions: "relative",
         right: "12%"
     }
+    var width = window.innerWidth;
 
     return (
         <Wrapper className='App'>
@@ -71,7 +72,12 @@ const HomePage = () => {
             <SearchBar ref={searchBarRef} expList={expList} setExpList={setExpList} setCount={setCount} />
             <CheckTable ref={checkBoxRef} />
             <ResultPage expList={expList} count={count} />
-            <Tour className="tour" open={open} onClose={() => setOpen(false)} steps={steps} placement="bottom" />
+            {
+              width > 540?
+                <Tour className="tour" open={open} onClose={() => setOpen(false)} steps={steps} placement="bottom" />
+                :
+                <></>   
+            } 
         </Wrapper >
     )
 }
