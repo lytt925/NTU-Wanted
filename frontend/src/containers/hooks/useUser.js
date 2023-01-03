@@ -1,13 +1,23 @@
 import {
-    useState, createContext, useContext
+    useState, createContext, useContext, useEffect
 } from "react";
+
+import axios from '../../containers/api'
+
+const LOCALSTORAGE_KEY = "save-me";
+var savedMe = null;
+try {
+    savedMe = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY))
+}
+catch (e) { savedMe = null }
+
 
 const UserContext = createContext({
     setLogin: () => { },
     setEmail: () => { },
     setName: () => { },
     setPic: () => { },
-    setTypeTagsSelected: () => { },
+    setLikedList: () => { },
     login: false,
     email: '',
     name: '',
@@ -18,13 +28,29 @@ const UserContext = createContext({
 const UserProvider = (props) => {
 
     //  User //
-    const [login, setLogin] = useState(false);
-    const [email, setEmail] = useState('');
-    const [name, setName] = useState('');
-    const [pic, setPic] = useState('');
+    const [email, setEmail] = useState(savedMe ? savedMe[0] : '');
+    const [name, setName] = useState(savedMe ? savedMe[1] : "");
+    const [pic, setPic] = useState(savedMe ? savedMe[2] : "");
+    const [login, setLogin] = useState(savedMe ? true : false)
     const [likedList, setLikedList] = useState([])
     //  User //
 
+    const getLikedList = async () => {
+        const { data: { message, likedList: newLikeList } } = await axios.get('/getLikedList', {
+            params: {
+                email
+            }
+        })
+        setLikedList(newLikeList)
+    }
+
+    useEffect(() => {
+        if (login) {
+            const newme = [email, name, pic]
+            localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(newme));
+            getLikedList()
+        }
+    }, [login]);
 
     return (
         <UserContext.Provider

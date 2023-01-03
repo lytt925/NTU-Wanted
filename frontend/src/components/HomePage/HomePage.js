@@ -1,10 +1,8 @@
-import ResponsiveAppBar from '../Navbar/Navbar'
 import SearchBar from './Search/SearchBar';
 import CheckTable from './Search/CheckTable'
 import { styled } from '@mui/material/styles'
-import Box from '@mui/material/Box';
 import { Container } from '@mui/material';
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import ResultPage from '../../containers/ResultPage';
 import ScrollToTop from './ScrollToTop';
 

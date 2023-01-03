@@ -1,14 +1,10 @@
-import ResponsiveAppBar from '../Navbar/Navbar'
-// import SearchBar from '../HomePage/Search/SearchBar';
-// import CheckTable from '../HomePage/Search/CheckTable'
 import { styled } from '@mui/material/styles'
-import Box from '@mui/material/Box';
 import { Container } from '@mui/material';
 import React, { useState, useEffect } from 'react'
 import ResultPage from '../../containers/ResultPage';
 import axios from '../../containers/api';
 import { PER_PAGE } from '../../utils/constants';
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { useUser } from '../../containers/hooks/useUser';
 
 
@@ -30,15 +26,6 @@ const HomePage = () => {
     const { name, email } = useUser()
 
     const sendmySearch = async () => {
-        // console.log({
-        //     searchTitle,
-        //     locationTagsSelected,
-        //     timeRange,
-        //     rewardTagsSelected,
-        //     typeTagsSelected,
-        // })
-        // setLoading(true)
-        // console.log({ name, email });
         const { data: { message, contents } } =
             await axios.get('/getMyexp', {
                 params: {
@@ -46,7 +33,6 @@ const HomePage = () => {
                 }
             },)
         if (message === 'success') {
-            // console.log(contents)
             setExpList(contents)
             //計算分頁數
             const newCount = Math.ceil(contents.length / PER_PAGE);
@@ -61,9 +47,6 @@ const HomePage = () => {
 
     return (
         <Wrapper className='App'>
-            {/* <SearchBar expList={expList} setExpList={setExpList} setCount={setCount} /> */}
-            {/* <CheckTable /> */}
-            {/* <Box sx={{ height: '1px', width: '99vw', borderTop: '1px solid lightgrey', position: 'sticky', top: '144px' }}></Box> */}
             <ResultPage expList={expList} count={count} />
         </Wrapper >
     )

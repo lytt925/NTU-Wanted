@@ -2,9 +2,7 @@
 import { Button, Form, Input, InputNumber, DatePicker, Select } from 'antd';
 import "./infoForm.css";
 import { useNavigate } from 'react-router-dom';
-import { styled } from '@mui/material/styles'
 import axios from '../../containers/api';
-import { borderBottom, textAlign } from '@mui/system';
 import { useUser } from '../../containers/hooks/useUser';
 import { Card } from 'antd'
 import { Box } from '@mui/material';
@@ -54,33 +52,26 @@ const BoxCss = {
 const InfoForm = () => {
 
     const c = useUser();
-    // console.log('InfoForm', c.name);
 
     const [form] = Form.useForm();
     const navigate = useNavigate();
     const navigateToHome = () => {
-        // console.log('home')
         navigate('/');
     };
 
     const submitForm = async (values) => {
-        console.log("submit form")
-        // navigateToHome();
         const { data: { message } } =
             await axios.post("/postForm", { values, c })
 
-        // console.log('submitForm', message);
         if (message === 'success') {
             navigateToHome();
-            console.log(" submitted successfully ")
         }
         else {
-            console.log(" submission failed ")
         }
     }
 
     const onFinish = (fieldsValue) => {
-        // Should format date value before submit.
+
         const rangeValue = fieldsValue['time'];
         const values = {
             ...fieldsValue,
@@ -88,12 +79,9 @@ const InfoForm = () => {
             'time': `${rangeValue[0].format('YYYY年MM月DD日')} 至 ${rangeValue[1].format('YYYY年MM月DD日')} 止`,
             'timeRange': { from: rangeValue[0].format('YYYY/MM/DD'), to: rangeValue[1].format('YYYY/MM/DD') },
         };
-        // delete values.address;
-        // delete values.len;
-        // if (!fieldsValue['upper'] && !fieldsValue['lower']) delete values.age;
-        // else if (!fieldsValue['upper']) values.age.upper = 99
+
         submitForm(values);
-        // console.log('Received values of form: ', values);
+
     }
 
 
@@ -173,6 +161,7 @@ const InfoForm = () => {
                     <Input.TextArea />
                 </Form.Item>
             </div>
+
             <div className='infoBox'>
                 <div className='infoName'><h3>研究內容</h3></div>
                 <Form.Item name='title' label="標題" rules={[{ required: true }]} >

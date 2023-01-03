@@ -3,10 +3,8 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { FavoriteBorder, Favorite } from '@mui/icons-material';
-import { Stack, Chip } from '@mui/material';
-import { useNavigate, useLocation } from 'react-router-dom'
 import Button from '@mui/material/Button';
 
 const BoxCss = {
@@ -32,7 +30,7 @@ const bigBoxCss = {
     alignItems: 'center',
     top: '150px',
     width: '69.5%',
-    minWidth: '450px',
+    minWidth: '370px',
     '&, .ExpInfo:first-of-type': { marginTop: "10px" },
 }
 
@@ -52,17 +50,16 @@ const List = styled('ul')({
 const Information = ({ info }) => {
 
     const [liked, setLiked] = useState(false)
-    // console.log(info)
 
     const handleLike = () => {
         setLiked(!liked)
     }
 
     const age = info.age ?
-        info.age.lower == 0 || !info.age.lower ?
-            (info.age.upper == 99 || !info.age.upper ? "無" : `限${info.age.upper}歲以下`)
+        info.age.lower === 0 || !info.age.lower ?
+            (info.age.upper === 99 || !info.age.upper ? "無" : `限${info.age.upper}歲以下`)
             :
-            info.age.upper == 99 || !info.age.upper ?
+            info.age.upper === 99 || !info.age.upper ?
                 `限${info.age.lower}歲以上` : `限${info.age.lower}歲至${info.age.upper}歲`
         :
         "無"
@@ -79,7 +76,7 @@ const Information = ({ info }) => {
                 </Box>
             </Box >
             <Box sx={BoxCss} className='ExpInfo' component={Paper}>
-                <Box sx={{ float: 'left' }}>
+                <Box sx={{ wordWrap: 'break-word' }}>
                     <List>
                         <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
                             研究資訊
@@ -92,7 +89,7 @@ const Information = ({ info }) => {
 
             </Box >
             <Box sx={BoxCss} className='ExpInfo' component={Paper} elevation={1}>
-                <Box sx={{ float: 'left' }}>
+                <Box sx={{ wordWrap: 'break-word' }}>
                     <List>
                         <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
                             參與者條件
@@ -103,7 +100,7 @@ const Information = ({ info }) => {
                 </Box>
             </Box >
             <Box sx={BoxCss} className='ExpInfo' component={Paper} elevation={1}>
-                <Box sx={{ float: 'left' }}>
+                <Box sx={{ wordWrap: 'break-word' }}>
                     <List>
                         <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
                             研究報酬
@@ -113,7 +110,7 @@ const Information = ({ info }) => {
                 </Box>
             </Box >
             <Box sx={BoxCss} className='ExpInfo' component={Paper}>
-                <Box sx={{ float: 'left' }}>
+                <Box sx={{ wordWrap: 'break-word' }}>
                     <List>
                         <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
                             研究內容
@@ -123,7 +120,7 @@ const Information = ({ info }) => {
                 </Box>
             </Box >
             <Box sx={BoxCss} className='ExpInfo' component={Paper}>
-                <Box sx={{ float: 'left' }}>
+                <Box sx={{ wordWrap: 'break-word' }}>
                     <List>
                         <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
                             備註
@@ -134,7 +131,7 @@ const Information = ({ info }) => {
             </Box >
 
             <Box sx={BoxCss} className='ExpInfo' component={Paper}>
-                <Box sx={{ float: 'left' }}>
+                <Box sx={{ wordWrap: 'break-word' }}>
                     <List>
                         <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
                             聯絡資訊
@@ -147,12 +144,12 @@ const Information = ({ info }) => {
             </Box >
             {(info.link === undefined) ? <></> :
                 <Box sx={BoxCss} className='ExpInfo' component={Paper}>
-                    <Box sx={{ float: 'left' }}>
+                    <Box sx={{ wordWrap: 'break-word' }}>
                         <List>
                             <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
                                 研究報名連結
                             </Typography>
-                            <Button variant="outlined" href={info.link} target='_blank'>{info.link}</Button>
+                            <Button variant="outlined" href={info.link} target='_blank'>Link</Button>
                         </List>
                     </Box>
                 </Box >

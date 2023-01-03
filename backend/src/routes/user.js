@@ -2,10 +2,6 @@ import ExperimentModel from '../models/experiment';
 import UserModel from '../models/user'
 
 exports.checkUser = async (req, res) => {
-    /*******    NOTE: DO NOT MODIFY   *******/
-    // console.log(req.body);
-    /****************************************/
-    // TODO Part III-3-b: create a new comment to a restaurant
     const { name, email } = req.body;
 
     const existing = await UserModel.findOne({ name, email });
@@ -17,11 +13,10 @@ exports.checkUser = async (req, res) => {
 
 exports.getLikedList = async (req, res) => {
     const { email } = req.query
-    console.log('body', req.query)
     if (email) {
-        const user = await UserModel.findOne({ email });
+        const user = await UserModel.findOne({ email }).populate(['likedList']);
         try {
-            res.json({ message: "success", likedList: user.likedResearch });
+            res.json({ message: "success", likedList: user.likedList });
         } catch (e) {
             res.json({ message: "error" });
         }
@@ -29,15 +24,24 @@ exports.getLikedList = async (req, res) => {
 }
 
 exports.updateLikeList = async (req, res) => {
-    const { userEmail, expId } = req.body
-    if (userEmail) {
-        const user = await UserModel.findOne({ email: userEmail });
-        const likeExp = await ExperimentModel.findOne({ _id: expId })
-        if (user && likeExp)
-            user.likedResearch.push(likeExp)
+    const { email, expId, action } = req.body
+    if (email) {
+        const user = await UserModel.findOne({ email })
+        const exp = await ExperimentModel.findOne({ _id: expId })
+        if (user && exp && action === 'like') {
+            if (!user.likedList.includes(exp))
+                user.likedList.push(exp)
+        }
+        else if (user && exp && action === 'unlike') {
+            await UserModel.updateOne(
+                { _id: user._id },
+                { $pull: { 'likedList': exp._id } },
+            );
+        }
         try {
             await user.save()
-            res.json({ message: "success" });
+            const updatedUser = await UserModel.findOne({ _id: user._id }).populate(['likedList'])
+            res.json({ message: "success", likedList: updatedUser.likedList });
         } catch (e) {
             res.json({ message: 'error' })
             console.error(e)

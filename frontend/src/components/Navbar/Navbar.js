@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, useContext } from "react"
+import { useState, useEffect } from "react"
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,38 +12,26 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { Password } from "@mui/icons-material";
-// import { GoogleLogin } from 'react-google-login';
+import { useNavigate } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
 import axios from '../../containers/api'
-import { width } from "@mui/system";
 import { useUser } from "../../containers/hooks/useUser";
-
-// import { getDecodedOAuthJwtGoogle } from "../../containers/hooks/useLogin";
 
 
 //// credited：<a href="https://www.flaticon.com/free-icons/poster" title="poster icons">Poster icons created by Freepik - Flaticon</a>
 
 var Context = [];
 
-const pages = ['✆ 聯絡我們'];
-const settings = ['我發布的研究', '登出'];
-// var postPage = false;
+const pages = ['聯絡我們'];
 
 function ResponsiveAppBar() {
 
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
-    const { login, setLogin, email, setEmail, name, setName, pic, setPic, likedList, setLikedList } = useUser()
-    const port = (window.location.origin) + "/newpost";
-    // console.log(port);
+    const { login, setLogin, email, setEmail, name, setName, pic, setPic, setLikedList } = useUser()
 
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
@@ -70,6 +58,9 @@ function ResponsiveAppBar() {
         setName("");
         navigate('/');
         setAnchorElUser(null);
+        setLikedList([])
+        setPic('')
+        localStorage.clear();
     }
 
     const myexp = () => {
@@ -77,28 +68,16 @@ function ResponsiveAppBar() {
         setAnchorElUser(null);
     }
 
+    const toLikedList = () => {
+        navigate('/mylikedlist')
+        setAnchorElUser(null)
+    }
+
     const backtoHome = () => {
         navigate('/');
-        // setLogin(true);
-        // setEmail(email);
-        // setName(name);
-        // setPic(pic);
     }
-    // function onSignIn(googleUser) {
-    //     var profile = googleUser.getBasicProfile();
-    //     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    //     console.log('Name: ' + profile.getName());
-    //     console.log('Image URL: ' + profile.getImageUrl());
-    //     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    // }
-
-    // const checkuser = async () => {
-
-    // }
 
     const responseGoogle = async (response) => {
-        // const realUserData = getDecodedOAuthJwtGoogle(response.credential)
-        // console.log('responseGoogle', response.credential);
 
         const userObject = jwt_decode(response.credential);
 
@@ -114,15 +93,13 @@ function ResponsiveAppBar() {
             name: n, email: e
         })
 
-        const thisLikedList = await axios.get('/getLikedList', {
+        const { data: { message, likedList: newLikeList } } = await axios.get('/getLikedList', {
             params: {
                 email: e
             }
         })
-        console.log('likedlist', thisLikedList)
+        setLikedList(newLikeList)
     }
-
-    // console.log('responseGoogle', { name, email, login, pic });
 
     useEffect(() => {
         Context = { 'name': name, 'email': email, 'login': login, 'pic': pic, 'login': login }
@@ -207,7 +184,7 @@ function ResponsiveAppBar() {
                         variant="h5"
                         noWrap
                         component="a"
-                        href=""
+                        onClick={backtoHome}
                         sx={{
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
@@ -240,7 +217,7 @@ function ResponsiveAppBar() {
                     {/* full screen { xs: 'none', md: 'flex' } login */}
                     {(login === false) ?
                         <Button id='login' style={{ backgroundColor: "#FFFFFF", padding: "3px 3px", }}
-                            variant='contained' color='info' sx={{ flexGrow: 0, xs: 'none', md: 'flex', display: 'flex' }}>
+                            variant='contained' color='info' sx={{ flexGrow: 0, xs: 'none', md: 'flex', display: 'flex', "&:hover": { cursor: 'pointer' } }}>
 
                             <GoogleOAuthProvider clientId="705967299189-hj61h5r94cmlkljemcg45v1cq5anhhuj.apps.googleusercontent.com">
                                 <GoogleLogin
@@ -288,7 +265,7 @@ function ResponsiveAppBar() {
                                     <MenuItem key="我發布的研究" onClick={myexp}>
                                         <Typography textAlign="center">我發布的研究</Typography>
                                     </MenuItem>
-                                    <MenuItem key="我收藏的研究" onClick={myexp}>
+                                    <MenuItem key="我收藏的研究" onClick={toLikedList}>
                                         <Typography textAlign="center">我收藏的研究</Typography>
                                     </MenuItem>
                                     <MenuItem key="登出" onClick={logoutevent}>
