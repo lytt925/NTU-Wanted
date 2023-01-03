@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import ResultPage from '../../containers/ResultPage';
 import { useNavigate } from 'react-router-dom'
 import { useUser } from '../../containers/hooks/useUser';
+import { PER_PAGE } from '../../utils/constants';
 
 const Wrapper = styled(Container)({
     display: 'flex',
@@ -26,6 +27,12 @@ const LikedListPage = () => {
             navigate('/')
         }
     }, [login])
+
+    const newCount = Math.ceil(likedList.length / PER_PAGE);
+
+    useEffect(() => {
+        setCount(newCount);
+    }, [count])
 
     return (
         <Wrapper className='App'>

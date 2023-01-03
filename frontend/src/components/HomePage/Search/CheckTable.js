@@ -105,7 +105,6 @@ const BasicTable = React.forwardRef((props, ref) => {
             </Collapse>
             </TableCell>
         </TableRow>
-    }
 
     const [open, setOpen] = useState(true);
     const handleClick = () => {
@@ -144,4 +143,4 @@ const BasicTable = React.forwardRef((props, ref) => {
         </Box>
     );
 })
- export default BasicTable;
+export default BasicTable;
