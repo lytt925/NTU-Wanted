@@ -24,13 +24,13 @@ import axios from "../../containers/api";
 
 const pages = ['✆ 聯絡我們'];
 
-var google_key = ''
+var google_key = '';
 const getkey = async () => {
+    console.log('start getting key');
     axios.get('/getKey')
         .then(response => {
-            // console.log(response.data);
+            console.log(response);
             google_key = response.data;
-            return (response.data)
         })
         .catch(function (error) {
             console.log(error);
