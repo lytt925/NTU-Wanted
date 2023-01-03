@@ -17,7 +17,7 @@ function App() {
                 <Container maxWidth="xl" sx={{ height: '60px', backgroundColor: '#FFFFFF', border: 'none' }}>
                 </Container>
             </AppBar>
-            {/* <ResponsiveAppBar /> */}
+            <ResponsiveAppBar />
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/newpost" element={<InfoForm />} />
