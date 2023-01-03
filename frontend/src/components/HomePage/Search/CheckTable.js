@@ -67,10 +67,6 @@ const BasicTable = React.forwardRef((props, ref) => {
 
     const CheckButtonRow = ({ header, checkBoxes, boxState, setBoxState }) => {
         return <TableRow >
-            <TableCell>
-            <Collapse in={open} timeout="auto" sx={{backgroundColor:"rgb(235, 242, 230)", border:2, borderColor:"white" }}>
-                <Table>
-                    <TableRow>
                         <HeaderTableCell component="th" scope="row" sx={{fontWeight:"bold", 
                                                                             backgroundColor:"rgb(223, 230, 217)",
                                                                             textAlign:"left" }}>
@@ -97,10 +93,6 @@ const BasicTable = React.forwardRef((props, ref) => {
                             ))}
                         </RowTableCell>
                     </TableRow>
-                </Table>
-            </Collapse>
-            </TableCell>
-        </TableRow>
         }
 
     const [open, setOpen] = useState(true);
@@ -126,12 +118,22 @@ const BasicTable = React.forwardRef((props, ref) => {
                             </TableCell>
                         </TableRow>
                     </TableHead>
-                        {/* <DatePickerRange /> */}
-                        {checkBoxList.map(({ header, checkBoxes, boxState, setBoxState }) => (
-                            <TableBody style={{width:"100%"}}>
-                            <CheckButtonRow key={header} header={header} checkBoxes={checkBoxes} boxState={boxState} setBoxState={setBoxState} />
-                            </TableBody> 
-                        ))}
+                    <TableBody>
+                        <TableRow>
+                        <TableCell>
+                            <Collapse in={open} timeout="auto" sx={{backgroundColor:"rgb(235, 242, 230)", border:2, borderColor:"white" }}>
+                                <Table>
+                                {/* <DatePickerRange /> */}
+                                {checkBoxList.map(({ header, checkBoxes, boxState, setBoxState },index) => (
+                                    <TableBody key={index} style={{width:"100%"}}>
+                                    <CheckButtonRow key={header} header={header} checkBoxes={checkBoxes} boxState={boxState} setBoxState={setBoxState} />
+                                    </TableBody> 
+                                ))}
+                                </Table>
+                            </Collapse>
+                        </TableCell>
+                        </TableRow>
+                    </TableBody>
                     
                     
                     
