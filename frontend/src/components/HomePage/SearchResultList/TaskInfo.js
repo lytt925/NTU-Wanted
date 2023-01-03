@@ -6,6 +6,7 @@ import { Stack, Chip } from '@mui/material';
 import { useNavigate } from 'react-router-dom'
 import axios from '../../../containers/api'
 import { useUser } from '../../../containers/hooks/useUser';
+import { useState } from 'react';
 
 
 const BoxCss = {
@@ -25,17 +26,21 @@ const List = styled('ul')({
 const TaskInfo = ({ task, liked }) => {
 
     const { email, setLikedList } = useUser()
+    const [likeThis, setLikethis] = useState(liked)
 
     const handleLike = async (e, expId, action) => {
         e.stopPropagation()
+        if (action === 'unlike') setLikethis(false)
+        else setLikethis(true)
         const { data: { message, likedList: newLikedList } } =
             await axios.post("/updateLikeList", { email, expId, action })
         if (message === 'success') {
+            setLikedList(newLikedList)
         }
         else {
+            setLikethis(!likeThis)
             console.log(action, "failed ")
         }
-        setLikedList(newLikedList)
     }
 
     const navigate = useNavigate();
@@ -52,7 +57,7 @@ const TaskInfo = ({ task, liked }) => {
                 <Typography className="Title" variant="h6" sx={{ "&:hover": { color: '#4267B2' } }} onClick={() => ToExp(task.id)}>
                     {task.title}
                 </Typography>
-                {liked ? <Favorite onClick={(e) => handleLike(e, task._id, 'unlike')} sx={{ color: 'red' }} />
+                {likeThis ? <Favorite onClick={(e) => handleLike(e, task._id, 'unlike')} sx={{ color: 'red' }} />
                     : <FavoriteBorder onClick={(e) => handleLike(e, task._id, 'like')} />}
             </Box>
             <List>
