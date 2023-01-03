@@ -24,33 +24,9 @@ import { resolveObjectURL } from "buffer";
 
 
 const pages = ['✆ 聯絡我們'];
-
-// var google_key = '';
-// const getkey = async () => {
-//     // console.log('start getting key');
-//     axios.get('/getKey')
-//         .then(response => {
-//             console.log('response', response);
-//         })
-//         .catch(function (error) {
-//             console.log(error);
-//         })
-// }
-
-
-// const a = getkey().then((val) => console.log("asynchronous logging has val:", val));;
-// console.log('a', a)
-
-var google_key = ''
-async function axiosTest() {
-    const response = await axios.get('/getKey')
-    return response.data
-}
-axiosTest().then((val) => google_key = val);
+const google_key = '705967299189-hj61h5r94cmlkljemcg45v1cq5anhhuj.apps.googleusercontent.com';
 
 function ResponsiveAppBar() {
-
-    console.log('google_key', google_key)
 
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
