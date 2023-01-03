@@ -112,7 +112,7 @@ function ResponsiveAppBar() {
 
     return (// sticky
         // <ThemeProvider theme={theme}>
-        <AppBar position="fixed" sx={{ mb: '5px', backgroundColor: '#FFD000' }} >
+        <AppBar position="fixed" sx={{ mb: '5px', backgroundColor: '#FFD000', zIndex: 1 }} >
             <Container maxWidth="xl" >
                 <Toolbar disableGutters >
 
