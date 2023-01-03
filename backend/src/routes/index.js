@@ -6,6 +6,7 @@ import postFormRouter from './postForm'
 import userRouter from './user'
 
 const router = Router();
+router.get('/api/getKey', ExpRouter.getKey);
 router.get('/api/getExpList', ExpRouter.getExpList);
 router.use('/api/getInfo', InfoRouter.getInfo);
 router.get('/api/getMyexp', InfoRouter.getMyexp);

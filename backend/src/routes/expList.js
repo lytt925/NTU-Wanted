@@ -35,6 +35,11 @@ const searchExp =
         }
     }
 
+exports.getKey = async (req, res) => {
+    // console.log(process.env.GOOGLE_KEY)
+    res.status(200).send(process.env.GOOGLE_KEY);
+}
+
 exports.getExpList = async (req, res) => {
     const {
         searchTitle,

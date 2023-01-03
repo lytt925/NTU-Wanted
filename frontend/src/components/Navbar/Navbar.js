@@ -15,10 +15,8 @@ import { useNavigate } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
-import axios from '../../containers/api'
 import { useUser } from "../../containers/hooks/useUser";
-import { BoyRounded } from "@mui/icons-material";
-import Icon from '@mui/material/Icon';
+import axios from "../../containers/api";
 
 
 //// credited：<a href="https://www.flaticon.com/free-icons/poster" title="poster icons">Poster icons created by Freepik - Flaticon</a>
@@ -26,7 +24,19 @@ import Icon from '@mui/material/Icon';
 
 const pages = ['✆ 聯絡我們'];
 
-const google_key = process.env.REACT_APP_GOOGLE_KEY;
+var google_key = ''
+const getkey = async () => {
+    axios.get('/getKey')
+        .then(response => {
+            // console.log(response.data);
+            google_key = response.data;
+            return (response.data)
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+}
+getkey();
 
 function ResponsiveAppBar() {
 
