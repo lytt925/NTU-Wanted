@@ -108,14 +108,14 @@ function ResponsiveAppBar() {
 
 
     return (// sticky
-    // <ThemeProvider theme={theme}>
-        <AppBar position="sticky" sx={{ mb: '5px', backgroundColor:'#FFD000' }} >
+        // <ThemeProvider theme={theme}>
+        <AppBar position="sticky" sx={{ mb: '5px', backgroundColor: '#FFD000' }} >
             <Container maxWidth="xl" >
                 <Toolbar disableGutters >
 
                     {/* full screen { xs: 'none', md: 'flex' } NTU logo and name */}
                     {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
-                    <img src={require("./wanted.png")} style={{width:"4%"}}/>
+                    <img src={require("./wanted.png")} style={{ width: "4%" }} />
                     <Typography>
                         <Button
                             key='NTU-Wanted'
@@ -133,7 +133,7 @@ function ResponsiveAppBar() {
                                 width: '100%',
                                 height: '100%'
                             }}
-                            // style={{outlineColor:"orange"}}
+                        // style={{outlineColor:"orange"}}
                         >
                             NTU-Wanted
                         </Button>
@@ -179,7 +179,7 @@ function ResponsiveAppBar() {
 
                     {/* smartphone screen { xs: 'flex', md: 'none' } NTU logo and name */}
                     {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
-                    
+
                     <Typography
                         variant="h5"
                         noWrap
@@ -194,7 +194,7 @@ function ResponsiveAppBar() {
                             letterSpacing: '.3rem',
                             color: 'inherit',
                             textDecoration: 'none',
-                            fontSize:"100%"
+                            fontSize: "100%"
                         }}
                     >
                         NTU Wanted
@@ -207,7 +207,7 @@ function ResponsiveAppBar() {
                                 key={page}
                                 onClick={handleCloseNavMenu}
                                 // variant="outlined"
-                                sx={{ color: 'white', display: 'block' ,backgroundColor:"orange" }}
+                                sx={{ color: 'white', display: 'block', backgroundColor: "orange" }}
                             >
                                 {page}
                             </Button>
@@ -235,7 +235,7 @@ function ResponsiveAppBar() {
                             </GoogleOAuthProvider>
                             <Typography sx={{ color: 'black', ml: '8px', mr: '12px', display: { xs: 'none', md: 'flex' } }}>登入</Typography>
 
-                        </Button> 
+                        </Button>
                         :
                         <>
                             <Box sx={{ flexGrow: 0, xs: 'none', md: 'flex' }}>
@@ -273,7 +273,7 @@ function ResponsiveAppBar() {
                                     </MenuItem>
                                 </Menu>
                             </Box></>
-                        
+
                     }
 
                     {/* smartphone screen { xs: 'flex', md: 'none' } login */}
