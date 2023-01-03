@@ -36,6 +36,7 @@ const LikedListPage = () => {
 
     return (
         <Wrapper className='App'>
+            <h2 style={{textAlign: "center", color:"rgb(211, 97, 3)}"}}>我的收藏</h2>
             {/* <SearchBar expList={likedList} setExpList={setLikedList} setCount={setCount} />
             <CheckTable /> */}
             <ResultPage expList={likedList} count={count} />

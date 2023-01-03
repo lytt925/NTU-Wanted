@@ -47,6 +47,7 @@ const HomePage = () => {
 
     return (
         <Wrapper className='App'>
+            <h2 style={{textAlign: "center", color:"rgb(211, 97, 3)}"}}>我的研究</h2>
             <ResultPage expList={expList} count={count} />
         </Wrapper >
     )

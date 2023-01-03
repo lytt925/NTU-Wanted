@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import Pagination from '@mui/material/Pagination';
 import { PER_PAGE } from '../utils/constants';
 import { Box } from '@mui/material';
+import { Empty } from 'antd';
 
 const ResultPage = ({ expList, count }) => {
 
@@ -30,10 +31,18 @@ const ResultPage = ({ expList, count }) => {
     return (
         <Box sx={{ width: "100vw", display: 'flex', justifyContent: 'center', alignItems: 'center', borderTop: '1px solid lightgrey', }}>
             <Box sx={BoxCss}>
-                <ResultList pageList={pageList} page={page} />
+                {
+                pageList.length!==0? 
+                <>
+                <ResultList pageList={pageList} page={page}/>
                 <Pagination count={count} page={page}
-                     onChange={handleChange}
-                    showFirstButton showLastButton />
+                onChange={handleChange}
+               showFirstButton showLastButton />
+               </>
+                :
+                <Empty description="目前沒有研究" image={Empty.PRESENTED_IMAGE_SIMPLE}/>
+                }
+                
             </Box>
         </Box>
     )
