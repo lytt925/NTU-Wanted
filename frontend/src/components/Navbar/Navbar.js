@@ -11,7 +11,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
@@ -22,7 +21,6 @@ import { useUser } from "../../containers/hooks/useUser";
 
 //// credited：<a href="https://www.flaticon.com/free-icons/poster" title="poster icons">Poster icons created by Freepik - Flaticon</a>
 
-var Context = [];
 
 const pages = ['聯絡我們'];
 
@@ -101,15 +99,9 @@ function ResponsiveAppBar() {
         setLikedList(newLikeList)
     }
 
-    useEffect(() => {
-        Context = { 'name': name, 'email': email, 'login': login, 'pic': pic, 'login': login }
-    }, [name, email, login, pic]);
-
-
-
     return (// sticky
         // <ThemeProvider theme={theme}>
-        <AppBar position="sticky" sx={{ mb: '5px', backgroundColor: '#FFD000' }} >
+        <AppBar position="fixed" sx={{ mb: '5px', backgroundColor: '#FFD000' }} >
             <Container maxWidth="xl" >
                 <Toolbar disableGutters >
 
@@ -339,4 +331,4 @@ function ResponsiveAppBar() {
 }
 
 // const useNavbar = () => useContext(Context);
-export { ResponsiveAppBar, Context };
+export { ResponsiveAppBar };
