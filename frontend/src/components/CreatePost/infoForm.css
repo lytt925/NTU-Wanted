@@ -1,5 +1,5 @@
 ﻿#infoForm {
-    width: 100%;
+    width: 100vw;
     height: 80%;
     /* overflow: auto; */
 }
@@ -9,7 +9,8 @@
     width: 100%;
 }
 .infoName {
-    background-color: aliceblue;
+    background-color: rgb(253, 244, 219);
+    /* rgb(223, 230, 217); */
     /* width: 100%; */
     height: 7vh;
     margin: 1%;
@@ -18,10 +19,24 @@
 }
 
 h3 {
-    width: 30%;
+    width: 45%;
     height: auto;
     padding: 0%;
     position: relative;
-    left: 18%;
-    color: rgb(49, 49, 115);
+    left: 12%;
+    color: rgb(88, 73, 20);
+}
+
+h2 {
+    text-align: center;
+    color: rgb(211, 97, 3);
+}
+
+@media(max-width: 540px) {
+    h3 {
+        left: 0%;
+    }
+    .infoName {
+        margin: 0%;
+    }
 }

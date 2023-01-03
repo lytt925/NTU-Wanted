@@ -197,7 +197,13 @@ const SearchBar = ({ expList, setExpList, setCount }) => {
                 loading={loading}
                 loadingPosition="end"
                 variant="contained"
-                sx={{ height: '40px', minWidth: '88px', width: "90px", margin: '7px', flex: '1 1 10%' }}
+                sx={{ height: '40px', minWidth: '88px', 
+                width: "90px", margin: '7px', flex: '1 1 10%',
+                backgroundColor:"#AEC17B",
+                '&:hover':{
+                    backgroundColor:"orange"
+                } 
+                }}
             >
                 搜尋
             </LoadingButton>

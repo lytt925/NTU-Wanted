@@ -33,7 +33,7 @@ const ResultPage = ({ expList, count }) => {
             <Box sx={BoxCss}>
                 <ResultList pageList={pageList} page={page} />
                 <Pagination count={count} page={page}
-                    color="primary" onChange={handleChange}
+                     onChange={handleChange}
                     showFirstButton showLastButton />
             </Box>
         </Box>

@@ -21,12 +21,15 @@ import jwt_decode from "jwt-decode";
 import axios from '../../containers/api'
 import { width } from "@mui/system";
 import { useUser } from "../../containers/hooks/useUser";
+
 // import { getDecodedOAuthJwtGoogle } from "../../containers/hooks/useLogin";
 
 
+//// credited：<a href="https://www.flaticon.com/free-icons/poster" title="poster icons">Poster icons created by Freepik - Flaticon</a>
+
 var Context = [];
 
-const pages = ['聯絡我們'];
+const pages = ['✆ 聯絡我們'];
 const settings = ['我發布的研究', '登出'];
 // var postPage = false;
 
@@ -126,30 +129,34 @@ function ResponsiveAppBar() {
     }, [name, email, login, pic]);
 
 
+
     return (// sticky
-        <AppBar position="sticky" sx={{ mb: '5px' }}>
-            <Container maxWidth="xl">
-                <Toolbar disableGutters>
+    // <ThemeProvider theme={theme}>
+        <AppBar position="sticky" sx={{ mb: '5px', backgroundColor:'#FFD000' }} >
+            <Container maxWidth="xl" >
+                <Toolbar disableGutters >
 
                     {/* full screen { xs: 'none', md: 'flex' } NTU logo and name */}
-                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                    {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
+                    <img src={require("./wanted.png")} style={{width:"4%"}}/>
                     <Typography>
                         <Button
                             key='NTU-Wanted'
                             onClick={backtoHome}
-                            variant="outlined"
+                            // variant="outlined"
                             sx={{
                                 // mr: 2,
                                 display: { xs: 'none', md: 'flex' },
-                                fontFamily: 'monospace',
-                                fontWeight: 700,
+                                fontFamily: 'arial black',
+                                fontWeight: 800,
                                 letterSpacing: '.3rem',
-                                color: 'inherit',
+                                color: 'black',
                                 textDecoration: 'none',
                                 fontSize: '100%',
                                 width: '100%',
                                 height: '100%'
                             }}
+                            // style={{outlineColor:"orange"}}
                         >
                             NTU-Wanted
                         </Button>
@@ -194,7 +201,8 @@ function ResponsiveAppBar() {
                     </Box>
 
                     {/* smartphone screen { xs: 'flex', md: 'none' } NTU logo and name */}
-                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                    {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
+                    
                     <Typography
                         variant="h5"
                         noWrap
@@ -204,11 +212,12 @@ function ResponsiveAppBar() {
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
                             flexGrow: 1,
-                            fontFamily: 'monospace',
+                            fontFamily: 'arial black',
                             fontWeight: 700,
                             letterSpacing: '.3rem',
                             color: 'inherit',
                             textDecoration: 'none',
+                            fontSize:"100%"
                         }}
                     >
                         NTU Wanted
@@ -220,8 +229,8 @@ function ResponsiveAppBar() {
                             <Button
                                 key={page}
                                 onClick={handleCloseNavMenu}
-                                variant="outlined"
-                                sx={{ color: 'white', display: 'block' }}
+                                // variant="outlined"
+                                sx={{ color: 'white', display: 'block' ,backgroundColor:"orange" }}
                             >
                                 {page}
                             </Button>
@@ -249,7 +258,8 @@ function ResponsiveAppBar() {
                             </GoogleOAuthProvider>
                             <Typography sx={{ color: 'black', ml: '8px', mr: '12px', display: { xs: 'none', md: 'flex' } }}>登入</Typography>
 
-                        </Button> :
+                        </Button> 
+                        :
                         <>
                             <Box sx={{ flexGrow: 0, xs: 'none', md: 'flex' }}>
                                 <Tooltip title="Open settings">
@@ -286,6 +296,7 @@ function ResponsiveAppBar() {
                                     </MenuItem>
                                 </Menu>
                             </Box></>
+                        
                     }
 
                     {/* smartphone screen { xs: 'flex', md: 'none' } login */}
@@ -346,6 +357,7 @@ function ResponsiveAppBar() {
                 </Toolbar>
             </Container>
         </AppBar >
+        // </ThemeProvider>
     );
 }
 

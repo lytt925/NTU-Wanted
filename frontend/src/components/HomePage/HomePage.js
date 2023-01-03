@@ -22,7 +22,7 @@ const Wrapper = styled(Container)({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
 })
 
 const HomePage = () => {

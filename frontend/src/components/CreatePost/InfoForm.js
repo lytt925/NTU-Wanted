@@ -4,16 +4,25 @@ import "./infoForm.css";
 import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles'
 import axios from '../../containers/api';
-import { textAlign } from '@mui/system';
+import { borderBottom, textAlign } from '@mui/system';
 import { useUser } from '../../containers/hooks/useUser';
+import { Card } from 'antd'
+import { Box } from '@mui/material';
+import Paper from '@mui/material/Paper';
 
 const { RangePicker } = DatePicker;
 const { Option } = Select;
 
+// const layout = {
+//     labelCol: { xs:{span: 6, offset: 0 }, sm:{span: 3, offset: 6} },
+//     wrapperCol: { xs:{span: 6, offset: 0}, sm: {span: 7, offset: 1} },
+// };
 const layout = {
-    labelCol: { span: 3, offset: 5 },
-    wrapperCol: { span: 10, offset: 1 },
+    labelCol: {span: 3, offset: 6} ,
+    wrapperCol: {span: 10, offset: 1} ,
 };
+const inputCol =  { span: 8, offset: 1 }
+
 
 const validateMessages = {
     required: '請填寫您的${label}。',
@@ -21,6 +30,17 @@ const validateMessages = {
         email: '${label} 不符合電子信箱格式',
     },
 };
+
+const BoxCss = {
+    px: '25px',
+    py: '10px',
+    width: {xs:"80%", sm:"80%", lg:"60%"},
+    border: "1px solid lightgrey",
+    marginBottom: "30px",
+    position: "absolute",
+    left: {xs:"10%", sm:"10%", lg:"20%"},
+    // backgroundColor:"rgb(253, 244, 219)"
+}
 
 // const prefixSelector = (
 //     <Form.Item name="prefix" noStyle>
@@ -82,18 +102,28 @@ const InfoForm = () => {
 
 
     return (
-
-        <Form {...layout} form={form} id='infoForm' name="infoForm" onFinish={onFinish} validateMessages={validateMessages}>
+        // <Card style={{ width: "60%", position:"absolute", left: "20%", 
+        // px: '25px',
+        // py: '10px',
+        // border: "1px solid lightgrey",
+        // marginBottom: "10px"}}>
+        <>
+        <Box sx={BoxCss} component={Paper}>
+            <h2>新增研究</h2>
+        <Form {...layout} form={form} id='infoForm' name="infoForm" 
+                onFinish={onFinish} validateMessages={validateMessages}
+                style={{width:"100%"}}
+                scrollToFirstError={true}>
             <div className='infoBox'>
                 <div className='infoName'><h3>基本資料</h3></div>
                 <Form.Item name='experimenter' label="研究單位" rules={[{ required: true }]}
-                    wrapperCol={{ span: 6, offset: 1 }}>
+                    wrapperCol={inputCol}>
                     <Input placeholder="請填寫單位或聯絡人名稱" />
                 </Form.Item>
-                <Form.Item name='email' label="Email" rules={[{ type: 'email', required: true }]} wrapperCol={{ span: 7, offset: 1 }}>
+                <Form.Item name='email' label="Email" rules={[{ type: 'email', required: true }]} wrapperCol={inputCol}>
                     <Input />
                 </Form.Item>
-                <Form.Item name='phone' label="聯絡電話" wrapperCol={{ span: 7, offset: 1 }}>
+                <Form.Item name='phone' label="聯絡電話" wrapperCol={inputCol}>
                     <Input />
                 </Form.Item>
                 <Form.Item label="研究地點" name="address" rules={[{ required: true }]} >
@@ -122,15 +152,17 @@ const InfoForm = () => {
             </div>
             <div className='infoBox'>
                 <div className='infoName'><h3>受試者條件</h3></div>
-                <Form.Item name='age' label="受試者年齡" tooltip='無限制最低年齡請填0，無限制最高年齡請填99'>
+                <Form.Item name='age' label="年齡" tooltip='無限制最低年齡請填0，無限制最高年齡請填99'
+                    style={{ marginBottom: 0 }}
+                    >
                     <div>
-                        <Form.Item name='lower' style={{ display: 'inline-block' }}
+                        <Form.Item name='lower' style={{ display: 'inline-block'}}
                             rules={[{ type: 'number', min: 0, max: 99, message: "請填寫介於0-99的數字" }]}
                         >
                             <InputNumber placeholder="最低年齡" />
                         </Form.Item>
                         <span style={{ display: 'inline-block', width: '10%', textAlign: "center" }}>—</span>
-                        <Form.Item name='upper' style={{ display: 'inline-block', width: 'calc(50% - 8px)' }}
+                        <Form.Item name='upper' style={{ display: 'inline-block' }}
                             rules={[{ type: 'number', min: 0, max: 99, message: "請填寫介於0-99的數字" }]}
                         >
                             <InputNumber placeholder="最高年齡" />
@@ -141,66 +173,75 @@ const InfoForm = () => {
                     <Input.TextArea />
                 </Form.Item>
             </div>
-
             <div className='infoBox'>
                 <div className='infoName'><h3>研究內容</h3></div>
-                <Form.Item name='title' label="標題" rules={[{ required: true }]} wrapperCol={{ span: 7, offset: 1 }}>
+                <Form.Item name='title' label="標題" rules={[{ required: true }]} >
                     <Input />
                 </Form.Item>
 
                 <Form.Item name='time' label="研究時間" rules={[{ required: true }]} >
-                    <RangePicker placeholder={["開始時間", "結束時間"]} style={{ width: "300px" }} />
+                    <RangePicker placeholder={["開始時間", "結束時間"]} />
                 </Form.Item>
 
                 <Form.Item label="研究時長" name="length" rules={[{ required: true, message: "請填寫您的研究時長" }]}
                     wrapperCol={{ span: 4, offset: 1 }}>
                     <InputNumber addonAfter="分鐘" />
                 </Form.Item>
-
+                <Form.Item name='reward' label="研究報酬" rules={[{ required: true }]}>
+                    <Input />
+                </Form.Item>
+                <Form.Item name='introduction' label="研究簡介" rules={[{ required: true }]}>
+                    <Input.TextArea />
+                </Form.Item>
+                <Form.Item name='link' label="相關網址" tooltip='可放入問卷、官網連結等' >
+                    <Input />
+                </Form.Item>
+            </div>
+            <div className='infoBox'>
+                <div className='infoName'><h3>搜尋標籤</h3></div>
                 <Form.Item name='typeTags' label="研究類型" rules={[{ required: true }]}
-                    wrapperCol={{ span: 7, offset: 1 }}>
+                    >
                     <Select
                         mode="tags"
                         allowClear
-                        style={{ width: '100%' }}
-                        placeholder="請選擇或輸入研究類型"
+                        // style={{ width: '100%' }}
+                        placeholder="請選擇或按Enter新增選項"
                         options={[{ label: "實驗", value: "實驗" },
                         { label: "問卷", value: "問卷" },
                         { label: "訪談", value: "訪談" }]}
                     />
                 </Form.Item>
-                <Form.Item name="rewardTags" label="研究報酬" rules={[{ required: true }]} wrapperCol={{ span: 7, offset: 1 }}>
+                <Form.Item name="rewardTags" label="報酬種類" rules={[{ required: true }]} >
                     <Select
                         mode="tags"
                         allowClear
-                        style={{ width: '100%' }}
-                        placeholder="請選擇或輸入報酬形式"
+                        // style={{ width: '100%' }}
+                        placeholder="請選擇或按Enter新增選項"
                         options={[{ label: "普心加分", value: "普心加分" },
                         { label: "食物", value: "食物" },
                         { label: "現金", value: "現金" }]}
                     />
                 </Form.Item>
-                <Form.Item name="otherTags" label="自訂標籤" wrapperCol={{ span: 7, offset: 1 }}>
+                <Form.Item name="otherTags" label="自訂標籤" >
                     <Select
                         mode="tags"
-                        style={{ width: '100%', }}
+                        // style={{ width: '100%', }}
+                        placeholder="請按Enter以新增選項"
                         notFoundContent="輸入後請按Enter鍵以新增標籤"
                         allowClear={true}
                     />
                 </Form.Item>
-                <Form.Item name='introduction' label="研究簡介" rules={[{ required: true }]}>
-                    <Input.TextArea />
-                </Form.Item>
-                <Form.Item name='link' label="相關網址" tooltip='可放入問卷、官網連結等'>
-                    <Input />
-                </Form.Item>
             </div>
-            <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 10 }}>
-                <Button type="primary" htmlType="submit">
-                    Submit
+            <Form.Item wrapperCol={{xs:{ span:12, offset: 7 },sm:{offset:10}}}>
+                <Button type="primary" htmlType="submit" style={{backgroundColor:"#AEC17B"}}>
+                    確認送出
                 </Button>
             </Form.Item>
         </Form>
+        </Box>
+        <div style={{height:"100px"}}></div>
+        </>
+        
     )
 }
 

@@ -68,7 +68,7 @@ export default function BasicTable() {
     }
 
     const CheckButtonRow = ({ header, checkBoxes, boxState, setBoxState }) => {
-        return <TableRow>
+        return <TableRow sx={{backgroundColor:"rgb(223, 230, 217)"}}>
             <HeaderTableCell component="th" scope="row">
                 {header}：
             </HeaderTableCell>
@@ -81,6 +81,10 @@ export default function BasicTable() {
                                 name={box}
                                 onChange={(e) => handleCheck(e, boxState, setBoxState)}
                                 checked={boxState.includes(box)}
+                                sx={{
+                                    '&.Mui-checked': {
+                                      color: "#AEC17B",
+                                    }}}
                             />
                         }
                         label={<Typography sx={{ fontSize: '15px' }}>{box}</Typography>}
