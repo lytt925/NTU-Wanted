@@ -189,7 +189,7 @@ function ResponsiveAppBar() {
                         onClick={backtoHome}
                         // variant="outlined"
                         sx={{
-                            mr: 3,
+                            // mr: 3,
                             display: { xs: 'flex', md: 'none' },
                             fontFamily: 'arial black',
                             fontWeight: 800,
