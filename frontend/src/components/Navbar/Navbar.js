@@ -40,6 +40,8 @@ getkey();
 
 function ResponsiveAppBar() {
 
+    console.log(google_key)
+
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
     const { login, setLogin, email, setEmail, name, setName, pic, setPic, setLikedList } = useUser()
