@@ -42,6 +42,9 @@ function ResponsiveAppBar() {
         setAnchorElUser(null);
     };
 
+    const handleOpenNavMenu = (event) => {
+        setAnchorElNav(event.currentTarget);
+    };
 
 
     const navigate = useNavigate();
@@ -138,7 +141,7 @@ function ResponsiveAppBar() {
                             aria-label="account of current user"
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
-                            onClick={backtoHome}
+                            onClick={handleOpenNavMenu}
                             color="inherit"
                         >
                             <MenuIcon />
