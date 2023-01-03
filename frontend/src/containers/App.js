@@ -13,10 +13,10 @@ function App() {
 
     return (
         <Router>
-            <AppBar position="static" sx={{ mb: '10px', height: '60px', backgroundColor: '#FFFFFF', border: 'none', 'boxShadow': 'none' }}>
+            {/* <AppBar position="static" sx={{ mb: '10px', height: '60px', backgroundColor: '#FFFFFF', border: 'none', 'boxShadow': 'none' }}>
                 <Container maxWidth="xl" sx={{ height: '60px', backgroundColor: '#FFFFFF', border: 'none' }}>
                 </Container>
-            </AppBar>
+            </AppBar> */}
             <ResponsiveAppBar />
             <Routes>
                 <Route path="/" element={<HomePage />} />
@@ -24,7 +24,7 @@ function App() {
                 <Route path="/experiment/:id" element={<ExpPage />} />
                 <Route path='/myexperiment' element={<MyExp />} />
                 <Route path='/mylikedlist' element={<MyLikedListPage />} />
-                <Route path='/contactus' element={<ContactUs/>} />
+                <Route path='/contactus' element={<ContactUs />} />
             </Routes>
         </Router>
     );

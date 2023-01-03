@@ -71,9 +71,11 @@ const BasicTable = React.forwardRef((props, ref) => {
 
     const CheckButtonRow = ({ header, checkBoxes, boxState, setBoxState }) => {
         return <TableRow >
-            <HeaderTableCell component="th" scope="row" sx={{fontWeight:"bold", 
-                                                                backgroundColor:"rgb(223, 230, 217)",
-                                                                textAlign:"left" }}>
+            <HeaderTableCell component="th" scope="row" sx={{
+                fontWeight: "bold",
+                backgroundColor: "rgb(223, 230, 217)",
+                textAlign: "left"
+            }}>
                 {header}：
             </HeaderTableCell>
             <RowTableCell align='left'>
@@ -87,8 +89,9 @@ const BasicTable = React.forwardRef((props, ref) => {
                                 checked={boxState.includes(box)}
                                 sx={{
                                     '&.Mui-checked': {
-                                      color: "#AEC17B",
-                                    }}}
+                                        color: "#AEC17B",
+                                    }
+                                }}
                             />
                         }
                         label={<Typography sx={{ fontSize: '15px' }}>{box}</Typography>}
@@ -122,19 +125,19 @@ const BasicTable = React.forwardRef((props, ref) => {
                             </TableCell>
                         </TableRow>
                     </TableHead>
-                    <TableBody style={{width:"100%"}}>
+                    <TableBody style={{ width: "100%" }}>
                         {/* <DatePickerRange /> */}
                         {checkBoxList.map(({ header, checkBoxes, boxState, setBoxState }) => (
-                            <Collapse in={open} timeout="auto" sx={{backgroundColor:"rgb(235, 242, 230)", border:2, borderColor:"white" }}>
-                            <CheckButtonRow key={header} header={header} checkBoxes={checkBoxes} boxState={boxState} setBoxState={setBoxState} />
+                            <Collapse in={open} key={header} timeout="auto" sx={{ backgroundColor: "rgb(235, 242, 230)", border: 2, borderColor: "white" }}>
+                                <CheckButtonRow header={header} checkBoxes={checkBoxes} boxState={boxState} setBoxState={setBoxState} />
                             </Collapse>
                         ))}
-                    
+
                     </TableBody>
-                    
+
                 </Table>
             </TableContainer>
         </Box>
     );
 })
- export default BasicTable;
+export default BasicTable;
