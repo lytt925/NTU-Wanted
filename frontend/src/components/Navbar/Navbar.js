@@ -17,6 +17,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
 import { useUser } from "../../containers/hooks/useUser";
 import axios from "../../containers/api";
+import { resolveObjectURL } from "buffer";
 
 
 //// credited：<a href="https://www.flaticon.com/free-icons/poster" title="poster icons">Poster icons created by Freepik - Flaticon</a>
@@ -24,23 +25,32 @@ import axios from "../../containers/api";
 
 const pages = ['✆ 聯絡我們'];
 
-var google_key = '';
-const getkey = async () => {
-    // console.log('start getting key');
-    axios.get('/getKey')
-        .then(response => {
-            // console.log(response);
-            google_key = response.data;
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
+// var google_key = '';
+// const getkey = async () => {
+//     // console.log('start getting key');
+//     axios.get('/getKey')
+//         .then(response => {
+//             console.log('response', response);
+//         })
+//         .catch(function (error) {
+//             console.log(error);
+//         })
+// }
+
+
+// const a = getkey().then((val) => console.log("asynchronous logging has val:", val));;
+// console.log('a', a)
+
+var google_key = ''
+async function axiosTest() {
+    const response = await axios.get('/getKey')
+    return response.data
 }
-getkey();
+axiosTest().then((val) => google_key = val);
 
 function ResponsiveAppBar() {
 
-    // console.log(google_key)
+    console.log('google_key', google_key)
 
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
