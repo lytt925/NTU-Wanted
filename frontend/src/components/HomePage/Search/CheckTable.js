@@ -17,6 +17,7 @@ import { Collapse } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import ClearAllIcon from '@mui/icons-material/ClearAll';
 
 
 const BoxCss = {
@@ -41,7 +42,7 @@ const RowTableCell = styled(TableCell)({
 })
 
 const BasicTable = React.forwardRef((props, ref) => {
-    const { rewardTagsSelected, setRewardTagsSelected, typeTagsSelected, setTypeTagsSelected, locationTagsSelected, setLocationTagsSelected } = useFilter()
+    const { rewardTagsSelected, setRewardTagsSelected, typeTagsSelected, setTypeTagsSelected, locationTagsSelected, setLocationTagsSelected, setTimeRange } = useFilter()
 
     const typeTagsRows = ['實驗', '問卷', '訪談', '其他'];
     const rewardTagsRows = ['普心時數', '現金', '食物', '其他']
@@ -67,79 +68,103 @@ const BasicTable = React.forwardRef((props, ref) => {
 
     const CheckButtonRow = ({ header, checkBoxes, boxState, setBoxState }) => {
         return <TableRow >
-                        <HeaderTableCell component="th" scope="row" sx={{fontWeight:"bold", 
-                                                                            backgroundColor:"rgb(223, 230, 217)",
-                                                                            textAlign:"left" }}>
-                            {header}：
-                        </HeaderTableCell>
-                        <RowTableCell align='left'>
-                            {checkBoxes.map((box) => (
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            size="small"
-                                            name={box}
-                                            onChange={(e) => handleCheck(e, boxState, setBoxState)}
-                                            checked={boxState.includes(box)}
-                                            sx={{
-                                                '&.Mui-checked': {
-                                                color: "#AEC17B",
-                                                }}}
-                                        />
+            <HeaderTableCell component="th" scope="row" sx={{
+                fontWeight: "bold",
+                backgroundColor: "rgb(223, 230, 217)",
+                textAlign: "left"
+            }}>
+                {header}：
+            </HeaderTableCell>
+            <RowTableCell align='left'>
+                {checkBoxes.map((box) => (
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                size="small"
+                                name={box}
+                                onChange={(e) => handleCheck(e, boxState, setBoxState)}
+                                checked={boxState.includes(box)}
+                                sx={{
+                                    '&.Mui-checked': {
+                                        color: "#AEC17B",
                                     }
-                                    label={<Typography sx={{ fontSize: '15px' }}>{box}</Typography>}
-                                    key={box}
-                                />
-                            ))}
-                        </RowTableCell>
-                    </TableRow>
-        }
+                                }}
+                            />
+                        }
+                        label={<Typography sx={{ fontSize: '15px' }}>{box}</Typography>}
+                        key={box}
+                    />
+                ))}
+            </RowTableCell>
+        </TableRow>
+    }
 
     const [open, setOpen] = useState(true);
     const handleClick = () => {
         setOpen(!open);
     };
 
+    const clearFilter = () => {
+        setRewardTagsSelected([])
+        setTypeTagsSelected([])
+        setLocationTagsSelected([])
+        setTimeRange([])
+    }
+
+
     return (
         <Box sx={BoxCss} >
             <TableContainer component={Paper} variant={'outlined'}>
                 <Table sx={{ maxWidth: '100%' }} size="small" padding='none' aria-label="filter table" ref={ref}>
                     <TableHead>
-                        <TableRow>
-                            <TableCell>
-                                <IconButton
-                                    aria-label="expand row"
-                                    size="small"
-                                    onClick={() => setOpen(!open)}
-                                >
-                                    {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                                </IconButton>
-                                篩選條件
+                        <TableRow >
+                            <TableCell sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <div>
+                                    <IconButton
+                                        aria-label="expand row"
+                                        size="small"
+                                        onClick={() => setOpen(!open)}
+                                    >
+                                        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                                    </IconButton>
+                                    篩選條件
+                                </div>
+                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                    清除條件
+                                    <IconButton
+                                        aria-label="expand row"
+                                        size="small"
+                                        onClick={clearFilter}
+                                        sx={{ float: 'right' }}
+                                    >
+                                        <ClearAllIcon />
+                                    </IconButton>
+                                </div>
                             </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         <TableRow>
-                        <TableCell>
-                            <Collapse in={open} timeout="auto" sx={{backgroundColor:"rgb(235, 242, 230)", border:2, borderColor:"white" }}>
-                                <Table>
-                                {/* <DatePickerRange /> */}
-                                {checkBoxList.map(({ header, checkBoxes, boxState, setBoxState },index) => (
-                                    <TableBody key={index} style={{width:"100%"}}>
-                                    <CheckButtonRow key={header} header={header} checkBoxes={checkBoxes} boxState={boxState} setBoxState={setBoxState} />
-                                    </TableBody> 
-                                ))}
-                                </Table>
-                            </Collapse>
-                        </TableCell>
+                            <TableCell>
+                                <Collapse in={open} timeout="auto" sx={{ backgroundColor: "rgb(235, 242, 230)", border: 2, borderColor: "white" }}>
+                                    <Table>
+                                        {/* <DatePickerRange /> */}
+                                        {checkBoxList.map(({ header, checkBoxes, boxState, setBoxState }, index) => (
+                                            <TableBody key={index} style={{ width: "100%" }}>
+                                                <CheckButtonRow key={header} header={header} checkBoxes={checkBoxes} boxState={boxState} setBoxState={setBoxState} />
+                                            </TableBody>
+                                        ))}
+                                    </Table>
+                                </Collapse>
+                            </TableCell>
                         </TableRow>
                     </TableBody>
-                    
-                    
-                    
+
+
+
                 </Table>
             </TableContainer>
-        </Box>
+        </Box >
     );
 })
 export default BasicTable;
