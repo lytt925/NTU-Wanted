@@ -38,7 +38,7 @@ const searchBoxCss = {
     flexWrap: 'wrap'
 }
 
-const SearchBar = React.forwardRef(({ expList, setExpList, setCount }, ref ) => {
+const SearchBar = React.forwardRef(({ expList, setExpList, setCount }, ref) => {
     const { setSearchTitle, setTimeRange, searchTitle, timeRange, locationTagsSelected, rewardTagsSelected, typeTagsSelected, } = useFilter()
     const [loading, setLoading] = useState(false)
 
@@ -112,9 +112,11 @@ const SearchBar = React.forwardRef(({ expList, setExpList, setCount }, ref ) => 
             autoComplete="on"
             ref={ref}
         >
-            <SearchInput placeholder="搜尋" variant="outlined" sx={{ boxSizing: 'border-box', flex: '1 1 45%',
-                                                                        outlineColor:"red"}} 
-                            onChange={searchTitleHandler} value={searchTitle} size='small' />
+            <SearchInput placeholder="搜尋" variant="outlined" sx={{
+                boxSizing: 'border-box', flex: '1 1 45%',
+                outlineColor: "red"
+            }}
+                onChange={searchTitleHandler} value={searchTitle} size='small' />
             {/* <DatePickerRange /> */}
             <DateRangePicker />
             <LoadingButton
@@ -123,12 +125,13 @@ const SearchBar = React.forwardRef(({ expList, setExpList, setCount }, ref ) => 
                 loading={loading}
                 loadingPosition="end"
                 variant="contained"
-                sx={{ height: '40px', minWidth: '88px', 
-                width: "90px", margin: '7px', flex: '1 1 10%',
-                backgroundColor:"#AEC17B",
-                '&:hover':{
-                    backgroundColor:"orangeRed"
-                } 
+                sx={{
+                    height: '40px', minWidth: '88px',
+                    width: "90px", margin: '7px', flex: '1 1 10%',
+                    backgroundColor: "#AEC17B",
+                    '&:hover': {
+                        backgroundColor: "orangeRed"
+                    }
                 }}
             >
                 搜尋
