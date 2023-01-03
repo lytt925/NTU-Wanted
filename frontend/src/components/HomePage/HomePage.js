@@ -6,9 +6,12 @@ import React, { useRef, useState } from 'react'
 import ResultPage from '../../containers/ResultPage';
 import ScrollToTop from './ScrollToTop';
 import { Tour } from 'antd';
-// import {Button} from 'antd';
+import Button from '@mui/material/Button';
 import './HomePage.css'
 import { positions } from '@mui/system';
+import HelpCenterIcon from '@mui/icons-material/HelpCenter';
+import Fab from '@mui/material/Fab';
+import Tooltip from '@mui/material/Tooltip';
 
 // const BoxCss = {
 //     display: 'flex',
@@ -65,10 +68,19 @@ const HomePage = () => {
     }
     var width = window.innerWidth;
 
+
     return (
         <Wrapper className='App'>
             <ScrollToTop />
-            <button className="tour" style={buttonStyle} onClick={() => setOpen(true)}>How to use?</button>
+            {/* <Fab className="tour" style={buttonStyle} sx={{ position: 'fixed', top: 80, left: '10%' }} onClick={() => setOpen(true)}> */}
+            {/* How to use? */}
+            {(width > 540) ?
+                <Tooltip title="How to use?">
+                    <HelpCenterIcon className="tour" style={buttonStyle}
+                        sx={{ position: 'absolute', top: 85, left: '24%', "&:hover": { cursor: 'pointer' } }} onClick={() => setOpen(true)} />
+                </Tooltip>
+                : <></>}
+            {/* </Fab> */}
             <SearchBar ref={searchBarRef} expList={expList} setExpList={setExpList} setCount={setCount} />
             <CheckTable ref={checkBoxRef} />
             <ResultPage expList={expList} count={count} />
