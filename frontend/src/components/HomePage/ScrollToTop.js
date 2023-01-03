@@ -13,7 +13,7 @@ function ScrollToTop() {
     }, [])
 
     const listenToScroll = () => {
-        let heightToHideFrom = 200;
+        let heightToHideFrom = 300;
         const winScroll = document.body.scrollTop ||
             document.documentElement.scrollTop;
         setHeight(winScroll);

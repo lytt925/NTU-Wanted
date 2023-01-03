@@ -67,7 +67,7 @@ const HomePage = () => {
 
     return (
         <Wrapper className='App'>
-            {/* <ScrollToTop /> */}
+            <ScrollToTop />
             <button className="tour" style={buttonStyle} onClick={() => setOpen(true)}>How to use?</button>
             <SearchBar ref={searchBarRef} expList={expList} setExpList={setExpList} setCount={setCount} />
             <CheckTable ref={checkBoxRef} />
