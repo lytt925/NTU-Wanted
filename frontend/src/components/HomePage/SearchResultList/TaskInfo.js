@@ -31,7 +31,6 @@ const TaskInfo = ({ task, liked }) => {
     const [loading, setLoading] = useState(false)
 
     const handleLike = async (e, expId, action) => {
-        setLoading(true)
         console.log(login)
         if (!login) {
             console.log(login)
@@ -42,6 +41,7 @@ const TaskInfo = ({ task, liked }) => {
         }
         else {
             e.stopPropagation()
+            setLoading(true)
             const { data: { message, likedList: newLikedList } } =
                 await axios.post("/updateLikeList", { email, expId, action })
             if (message === 'success') {
