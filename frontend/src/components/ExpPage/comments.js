@@ -64,9 +64,20 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
     const { name, login } = useUser()
 
     const storeComment = async () => {
-        await axios.post('createComment/', {
-            expID, name, content
-        })
+
+        const { data: { message, contents } } =
+            await axios.post('createComment/', {
+                expID, name, content
+            })
+        if (message === 'same message') {
+            // console.log('same mes')
+            setError(true)
+        }
+        else {
+            setComments([...comments, { 'name': name, 'content': content, 'reply': [] }])
+        }
+        const firstName = document.getElementById(`content`);
+        firstName.value = '';
     }
 
     const storeReply = async (expID, name, content, reply) => {
@@ -78,7 +89,6 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
     const submitComment = () => {
         if (content !== "") {
             storeComment();
-            setComments([...comments, { 'name': name, 'content': content, 'reply': [] }])
             setContent('');
             setLoad(true);
             setError(false);
@@ -186,7 +196,7 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
                         sx={{ mt: '20px' }}
                         onChange={e => setContent(e.target.value)}
                         error={error === true}
-                        helperText={(error === true) ? "Please enter comment." : ''}
+                        helperText={(error === true) ? "Please make sure your comment is not empty or the same as above." : ''}
                     />
 
                     <Box display="flex" justifyContent="flex-end">
