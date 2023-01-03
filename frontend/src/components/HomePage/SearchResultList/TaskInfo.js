@@ -31,9 +31,9 @@ const TaskInfo = ({ task, liked }) => {
     const [loading, setLoading] = useState(false)
 
     const handleLike = async (e, expId, action) => {
-        console.log(login)
+        // console.log(login)
         if (!login) {
-            console.log(login)
+            // console.log(login)
             messageApi.open({
                 type: 'warning',
                 content: '請先登入再收藏研究',
@@ -48,7 +48,7 @@ const TaskInfo = ({ task, liked }) => {
                 setLikedList(newLikedList)
             }
             else {
-                console.log(action, "failed ")
+                // console.log(action, "failed ")
             }
             setLoading(false)
         }
