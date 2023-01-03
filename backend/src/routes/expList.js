@@ -1,4 +1,6 @@
 import ExperimentModel from '../models/experiment'
+import dotenv from 'dotenv-defaults'
+dotenv.config();
 
 const isOverLap = (rangeStart, rangeEnd, thisStart, thisEnd) => {
     let startDay = new Date(rangeStart).getTime();
