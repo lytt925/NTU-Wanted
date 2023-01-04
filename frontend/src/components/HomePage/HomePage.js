@@ -13,6 +13,7 @@ import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import Fab from '@mui/material/Fab';
 import Tooltip from '@mui/material/Tooltip';
 import useSearch from '../../containers/hooks/useSearch'
+import isTouchScreen from './isTouchScreen';
 
 // const BoxCss = {
 //     display: 'flex',
@@ -67,7 +68,7 @@ const HomePage = ({ open, setOpen }) => {
         positions: "relative",
         right: "12%"
     }
-    var width = window.innerWidth;
+    // var width = window.innerWidth;
 
     return (
         <Wrapper className='App'>
@@ -85,11 +86,10 @@ const HomePage = ({ open, setOpen }) => {
             <CheckTable ref={checkBoxRef} />
             <ResultPage expList={expList} count={count} loading={loading} />
             {
-                width > 540 ?
+                isTouchScreen ?
+                    <></> :
                     <Tour className="tour" open={open} onClose={() => setOpen(false)}
                         steps={steps} />
-                    :
-                    <></>
             }
         </Wrapper >
     )

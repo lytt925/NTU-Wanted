@@ -4,7 +4,7 @@ import { PER_PAGE } from "../../utils/constants";
 import { useFilter } from "./useFilter";
 
 const useSearch = ({ expList, setExpList, setCount }) => {
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const { searchTitle, timeRange, locationTagsSelected, rewardTagsSelected, typeTagsSelected, } = useFilter()
 
     useEffect(() => {
