@@ -28,7 +28,7 @@ const ExpPage = () => {
         const { data } = await axios.get('/getInfo', { params: { id } });
         setInfo(data.contents[0]);
         setInfoLoading(false);
-        console.log(data)
+        // console.log(data)
     }
     const getComments = async () => {
 

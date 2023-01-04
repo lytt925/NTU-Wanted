@@ -90,7 +90,7 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
         if (content !== "") {
             storeComment();
             setContent('');
-            setLoad(true);
+            // setLoad(true);
             setError(false);
         }
 
@@ -117,7 +117,7 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
             const firstName = document.getElementById(`outlined-textarea${e.target.id}`);
             firstName.value = '';
             setReplycontent('');
-            setLoad(true);
+            // setLoad(true);
             setError(false);
         }
 

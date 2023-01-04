@@ -234,7 +234,7 @@ function ResponsiveAppBar({ setOpen }) {
                             </Button>
                         ))}
                     </Box>
-                    {(width > 540) ?
+                    {(width > 1200) ?
                         <Tooltip title="How to use?">
                             <Button>
                                 <HelpCenterIcon className="tour" sx={buttonStyle}
