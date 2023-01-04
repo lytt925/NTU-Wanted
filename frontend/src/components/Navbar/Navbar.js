@@ -263,7 +263,7 @@ function ResponsiveAppBar({ open, setOpen }) {
                         ))}
                     </Box>
                     {((width > 1200) && pathname === '/') ?
-                        <Tooltip title="How to use?">
+                        <Tooltip title="點擊觀看使用教學">
                             <Button>
                                 <HelpCenterIcon className="tour" sx={buttonStyle}
                                     onClick={tourEvent} />
@@ -299,7 +299,7 @@ function ResponsiveAppBar({ open, setOpen }) {
                         :
                         <>
                             <Box sx={{ flexGrow: 0, xs: 'none', md: 'flex' }}>
-                                <Tooltip title="Open settings">
+                                <Tooltip title="帳號資訊">
                                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                         <Avatar id='login' src={pic} />
                                     </IconButton>

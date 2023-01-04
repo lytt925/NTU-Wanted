@@ -157,7 +157,7 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
                                             onChange={e => handleReply(e.target.value)}
                                             sx={{ width: '85%', marginRight: '10px' }}
                                         />
-                                        <Button variant='contained' size='small' id={key} endIcon={<ReplyIcon />} onClick={submitReply}>Reply</Button>
+                                        <Button variant='contained' size='small' id={key} endIcon={<ReplyIcon />} onClick={submitReply}>回覆</Button>
                                     </>}
 
                                 </div> :
@@ -182,7 +182,7 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
                                             onChange={e => handleReply(e.target.value)}
                                             sx={{ width: '85%', marginRight: '10px', flex: '1 1 160px' }}
                                         />
-                                        <Button variant='contained' size='small' id={key} endIcon={<ReplyIcon />} onClick={submitReply} sx={{ flex: '1 1 73px', maxWidth: '80px' }}>Reply</Button>
+                                        <Button variant='contained' size='small' id={key} endIcon={<ReplyIcon />} onClick={submitReply} sx={{ flex: '1 1 73px', maxWidth: '80px' }}>回覆</Button>
                                     </Box>}
                                 </>
                         }
@@ -206,7 +206,7 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
                     />
 
                     <Box display="flex" justifyContent="flex-end">
-                        <Button variant="contained" sx={{ mt: '20px', mb: '20px', mr: '10px' }} endIcon={<SendIcon />} onClick={submitComment}>Submit</Button>
+                        <Button variant="contained" sx={{ mt: '20px', mb: '20px', mr: '10px' }} endIcon={<SendIcon />} onClick={submitComment}>送出</Button>
                     </Box>
                 </>}
             </Box >
