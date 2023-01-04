@@ -92,9 +92,9 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
         }
     }
 
-    const submitComment = () => {
+    const submitComment = async () => {
         if (content !== "") {
-            storeComment();
+            await storeComment();
             setContent('');
             // setLoad(true);
             setError(false);
