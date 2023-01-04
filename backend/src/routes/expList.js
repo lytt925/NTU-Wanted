@@ -1,7 +1,6 @@
 import ExperimentModel from '../models/experiment'
 import dotenv from 'dotenv-defaults'
 dotenv.config();
-import * as fs from 'fs';
 
 const isOverLap = (rangeStart, rangeEnd, thisStart, thisEnd) => {
     let startDay = new Date(rangeStart).getTime();
@@ -47,11 +46,6 @@ exports.getExpList = async (req, res) => {
         typeTagsSelected,
     } = req.query
     const data = await searchExp(searchTitle, locationTagsSelected, timeRange, rewardTagsSelected, typeTagsSelected,)
-    fs.writeFile("data.json", JSON.stringify(data), function (err) {
-        if (err) {
-            console.log(err);
-        }
-    });
     if (data) {
         res.status(200).send({ message: 'success', contents: data, });
     } else {
