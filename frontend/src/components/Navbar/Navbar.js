@@ -38,7 +38,7 @@ var width = window.innerWidth;
 const pages = ['✆ 關於我們'];
 const google_key = '705967299189-hj61h5r94cmlkljemcg45v1cq5anhhuj.apps.googleusercontent.com';
 
-function ResponsiveAppBar({ setOpen }) {
+function ResponsiveAppBar({ open, setOpen }) {
 
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
@@ -118,19 +118,28 @@ function ResponsiveAppBar({ setOpen }) {
         })
     }
 
+    const listenToScroll = () => {
+        const winScroll = document.body.scrollTop ||
+            document.documentElement.scrollTop;
+
+        if (winScroll === 0 && !open) {
+            setOpen(true)
+            window.removeEventListener("scroll", listenToScroll);
+        }
+
+    };
+
     const tourEvent = () => {
-        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-        setTimeout(function () {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            if (winScroll === 0) {
-                setOpen(true)
-            }
-        }, 1000);
+        const winScroll = document.body.scrollTop ||
+            document.documentElement.scrollTop;
+
+        if (winScroll === 0) {
+            setOpen(true)
+        } else {
+            window.addEventListener("scroll", listenToScroll);
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+        }
     }
-
-    // useEffect(() => {
-
-    // }, [height])
 
     return (// sticky
         // <ThemeProvider theme={theme}>
