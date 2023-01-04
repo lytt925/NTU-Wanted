@@ -6,9 +6,9 @@ import { Box } from '@mui/material';
 import { Empty } from 'antd';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const ResultPage = ({ expList, count, loading }) => {
+const ResultPage = ({ expList, count, loading, page, setPage }) => {
 
-    const [page, setPage] = useState(1);
+    // const [page, setPage] = useState(1);
     const begin = (page - 1) * PER_PAGE;
     const end = begin + PER_PAGE;
     const pageList = expList.slice(begin, end);
@@ -17,10 +17,6 @@ const ResultPage = ({ expList, count, loading }) => {
     const handleChange = (e, p) => {
         setPage(p);
     };
-
-    useEffect( ()=>{
-        setPage(1);
-    }, [expList])
 
     const BoxCss = {
         display: 'flex',
