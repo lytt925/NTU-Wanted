@@ -64,33 +64,38 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
     const { name, login } = useUser()
 
     const storeComment = async () => {
-
+        // console.log('step1', { 'name': name, 'content': content, 'reply': [] });
         const { data: { message, contents } } =
-            await axios.post('createComment/', {
+            await axios.post('/createComment', {
                 expID, name, content
             })
         if (message === 'same message') {
             // console.log('same mes')
             setError(true)
         }
-        else {
+        if (message === 'success') {
+            // console.log('step2', { 'name': name, 'content': content, 'reply': [] });
             setComments([...comments, { 'name': name, 'content': content, 'reply': [] }])
         }
         const firstName = document.getElementById(`content`);
         firstName.value = '';
     }
 
-    const storeReply = async (expID, name, content, reply) => {
-        await axios.post('createReply/', {
-            expID, name, content, reply
-        })
+    const storeReply = async (expID, name, content, reply, c) => {
+        const { data: { message, contents } } =
+            await axios.post('createReply/', {
+                expID, name, content, reply
+            })
+        if (message === 'success') {
+            setComments(c);
+        }
     }
 
     const submitComment = () => {
         if (content !== "") {
             storeComment();
             setContent('');
-            setLoad(true);
+            // setLoad(true);
             setError(false);
         }
 
@@ -111,13 +116,12 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
             const c = comments;
             c[parseInt(e.target.id)].reply.push({ 'name': name, 'content': replycontent });
             const allreply = c[parseInt(e.target.id)].reply;
-            storeReply(recentExpID, recentName, recentContent, allreply)
-            setComments(c);
+            storeReply(recentExpID, recentName, recentContent, allreply, c)
 
             const firstName = document.getElementById(`outlined-textarea${e.target.id}`);
             firstName.value = '';
             setReplycontent('');
-            setLoad(true);
+            // setLoad(true);
             setError(false);
         }
 

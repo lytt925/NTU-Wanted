@@ -30,6 +30,8 @@ const buttonStyle = {
 }
 var width = window.innerWidth;
 
+const port = (window.location.origin + '/');
+
 //// credited：<a href="https://www.flaticon.com/free-icons/poster" title="poster icons">Poster icons created by Freepik - Flaticon</a>
 
 
@@ -236,7 +238,7 @@ function ResponsiveAppBar({ setOpen }) {
                             </Button>
                         ))}
                     </Box>
-                    {((width > 540) && pathname === '/') ?
+                    {((width > 1200) && pathname === '/') ?
                         <Tooltip title="How to use?">
                             <Button>
                                 <HelpCenterIcon className="tour" sx={buttonStyle}
