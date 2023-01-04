@@ -49,7 +49,7 @@ const List = styled('ul')({
 
 const Information = ({ info }) => {
 
-    console.log(info)
+    // console.log(info)
     const [liked, setLiked] = useState(false)
 
     const handleLike = () => {

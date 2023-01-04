@@ -23,12 +23,12 @@ const ExpPage = () => {
     const [comments, setComments] = useState([])
     const [infoLoading, setInfoLoading] = useState(true);
     const [commentsLoading, setCommentsLoading] = useState(true);
-    
+
     const getInfo = async () => {
         const { data } = await axios.get('/getInfo', { params: { id } });
         setInfo(data.contents[0]);
         setInfoLoading(false);
-        console.log(data)
+        // console.log(data)
     }
     const getComments = async () => {
 
@@ -56,16 +56,16 @@ const ExpPage = () => {
     return (
         <Wrapper className='ExpPage'>
             {infoLoading && commentsLoading ?
-                loadingCircle 
+                loadingCircle
                 :
                 <>
-                {infoLoading ? 
-                    loadingCircle : <Information info={info} />}
-                {commentsLoading? 
-                    loadingCircle : <Comment expID={id} comments={comments} setComments={setComments} setLoad={setCommentsLoading} />
-}
+                    {infoLoading ?
+                        loadingCircle : <Information info={info} />}
+                    {commentsLoading ?
+                        loadingCircle : <Comment expID={id} comments={comments} setComments={setComments} setLoad={setCommentsLoading} />
+                    }
                 </>
-            }             
+            }
         </Wrapper>
     )
 }

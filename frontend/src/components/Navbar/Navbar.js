@@ -30,6 +30,8 @@ const buttonStyle = {
 }
 var width = window.innerWidth;
 
+const port = (window.location.origin + '/');
+
 //// credited：<a href="https://www.flaticon.com/free-icons/poster" title="poster icons">Poster icons created by Freepik - Flaticon</a>
 
 
@@ -235,12 +237,16 @@ function ResponsiveAppBar({ setOpen }) {
                         ))}
                     </Box>
                     {(width > 540) ?
-                        <Tooltip title="How to use?">
-                            <Button>
-                                <HelpCenterIcon className="tour" sx={buttonStyle}
-                                    onClick={() => setOpen(true)} />
-                            </Button>
-                        </Tooltip>
+                        <>
+                            {(window.location.href === port) ?
+                                <Tooltip title="How to use?">
+                                    <Button>
+                                        <HelpCenterIcon className="tour" sx={buttonStyle}
+                                            onClick={() => setOpen(true)} />
+                                    </Button>
+                                </Tooltip> : <></>}
+                        </>
+
                         : <></>}
 
                     {/* full screen { xs: 'none', md: 'flex' } login */}
