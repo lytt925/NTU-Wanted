@@ -13,9 +13,14 @@ const ResultPage = ({ expList, count, loading }) => {
     const end = begin + PER_PAGE;
     const pageList = expList.slice(begin, end);
 
+
     const handleChange = (e, p) => {
         setPage(p);
     };
+
+    useEffect( ()=>{
+        setPage(1);
+    }, [expList])
 
     const BoxCss = {
         display: 'flex',

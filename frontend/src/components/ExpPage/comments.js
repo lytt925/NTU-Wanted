@@ -151,7 +151,7 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
                                     {(login === false) ? <></> : <>
                                         <TextField
                                             id={`outlined-textarea${key}`}
-                                            placeholder="Type a reply here..."
+                                            placeholder="回覆留言"
                                             multiline
                                             variant="standard"
                                             onChange={e => handleReply(e.target.value)}
@@ -195,7 +195,7 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
                     <TextField
                         fullWidth
                         id="content"
-                        label="Type your comment"
+                        label="新增留言"
                         multiline
                         rows={4}
                         value={content}
