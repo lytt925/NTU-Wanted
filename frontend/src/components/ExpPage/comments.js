@@ -75,7 +75,7 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
         }
         if (message === 'success') {
             // console.log('step2', { 'name': name, 'content': content, 'reply': [] });
-            setComments([...comments, { 'name': name, 'content': content, 'reply': [] }])
+            setComments([...comments, { 'expID': expID, 'name': name, 'content': content, 'reply': [] }])
             setLoad(false)
         }
         const firstName = document.getElementById(`content`);
@@ -111,6 +111,7 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
     function submitReply(e) {
 
         if (replycontent !== "") {
+            // console.log(comments[parseInt(e.target.id)])
             const recentExpID = comments[parseInt(e.target.id)].expID;
             const recentName = comments[parseInt(e.target.id)].name;
             const recentContent = comments[parseInt(e.target.id)].content;

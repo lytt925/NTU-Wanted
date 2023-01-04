@@ -25,10 +25,13 @@ exports.CreateComment = async (req, res) => {
 exports.CreateReply = async (req, res) => {
     const body = req.body
     const { expID, name, content, reply } = req.body;
+    // console.log(expID, name, content)
     const existing = await CommentModel.findOne({ expID, name, content });
     try {
-        await existing.updateOne({ 'expID': expID, 'name': name, 'content': content, 'reply': reply });
-        existing.save();
-        res.status(200).send({ message: 'success', contents: null, })
+        if (existing) {
+            await existing.updateOne({ 'expID': expID, 'name': name, 'content': content, 'reply': reply });
+            existing.save();
+            res.status(200).send({ message: 'success', contents: null, })
+        }
     } catch (e) { throw new Error("Comment updating error: " + e); }
 }
