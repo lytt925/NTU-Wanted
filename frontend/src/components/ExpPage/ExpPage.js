@@ -24,28 +24,30 @@ const ExpPage = () => {
     const [infoLoading, setInfoLoading] = useState(true);
     const [commentsLoading, setCommentsLoading] = useState(true);
 
-    const getInfo = async () => {
-        const { data } = await axios.get('/getInfo', { params: { id } });
-        setInfo(data.contents[0]);
-        setInfoLoading(false);
-        // console.log(data)
-    }
-    const getComments = async () => {
 
-        const { data } = await axios.get('/getCommentsByExpId', { params: { id } });
-        setComments(data.contents);
-        setCommentsLoading(false);
 
-    }
     useEffect(() => {
+        const getInfo = async () => {
+            const { data } = await axios.get('/getInfo', { params: { id } });
+            setInfo(data.contents[0]);
+            setInfoLoading(false);
+            // console.log(data)
+        }
         if (Object.keys(info).length === 0) {
             getInfo();
         }
-    }, [])
+    }, [id, info])
 
     useEffect(() => {
+        const getComments = async () => {
+
+            const { data } = await axios.get('/getCommentsByExpId', { params: { id } });
+            setComments(data.contents);
+            setCommentsLoading(false);
+
+        }
         getComments();
-    }, [comments])
+    }, [comments, id])
 
 
     const body = document.querySelector('body');
