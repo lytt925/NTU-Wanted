@@ -4,8 +4,9 @@ import Pagination from '@mui/material/Pagination';
 import { PER_PAGE } from '../utils/constants';
 import { Box } from '@mui/material';
 import { Empty } from 'antd';
+import CircularProgress from '@mui/material/CircularProgress';
 
-const ResultPage = ({ expList, count }) => {
+const ResultPage = ({ expList, count, loading }) => {
 
     const [page, setPage] = useState(1);
     const begin = (page - 1) * PER_PAGE;
@@ -32,17 +33,19 @@ const ResultPage = ({ expList, count }) => {
         <Box sx={{ width: "100vw", display: 'flex', justifyContent: 'center', alignItems: 'center', borderTop: '1px solid lightgrey', }}>
             <Box sx={BoxCss}>
                 {
-                pageList.length!==0? 
-                <>
-                <ResultList pageList={pageList} page={page}/>
-                <Pagination count={count} page={page}
-                onChange={handleChange}
-               showFirstButton showLastButton />
-               </>
-                :
-                <Empty description="目前沒有研究" image={Empty.PRESENTED_IMAGE_SIMPLE}/>
+                    loading ?
+                        <CircularProgress /> :
+                        pageList.length !== 0 ?
+                            <>
+                                <ResultList pageList={pageList} page={page} />
+                                <Pagination count={count} page={page}
+                                    onChange={handleChange}
+                                    showFirstButton showLastButton />
+                            </>
+                            :
+                            <Empty description="目前沒有研究" image={Empty.PRESENTED_IMAGE_SIMPLE} />
                 }
-                
+
             </Box>
         </Box>
     )

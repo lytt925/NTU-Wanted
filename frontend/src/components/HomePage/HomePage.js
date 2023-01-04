@@ -12,6 +12,7 @@ import { positions } from '@mui/system';
 import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import Fab from '@mui/material/Fab';
 import Tooltip from '@mui/material/Tooltip';
+import useSearch from '../../containers/hooks/useSearch'
 
 // const BoxCss = {
 //     display: 'flex',
@@ -34,9 +35,10 @@ const HomePage = () => {
 
     const body = document.querySelector('body');
     body.style.backgroundColor = '#FFFFFF';
-
     const [expList, setExpList] = useState([])
     const [count, setCount] = useState(0);
+    const { sendSearch, loading, } = useSearch({ setExpList, setCount })
+
     const searchBarRef = useRef(null);
     const checkBoxRef = useRef(null);
     const [open, setOpen] = useState(false);
@@ -81,9 +83,9 @@ const HomePage = () => {
                 </Tooltip>
                 : <></>}
             {/* </Fab> */}
-            <SearchBar ref={searchBarRef} expList={expList} setExpList={setExpList} setCount={setCount} />
+            <SearchBar ref={searchBarRef} setCount={setCount} sendSearch={sendSearch} loading={loading} />
             <CheckTable ref={checkBoxRef} />
-            <ResultPage expList={expList} count={count} />
+            <ResultPage expList={expList} count={count} loading={loading} />
             {
                 width > 540 ?
                     <Tour className="tour" open={open} onClose={() => setOpen(false)}
