@@ -34,7 +34,7 @@ const ResultPage = ({ expList, count, loading }) => {
             <Box sx={BoxCss}>
                 {
                     loading ?
-                        <CircularProgress /> :
+                        <CircularProgress sx={{ color: 'rgb(223, 230, 217)' }} /> :
                         pageList.length !== 0 ?
                             <>
                                 <ResultList pageList={pageList} page={page} />
