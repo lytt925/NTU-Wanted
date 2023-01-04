@@ -39,6 +39,12 @@ const ExpPage = () => {
     }
 
     useEffect(() => {
+        const getInfo = async () => {
+            const { data } = await axios.get('/getInfo', { params: { id } });
+            setInfo(data.contents[0]);
+            setInfoLoading(false);
+            // console.log(data)
+        }
         if (Object.keys(info).length === 0) {
             try {
                 getInfo();
@@ -47,7 +53,7 @@ const ExpPage = () => {
                 console.log(e)
             }
         }
-    }, [])
+    }, [id, info])
 
     const body = document.querySelector('body');
     body.style.backgroundColor = '#f2f2f2';
