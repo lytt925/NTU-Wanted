@@ -31,7 +31,7 @@ const Wrapper = styled(Container)({
     alignItems: 'center'
 })
 
-const HomePage = () => {
+const HomePage = ({ open, setOpen }) => {
 
     const body = document.querySelector('body');
     body.style.backgroundColor = '#FFFFFF';
@@ -41,7 +41,6 @@ const HomePage = () => {
 
     const searchBarRef = useRef(null);
     const checkBoxRef = useRef(null);
-    const [open, setOpen] = useState(false);
     const steps = [
         {
             title: '搜尋',
@@ -70,18 +69,17 @@ const HomePage = () => {
     }
     var width = window.innerWidth;
 
-
     return (
         <Wrapper className='App'>
             <ScrollToTop />
             {/* <Fab className="tour" style={buttonStyle} sx={{ position: 'fixed', top: 80, left: '10%' }} onClick={() => setOpen(true)}> */}
             {/* How to use? */}
-            {(width > 540) ?
+            {/* {(width > 540) ?
                 <Tooltip title="How to use?">
                     <HelpCenterIcon className="tour" style={buttonStyle}
                         sx={{ position: '-webkit-sticky', "&:hover": { cursor: 'pointer' } }} onClick={() => setOpen(true)} />
                 </Tooltip>
-                : <></>}
+                : <></>} */}
             {/* </Fab> */}
             <SearchBar ref={searchBarRef} setCount={setCount} sendSearch={sendSearch} loading={loading} />
             <CheckTable ref={checkBoxRef} />
