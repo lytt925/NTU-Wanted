@@ -95,7 +95,7 @@ const Information = ({ info }) => {
                         <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
                             參與者條件
                         </Typography>
-                        <li>{age}</li>
+                        <li>年齡限制：{age}</li>
                         <li>{info.requirements ? info.requirements : ""}</li>
                     </List>
                 </Box>
@@ -120,7 +120,7 @@ const Information = ({ info }) => {
                     </List>
                 </Box>
             </Box >
-            <Box sx={BoxCss} className='ExpInfo' component={Paper}>
+            {/* <Box sx={BoxCss} className='ExpInfo' component={Paper}>
                 <Box sx={{ wordWrap: 'break-word' }}>
                     <List>
                         <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
@@ -129,7 +129,7 @@ const Information = ({ info }) => {
                         <li>{info.memo}</li>
                     </List>
                 </Box>
-            </Box >
+            </Box > */}
 
             <Box sx={BoxCss} className='ExpInfo' component={Paper}>
                 <Box sx={{ wordWrap: 'break-word' }}>
@@ -138,7 +138,7 @@ const Information = ({ info }) => {
                             聯絡資訊
                         </Typography>
                         <li>研究主試人員：{info.experimenter}</li>
-                        <li>聯絡電話：{info.phone}</li>
+                        {info.phone? <li>聯絡電話：{info.phone}</li>: <></>}
                         <li>電子郵件：{info.email}</li>
                     </List>
                 </Box>
