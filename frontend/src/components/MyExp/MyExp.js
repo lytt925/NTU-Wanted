@@ -15,7 +15,7 @@ const Wrapper = styled(Container)({
     alignItems: 'center',
 })
 
-const HomePage = () => {
+const MyExp = () => {
 
     const body = document.querySelector('body');
     body.style.backgroundColor = '#FFFFFF';
@@ -37,6 +37,8 @@ const HomePage = () => {
             },)
         console.log('sendmySearch', message, contents);
         if (message === 'success') {
+
+            console.log('inside', message, contents);
             setExpList(contents)
             //計算分頁數
             const newCount = Math.ceil(contents.length / PER_PAGE);
@@ -60,4 +62,4 @@ const HomePage = () => {
 
 
 
-export default HomePage
+export default MyExp
