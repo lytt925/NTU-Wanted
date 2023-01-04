@@ -38,7 +38,7 @@ const HomePage = ({ open, setOpen }) => {
     body.style.backgroundColor = '#FFFFFF';
     const [expList, setExpList] = useState([])
     const [count, setCount] = useState(0);
-    const { sendSearch, loading, } = useSearch({ setExpList, setCount })
+    const { sendSearch, loading, page, setPage } = useSearch({ setExpList, setCount })
 
     const searchBarRef = useRef(null);
     const checkBoxRef = useRef(null);
@@ -84,7 +84,7 @@ const HomePage = ({ open, setOpen }) => {
             {/* </Fab> */}
             <SearchBar ref={searchBarRef} setCount={setCount} sendSearch={sendSearch} loading={loading} />
             <CheckTable ref={checkBoxRef} />
-            <ResultPage expList={expList} count={count} loading={loading} />
+            <ResultPage expList={expList} count={count} loading={loading} page={page} setPage={setPage}/>
             {
                 isTouchScreen ?
                     <></> :

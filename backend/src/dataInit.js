@@ -1,5 +1,5 @@
 import Experiment from './models/experiment'
-import infoData from './data.json'
+import infoData from './databackup.json'
 import CommentModel from './models/comment'
 import commentData from './comments.json'
 

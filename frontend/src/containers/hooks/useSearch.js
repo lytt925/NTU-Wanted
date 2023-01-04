@@ -6,6 +6,7 @@ import { useFilter } from "./useFilter";
 const useSearch = ({ expList, setExpList, setCount }) => {
     const [loading, setLoading] = useState(true)
     const { searchTitle, timeRange, locationTagsSelected, rewardTagsSelected, typeTagsSelected, } = useFilter()
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
         if (expList) {
@@ -14,6 +15,7 @@ const useSearch = ({ expList, setExpList, setCount }) => {
     }, [expList])
 
     const sendSearch = async () => {
+        setPage(1)
         setLoading(true)
         const { data: { message, contents } } =
             await axios.get('/getExpList', {
@@ -34,7 +36,7 @@ const useSearch = ({ expList, setExpList, setCount }) => {
         }
     }
 
-    return { sendSearch, loading, setLoading }
+    return { sendSearch, loading, setLoading, page, setPage }
 }
 
 export default useSearch;
