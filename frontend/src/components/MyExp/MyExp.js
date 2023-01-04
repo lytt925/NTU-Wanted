@@ -34,6 +34,8 @@ const HomePage = () => {
             },)
         console.log('sendmySearch', message, contents);
         if (message === 'success') {
+
+            console.log('inside', message, contents);
             setExpList(contents)
             //計算分頁數
             const newCount = Math.ceil(contents.length / PER_PAGE);

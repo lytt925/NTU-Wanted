@@ -12,6 +12,7 @@ const ResultPage = ({ expList, count, loading, page, setPage }) => {
     const begin = (page - 1) * PER_PAGE;
     const end = begin + PER_PAGE;
     const pageList = expList.slice(begin, end);
+    console.log('resultpage', expList)
 
 
     const handleChange = (e, p) => {
