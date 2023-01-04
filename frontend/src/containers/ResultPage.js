@@ -1,5 +1,5 @@
 ﻿import ResultList from '../components/HomePage/SearchResultList/ResultsList'
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import Pagination from '@mui/material/Pagination';
 import { PER_PAGE } from '../utils/constants';
 import { Box } from '@mui/material';
@@ -12,7 +12,6 @@ const ResultPage = ({ expList, count, loading, page, setPage }) => {
     const begin = (page - 1) * PER_PAGE;
     const end = begin + PER_PAGE;
     const pageList = expList.slice(begin, end);
-
 
     const handleChange = (e, p) => {
         setPage(p);
@@ -29,6 +28,13 @@ const ResultPage = ({ expList, count, loading, page, setPage }) => {
         '&, .TaskInfo:first-of-type': { marginTop: "10px", borderTopRightRadius: "5px", borderTopLeftRadius: "5px" },
         '&, .TaskInfo:last-of-type': { marginBottom: "20px", borderBottomRightRadius: "5px", borderBottomLeftRadius: "5px" },
     }
+    const scrollToResult = () => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      };
+
+    useEffect(() =>{
+        scrollToResult()
+    },[page])
 
     return (
         <Box sx={{ width: "100vw", display: 'flex', justifyContent: 'center', alignItems: 'center', borderTop: '1px solid lightgrey', }}>

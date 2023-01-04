@@ -34,16 +34,19 @@ const UserProvider = (props) => {
     const [name, setName] = useState(savedMe ? savedMe[1] : "");
     const [pic, setPic] = useState(savedMe ? savedMe[2] : "");
     const [login, setLogin] = useState(savedMe ? true : false)
-    const [likedList, setLikedList] = useState([])
+    const [likedList, setLikedList] = useState([]);
+    const [loading, setLoading] = useState(true);
     //  User //
 
     const getLikedList = async () => {
+        setLoading(true)
         const { data: { message, likedList: newLikeList } } = await axios.get('/getLikedList', {
             params: {
                 email
             }
         })
-        setLikedList(newLikeList)
+        setLikedList(newLikeList);
+        setLoading(false);
     }
 
     useEffect(() => {
@@ -69,7 +72,8 @@ const UserProvider = (props) => {
                 email,
                 name,
                 pic,
-                likedList
+                likedList,
+                loading
             }}
             {...props}
         />

@@ -23,9 +23,12 @@ const HomePage = () => {
     const { state } = useLocation();
     const [expList, setExpList] = useState([])
     const [count, setCount] = useState(0);
-    const { name, email } = useUser()
+    const [page, setPage] = useState(1);
+    const { name, email } = useUser();
+    const [loading, setLoading] = useState(true)
 
     const sendmySearch = async () => {
+        setLoading(true)
         const { data: { message, contents } } =
             await axios.get('/getMyexp', {
                 params: {
@@ -38,6 +41,7 @@ const HomePage = () => {
             //計算分頁數
             const newCount = Math.ceil(contents.length / PER_PAGE);
             setCount(newCount);
+            setLoading(false);
         }
     }
 
@@ -49,7 +53,7 @@ const HomePage = () => {
     return (
         <Wrapper className='App'>
             <h2 style={{ textAlign: "center", color: "rgb(211, 97, 3)}" }}>我的研究</h2>
-            <ResultPage expList={expList} count={count} />
+            <ResultPage expList={expList} count={count} loading={loading} page={page} setPage={setPage}/>
         </Wrapper >
     )
 }

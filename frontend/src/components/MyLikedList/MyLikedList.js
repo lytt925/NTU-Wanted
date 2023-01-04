@@ -18,8 +18,9 @@ const LikedListPage = () => {
     const body = document.querySelector('body');
     body.style.backgroundColor = '#FFFFFF';
 
-    const [count, setCount] = useState(0);
-    const { login, likedList } = useUser()
+    // const [count, setCount] = useState(0);
+    const [page, setPage] = useState(1);
+    const { login, likedList, loading } = useUser()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -28,18 +29,18 @@ const LikedListPage = () => {
         }
     }, [login])
 
-    const newCount = Math.ceil(likedList.length / PER_PAGE);
+    const count = Math.ceil(likedList.length / PER_PAGE);
 
-    useEffect(() => {
-        setCount(newCount);
-    }, [count])
+    // useEffect(() => {
+    //     setCount(newCount);
+    // }, [count])
 
     return (
         <Wrapper className='App'>
             <h2 style={{ textAlign: "center", color: "rgb(211, 97, 3)}" }}>我的收藏</h2>
             {/* <SearchBar expList={likedList} setExpList={setLikedList} setCount={setCount} />
             <CheckTable /> */}
-            <ResultPage expList={likedList} count={count} />
+            <ResultPage expList={likedList} count={count} loading={loading} page={page} setPage={setPage}/>
         </Wrapper >
     )
 }
