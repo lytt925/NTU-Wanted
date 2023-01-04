@@ -7,7 +7,9 @@ import axios from '../../containers/api'
 const LOCALSTORAGE_KEY = "save-me";
 var savedMe = null;
 try {
-    savedMe = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY))
+    savedMe = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
+    if (savedMe[0].includes("@") === false) { savedMe = null }
+    // console.log(savedMe)
 }
 catch (e) { savedMe = null }
 
