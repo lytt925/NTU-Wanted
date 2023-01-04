@@ -27,10 +27,10 @@ const useSearch = ({ expList, setExpList, setCount }) => {
             })
         if (message === 'success') {
             setExpList(contents)
-            setLoading(false)
             //計算分頁數
             const newCount = Math.ceil(contents.length / PER_PAGE);
             setCount(newCount);
+            setLoading(false)
         }
     }
 
