@@ -81,10 +81,14 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
         firstName.value = '';
     }
 
-    const storeReply = async (expID, name, content, reply) => {
-        await axios.post('createReply/', {
-            expID, name, content, reply
-        })
+    const storeReply = async (expID, name, content, reply, c) => {
+        const { data: { message, contents } } =
+            await axios.post('createReply/', {
+                expID, name, content, reply
+            })
+        if (message === 'success') {
+            setComments(c);
+        }
     }
 
     const submitComment = () => {
@@ -112,8 +116,7 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
             const c = comments;
             c[parseInt(e.target.id)].reply.push({ 'name': name, 'content': replycontent });
             const allreply = c[parseInt(e.target.id)].reply;
-            storeReply(recentExpID, recentName, recentContent, allreply)
-            setComments(c);
+            storeReply(recentExpID, recentName, recentContent, allreply, c)
 
             const firstName = document.getElementById(`outlined-textarea${e.target.id}`);
             firstName.value = '';

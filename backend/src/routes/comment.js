@@ -29,5 +29,6 @@ exports.CreateReply = async (req, res) => {
     try {
         await existing.updateOne({ 'expID': expID, 'name': name, 'content': content, 'reply': reply });
         existing.save();
+        res.status(200).send({ message: 'success', contents: null, })
     } catch (e) { throw new Error("Comment updating error: " + e); }
 }
