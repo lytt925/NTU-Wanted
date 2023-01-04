@@ -79,11 +79,11 @@ const TaskInfo = ({ task, liked }) => {
                     <li>時間：{task.time}</li>
                     <li>地點：{task.location}</li>
                 </List>
-                <Stack direction="row" spacing={1} sx={{ mb: "8px", verticalAlign: 'middle' }}>
-                    {task.typeTags.map((type) => (<Chip key={type} sx={{ padding: 'None', fontSize: '12px' }} label={type} color="primary" variant="outlined" />))}
-                    {task.rewardTags.map((tag) => (<Chip key={tag} sx={{ padding: 'None', fontSize: '12px' }} label={tag} color="success" variant="outlined" />))}
-                    {task.locationTags.map((tag) => (<Chip key={tag} sx={{ padding: 'None', fontSize: '12px' }} label={tag} color="error" variant="outlined" />))}
-                </Stack>
+                <Box sx={{ display: 'flex', mb: "8px", verticalAlign: 'middle', flexWrap: 'wrap' }}>
+                    {task.typeTags.map((type) => (<Chip key={type} sx={{ mt: '5px', mr: '8px', padding: 'None', fontSize: '12px' }} label={type} color="primary" variant="outlined" />))}
+                    {task.rewardTags.map((tag) => (<Chip key={tag} sx={{ mt: '5px', mr: '8px', padding: 'None', fontSize: '12px' }} label={tag} color="success" variant="outlined" />))}
+                    {task.locationTags.map((tag) => (<Chip key={tag} sx={{ mt: '5px', mr: '8px', padding: 'None', fontSize: '12px' }} label={tag} color="error" variant="outlined" />))}
+                </Box>
             </Box>
         </>
     )
