@@ -42,6 +42,7 @@ function ResponsiveAppBar({ setOpen }) {
 
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
+    // const [height, setHeight] = useState(0)
     const { login, setLogin, email, setEmail, name, setName, pic, setPic, setLikedList } = useUser()
 
     const handleOpenUserMenu = (event) => {
@@ -116,6 +117,20 @@ function ResponsiveAppBar({ setOpen }) {
             name: n, email: e
         })
     }
+
+    const tourEvent = () => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+        setTimeout(function () {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            if (winScroll === 0) {
+                setOpen(true)
+            }
+        }, 1000);
+    }
+
+    // useEffect(() => {
+
+    // }, [height])
 
     return (// sticky
         // <ThemeProvider theme={theme}>
@@ -242,7 +257,7 @@ function ResponsiveAppBar({ setOpen }) {
                         <Tooltip title="How to use?">
                             <Button>
                                 <HelpCenterIcon className="tour" sx={buttonStyle}
-                                    onClick={() => setOpen(true)} />
+                                    onClick={tourEvent} />
                             </Button>
                         </Tooltip>
                         : <></>}
