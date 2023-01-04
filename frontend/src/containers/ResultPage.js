@@ -12,8 +12,8 @@ const ResultPage = ({ expList, count, loading, page, setPage }) => {
     const begin = (page - 1) * PER_PAGE;
     const end = begin + PER_PAGE;
     const pageList = expList.slice(begin, end);
-    console.log('resultpage expList', expList)
-    console.log('resultpage pageList', pageList)
+    // console.log('resultpage expList', expList)
+    // console.log('resultpage pageList', pageList)
 
     const handleChange = (e, p) => {
         setPage(p);
@@ -32,11 +32,11 @@ const ResultPage = ({ expList, count, loading, page, setPage }) => {
     }
     const scrollToResult = () => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-      };
+    };
 
-    useEffect(() =>{
+    useEffect(() => {
         scrollToResult()
-    },[page])
+    }, [page])
 
     return (
         <Box sx={{ width: "100vw", display: 'flex', justifyContent: 'center', alignItems: 'center', borderTop: '1px solid lightgrey', }}>
