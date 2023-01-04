@@ -95,7 +95,7 @@ const Information = ({ info }) => {
                         <Typography gutterBottom variant="h6" component="div" fontWeight='bold'>
                             參與者條件
                         </Typography>
-                        <li>{age}</li>
+                        <li>年齡限制：{age}</li>
                         <li>{info.requirements ? info.requirements : ""}</li>
                     </List>
                 </Box>
