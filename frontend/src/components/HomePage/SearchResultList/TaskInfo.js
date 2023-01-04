@@ -28,7 +28,8 @@ const TaskInfo = ({ task, liked }) => {
 
     const { email, setLikedList, login } = useUser()
     const [messageApi, contextHolder] = message.useMessage();
-    const [loading, setLoading] = useState(false)
+    // const [loading, setLoading] = useState(false)
+    const [like, setLike] = useState(liked)
 
     const handleLike = async (e, expId, action) => {
         // console.log(login)
@@ -41,7 +42,13 @@ const TaskInfo = ({ task, liked }) => {
         }
         else {
             e.stopPropagation()
-            setLoading(true)
+            // setLoading(true)
+            if (action === 'unlike') {
+                setLike(false)
+            } else {
+                setLike(true)
+            }
+
             const { data: { message, likedList: newLikedList } } =
                 await axios.post("/updateLikeList", { email, expId, action })
             if (message === 'success') {
@@ -50,7 +57,7 @@ const TaskInfo = ({ task, liked }) => {
             else {
                 // console.log(action, "failed ")
             }
-            setLoading(false)
+            // setLoading(false)
         }
     }
 
@@ -70,9 +77,8 @@ const TaskInfo = ({ task, liked }) => {
                     <Typography className="Title" variant="h6" sx={{ "&:hover": { color: '#4267B2' } }} onClick={() => ToExp(task.id)}>
                         {task.title}
                     </Typography>
-                    {loading ? <Favorite sx={{ color: 'lightgrey' }} /> :
-                        liked ? <Favorite onClick={(e) => handleLike(e, task._id, 'unlike')} sx={{ color: 'red' }} />
-                            : <FavoriteBorder onClick={(e) => handleLike(e, task._id, 'like')} />}
+                    {liked ? <Favorite onClick={(e) => handleLike(e, task._id, 'unlike')} sx={{ color: 'red' }} />
+                        : <FavoriteBorder onClick={(e) => handleLike(e, task._id, 'like')} />}
                 </Box>
                 <List>
                     <li>時長：{task.length}</li>
