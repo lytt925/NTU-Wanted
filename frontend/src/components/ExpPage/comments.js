@@ -76,6 +76,7 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
         if (message === 'success') {
             // console.log('step2', { 'name': name, 'content': content, 'reply': [] });
             setComments([...comments, { 'name': name, 'content': content, 'reply': [] }])
+            setLoad(false)
         }
         const firstName = document.getElementById(`content`);
         firstName.value = '';

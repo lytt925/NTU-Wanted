@@ -25,48 +25,50 @@ const ExpPage = () => {
     const [commentsLoading, setCommentsLoading] = useState(true);
 
     const getInfo = async () => {
-        const { data } = await axios.get('/getInfo', { params: { id } });
-        setInfo(data.contents[0]);
+        setInfoLoading(true);
+        const { data: { contents } } = await axios.get('/getInfo', { params: { id } });
+        setInfo(contents[0]);
         setInfoLoading(false);
-        // console.log(data)
     }
     const getComments = async () => {
-
-        const { data } = await axios.get('/getCommentsByExpId', { params: { id } });
-        setComments(data.contents);
-        setCommentsLoading(false);
+        setCommentsLoading(true);
+        const { data: { contents } } = await axios.get('/getCommentsByExpId', { params: { id } });
+        setComments(contents);
+        setCommentsLoading(false)
 
     }
+
     useEffect(() => {
         if (Object.keys(info).length === 0) {
-            getInfo();
+            try {
+                getInfo();
+                getComments();
+            } catch (e) {
+                console.log(e)
+            }
         }
     }, [])
-
-    useEffect(() => {
-        getComments();
-    }, [comments])
-
 
     const body = document.querySelector('body');
     body.style.backgroundColor = '#f2f2f2';
 
-    const loadingCircle = <CircularProgress sx={{ color: 'rgb(223, 230, 217)' }} />
 
     return (
         <Wrapper className='ExpPage'>
-            {infoLoading ?
-                loadingCircle
+            {infoLoading && commentsLoading ?
+                <CircularProgress sx={{ color: 'rgb(223, 230, 217)', mt: '200px' }} />
                 :
                 <>
                     {infoLoading ?
-                        loadingCircle : <Information info={info} />}
-                    {/* {commentsLoading ?
-                        loadingCircle : <Comment expID={id} comments={comments} setComments={setComments} setLoad={setCommentsLoading} />
-                    } */}
+                        <CircularProgress sx={{ color: 'rgb(223, 230, 217)' }} />
+                        : <Information info={info} />}
+
+                    {commentsLoading ?
+                        <CircularProgress sx={{ color: 'rgb(223, 230, 217)' }} />
+                        : <Comment expID={id} comments={comments} setComments={setComments} setLoad={setCommentsLoading} />
+                    }
                 </>
             }
-            <Comment expID={id} comments={comments} setComments={setComments} setLoad={setCommentsLoading} />
         </Wrapper>
     )
 }
