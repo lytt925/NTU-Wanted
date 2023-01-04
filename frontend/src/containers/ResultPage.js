@@ -31,7 +31,7 @@ const ResultPage = ({ expList, count, loading, page, setPage }) => {
         '&, .TaskInfo:last-of-type': { marginBottom: "20px", borderBottomRightRadius: "5px", borderBottomLeftRadius: "5px" },
     }
     const scrollToResult = () => {
-        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     };
 
     useEffect(() => {
