@@ -11,7 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
@@ -95,6 +95,8 @@ function ResponsiveAppBar({ setOpen }) {
         // if (e.target.innerHTML === '✆ 聯絡我們')
         navigate('/contactus')
     }
+
+    const { pathname } = useLocation()
 
     const responseGoogle = async (response) => {
 
@@ -234,7 +236,7 @@ function ResponsiveAppBar({ setOpen }) {
                             </Button>
                         ))}
                     </Box>
-                    {(width > 540) ?
+                    {((width > 540) && pathname === '/') ?
                         <Tooltip title="How to use?">
                             <Button>
                                 <HelpCenterIcon className="tour" sx={buttonStyle}
