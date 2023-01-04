@@ -77,7 +77,7 @@ const TaskInfo = ({ task, liked }) => {
                     <Typography className="Title" variant="h6" sx={{ "&:hover": { color: '#4267B2' } }} onClick={() => ToExp(task.id)}>
                         {task.title}
                     </Typography>
-                    {liked ? <Favorite onClick={(e) => handleLike(e, task._id, 'unlike')} sx={{ color: 'red' }} />
+                    {like ? <Favorite onClick={(e) => handleLike(e, task._id, 'unlike')} sx={{ color: 'red' }} />
                         : <FavoriteBorder onClick={(e) => handleLike(e, task._id, 'like')} />}
                 </Box>
                 <List>
