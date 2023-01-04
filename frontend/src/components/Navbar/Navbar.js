@@ -236,7 +236,7 @@ function ResponsiveAppBar({ setOpen }) {
                             </Button>
                         ))}
                     </Box>
-                    {(width > 540) ?
+                    {(width > 1200) ?
                         <>
                             {(window.location.href === port) ?
                                 <Tooltip title="How to use?">
