@@ -55,17 +55,18 @@ const ExpPage = () => {
 
     return (
         <Wrapper className='ExpPage'>
-            {infoLoading && commentsLoading ?
+            {infoLoading ?
                 loadingCircle
                 :
                 <>
                     {infoLoading ?
                         loadingCircle : <Information info={info} />}
-                    {commentsLoading ?
+                    {/* {commentsLoading ?
                         loadingCircle : <Comment expID={id} comments={comments} setComments={setComments} setLoad={setCommentsLoading} />
-                    }
+                    } */}
                 </>
             }
+            <Comment expID={id} comments={comments} setComments={setComments} setLoad={setCommentsLoading} />
         </Wrapper>
     )
 }

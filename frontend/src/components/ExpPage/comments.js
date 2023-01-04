@@ -64,16 +64,17 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
     const { name, login } = useUser()
 
     const storeComment = async () => {
-
+        // console.log('step1', { 'name': name, 'content': content, 'reply': [] });
         const { data: { message, contents } } =
-            await axios.post('createComment/', {
+            await axios.post('/createComment', {
                 expID, name, content
             })
         if (message === 'same message') {
             // console.log('same mes')
             setError(true)
         }
-        else {
+        if (message === 'success') {
+            // console.log('step2', { 'name': name, 'content': content, 'reply': [] });
             setComments([...comments, { 'name': name, 'content': content, 'reply': [] }])
         }
         const firstName = document.getElementById(`content`);
