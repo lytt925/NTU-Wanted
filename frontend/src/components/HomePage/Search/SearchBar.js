@@ -10,9 +10,7 @@ import SearchIcon from '@mui/icons-material/Search';
 // import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 // import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 // import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import axios from '../../../containers/api';
 import { useLocation } from 'react-router-dom'
-import { PER_PAGE } from "../../../utils/constants";
 import { Form, DatePicker } from 'antd';
 import dayjs from 'dayjs'
 import React from "react";
@@ -38,41 +36,14 @@ const searchBoxCss = {
     flexWrap: 'wrap'
 }
 
-const SearchBar = React.forwardRef(({ expList, setExpList, setCount }, ref) => {
+const SearchBar = React.forwardRef(({ sendSearch, loading }, ref) => {
     const { setSearchTitle, setTimeRange, searchTitle, timeRange, locationTagsSelected, rewardTagsSelected, typeTagsSelected, } = useFilter()
-    const [loading, setLoading] = useState(false)
 
     const { state } = useLocation();
-
-    const sendSearch = async () => {
-        setLoading(true)
-        const { data: { message, contents } } =
-            await axios.get('/getExpList', {
-                params: {
-                    searchTitle,
-                    locationTagsSelected,
-                    timeRange,
-                    rewardTagsSelected,
-                    typeTagsSelected,
-                },
-            })
-        if (message === 'success') {
-            setExpList(contents)
-            //計算分頁數
-            const newCount = Math.ceil(contents.length / PER_PAGE);
-            setCount(newCount);
-        }
-    }
 
     useEffect(() => {
         sendSearch()
     }, [state])
-
-    useEffect(() => {
-        if (expList) {
-            setLoading(false)
-        }
-    }, [expList])
 
     const searchTitleHandler = (e) => {
         setSearchTitle(e.target.value)

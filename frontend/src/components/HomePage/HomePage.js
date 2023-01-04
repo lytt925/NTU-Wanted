@@ -12,6 +12,8 @@ import { positions } from '@mui/system';
 import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import Fab from '@mui/material/Fab';
 import Tooltip from '@mui/material/Tooltip';
+import useSearch from '../../containers/hooks/useSearch'
+import isTouchScreen from './isTouchScreen';
 
 // const BoxCss = {
 //     display: 'flex',
@@ -30,16 +32,16 @@ const Wrapper = styled(Container)({
     alignItems: 'center'
 })
 
-const HomePage = () => {
+const HomePage = ({ open, setOpen }) => {
 
     const body = document.querySelector('body');
     body.style.backgroundColor = '#FFFFFF';
-
     const [expList, setExpList] = useState([])
     const [count, setCount] = useState(0);
+    const { sendSearch, loading, } = useSearch({ setExpList, setCount })
+
     const searchBarRef = useRef(null);
     const checkBoxRef = useRef(null);
-    const [open, setOpen] = useState(false);
     const steps = [
         {
             title: '搜尋',
@@ -66,30 +68,28 @@ const HomePage = () => {
         positions: "relative",
         right: "12%"
     }
-    var width = window.innerWidth;
-
+    // var width = window.innerWidth;
 
     return (
         <Wrapper className='App'>
             <ScrollToTop />
             {/* <Fab className="tour" style={buttonStyle} sx={{ position: 'fixed', top: 80, left: '10%' }} onClick={() => setOpen(true)}> */}
             {/* How to use? */}
-            {(width > 540) ?
+            {/* {(width > 540) ?
                 <Tooltip title="How to use?">
                     <HelpCenterIcon className="tour" style={buttonStyle}
                         sx={{ position: 'inherit', "&:hover": { cursor: 'pointer' } }} onClick={() => setOpen(true)} />
                 </Tooltip>
-                : <></>}
+                : <></>} */}
             {/* </Fab> */}
-            <SearchBar ref={searchBarRef} expList={expList} setExpList={setExpList} setCount={setCount} />
+            <SearchBar ref={searchBarRef} setCount={setCount} sendSearch={sendSearch} loading={loading} />
             <CheckTable ref={checkBoxRef} />
-            <ResultPage expList={expList} count={count} />
+            <ResultPage expList={expList} count={count} loading={loading} />
             {
-                width > 540 ?
+                isTouchScreen ?
+                    <></> :
                     <Tour className="tour" open={open} onClose={() => setOpen(false)}
                         steps={steps} />
-                    :
-                    <></>
             }
         </Wrapper >
     )

@@ -8,8 +8,11 @@ import MyLikedListPage from '../components/MyLikedList/MyLikedList'
 import AppBar from '@mui/material/AppBar';
 import Container from '@mui/material/Container';
 import ContactUs from '../components/ContactUs';
+import { useState } from 'react';
 
 function App() {
+
+    const [open, setOpen] = useState(false);
 
     return (
         <Router>
@@ -17,9 +20,9 @@ function App() {
                 <Container maxWidth="xl" sx={{ height: '60px', backgroundColor: '#FFFFFF', border: 'none' }}>
                 </Container>
             </AppBar>
-            <ResponsiveAppBar />
+            <ResponsiveAppBar setOpen={setOpen} />
             <Routes>
-                <Route path="/" element={<HomePage />} />
+                <Route path="/" element={<HomePage open={open} setOpen={setOpen} />} />
                 <Route path="/newpost" element={<InfoForm />} />
                 <Route path="/experiment/:id" element={<ExpPage />} />
                 <Route path='/myexperiment' element={<MyExp />} />

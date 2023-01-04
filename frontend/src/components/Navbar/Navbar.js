@@ -17,8 +17,18 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
 import { useUser } from "../../containers/hooks/useUser";
 import axios from "../../containers/api";
+import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import { resolveObjectURL } from "buffer";
 
+const buttonStyle = {
+    "&:hover": { cursor: 'pointer' },
+    backgroundColor: "transparent",
+    // border: 0,
+    color: "red",
+    positions: "static",
+    // right: "12%"
+}
+var width = window.innerWidth;
 
 //// credited：<a href="https://www.flaticon.com/free-icons/poster" title="poster icons">Poster icons created by Freepik - Flaticon</a>
 
@@ -26,7 +36,7 @@ import { resolveObjectURL } from "buffer";
 const pages = ['✆ 關於我們'];
 const google_key = '705967299189-hj61h5r94cmlkljemcg45v1cq5anhhuj.apps.googleusercontent.com';
 
-function ResponsiveAppBar() {
+function ResponsiveAppBar({ setOpen }) {
 
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
@@ -209,6 +219,7 @@ function ResponsiveAppBar() {
                                 key={page}
                                 id={index}
                                 onClick={toPage}
+
                                 // variant="outlined"
                                 sx={{
                                     color: 'white', display: 'block',
@@ -223,6 +234,14 @@ function ResponsiveAppBar() {
                             </Button>
                         ))}
                     </Box>
+                    {(width > 540) ?
+                        <Tooltip title="How to use?">
+                            <Button>
+                                <HelpCenterIcon className="tour" sx={buttonStyle}
+                                    onClick={() => setOpen(true)} />
+                            </Button>
+                        </Tooltip>
+                        : <></>}
 
                     {/* full screen { xs: 'none', md: 'flex' } login */}
                     {(login === false) ?
