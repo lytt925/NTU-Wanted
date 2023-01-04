@@ -46,8 +46,8 @@ const BasicTable = React.forwardRef((props, ref) => {
     const { rewardTagsSelected, setRewardTagsSelected, typeTagsSelected, setTypeTagsSelected, locationTagsSelected, setLocationTagsSelected, setTimeRange } = useFilter()
 
     const typeTagsRows = ['實驗', '問卷', '訪談', '其他'];
-    const rewardTagsRows = ['普心時數', '現金', '食物', '其他']
-    const locationTagsRows = ['校總區', '城中校區', '線上']
+    const rewardTagsRows = ['普心時數', '現金', '禮券', '食物', '其他']
+    const locationTagsRows = ['校總區', '城中校區', '線上', '其他']
 
     const checkBoxList = [
         { header: '📃 研究類型', checkBoxes: typeTagsRows, boxState: typeTagsSelected, setBoxState: setTypeTagsSelected },
