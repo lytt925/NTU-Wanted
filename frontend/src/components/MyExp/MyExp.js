@@ -35,10 +35,10 @@ const MyExp = () => {
                     name, email
                 }
             },)
-        console.log('sendmySearch', message, contents);
+        // console.log('sendmySearch', message, contents);
         if (message === 'success') {
 
-            console.log('inside', message, contents);
+            // console.log('inside', message, contents);
             setExpList(contents)
             //計算分頁數
             const newCount = Math.ceil(contents.length / PER_PAGE);
@@ -55,7 +55,7 @@ const MyExp = () => {
     return (
         <Wrapper className='App'>
             <h2 style={{ textAlign: "center", color: "rgb(211, 97, 3)}" }}>我的研究</h2>
-            <ResultPage expList={expList} count={count} loading={loading} page={page} setPage={setPage}/>
+            <ResultPage expList={expList} count={count} loading={loading} page={page} setPage={setPage} />
         </Wrapper >
     )
 }
