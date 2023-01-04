@@ -15,7 +15,7 @@ const Wrapper = styled(Container)({
     alignItems: 'center',
 })
 
-const HomePage = () => {
+const MyExp = () => {
 
     const body = document.querySelector('body');
     body.style.backgroundColor = '#FFFFFF';
@@ -58,4 +58,4 @@ const HomePage = () => {
 
 
 
-export default HomePage
+export default MyExp
