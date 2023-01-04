@@ -32,6 +32,7 @@ const HomePage = () => {
                     name, email
                 }
             },)
+        console.log('sendmySearch', message, contents);
         if (message === 'success') {
             setExpList(contents)
             //計算分頁數
@@ -47,7 +48,7 @@ const HomePage = () => {
 
     return (
         <Wrapper className='App'>
-            <h2 style={{textAlign: "center", color:"rgb(211, 97, 3)}"}}>我的研究</h2>
+            <h2 style={{ textAlign: "center", color: "rgb(211, 97, 3)}" }}>我的研究</h2>
             <ResultPage expList={expList} count={count} />
         </Wrapper >
     )
