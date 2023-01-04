@@ -176,7 +176,7 @@ const Comment = ({ expID, comments, setComments, setLoad }) => {
                                     {(login === false) ? <></> : <Box sx={{ display: 'flex', flexWrap: 'nowrap' }}>
                                         <TextField
                                             id={`outlined-textarea${key}`}
-                                            placeholder="Type a reply here..."
+                                            placeholder="回覆留言"
                                             multiline
                                             variant="standard"
                                             onChange={e => handleReply(e.target.value)}

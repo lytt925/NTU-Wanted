@@ -78,6 +78,7 @@ const InfoForm = () => {
             'age': { upper: fieldsValue['upper'], lower: fieldsValue['lower'] },
             'time': `${rangeValue[0].format('YYYY年MM月DD日')} 至 ${rangeValue[1].format('YYYY年MM月DD日')} 止`,
             'timeRange': { from: rangeValue[0].format('YYYY/MM/DD'), to: rangeValue[1].format('YYYY/MM/DD') },
+            'length': `${fieldsValue['length']} 分鐘`
         };
 
         submitForm(values);
