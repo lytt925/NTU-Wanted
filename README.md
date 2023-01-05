@@ -6,7 +6,7 @@ https://github.com/wp1111-Final-Project/NTU-Wanted/
 (Group 48) NTU-Wanted
 組長： 心理四 李彥廷
 組員： 心理四 蕭柏圓 、 心理四 沈家齊
-- Demo 影片連結：https://youtu.be/rEvDiqxz5EA
+- Demo 影片連結：https://youtu.be/WVGufTUzmmI
 - 服務內容：
     - 由於組員都是心理系，有感於平常做實驗尋找受試者的困難，所以希望提供校內正在尋找受試者的研究單位一個整合性的媒合平台。在NTU-Wanted 網站上，各類型研究都可以發布研究資訊，我們的多重篩選功能讓校內有修普心想加分、想賺錢或有興趣參與研究的潛在受試者能更快速找到想參加的研究。
 - 功能簡述：
