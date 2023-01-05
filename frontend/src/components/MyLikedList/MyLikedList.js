@@ -40,7 +40,7 @@ const LikedListPage = () => {
             <h2 style={{ textAlign: "center", color: "rgb(211, 97, 3)}" }}>我的收藏</h2>
             {/* <SearchBar expList={likedList} setExpList={setLikedList} setCount={setCount} />
             <CheckTable /> */}
-            <ResultPage expList={likedList} count={count} loading={loading} page={page} setPage={setPage}/>
+            <ResultPage expList={likedList} count={count} loading={loading} page={page} setPage={setPage} />
         </Wrapper >
     )
 }

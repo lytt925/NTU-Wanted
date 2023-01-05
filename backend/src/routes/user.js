@@ -29,7 +29,7 @@ exports.updateLikeList = async (req, res) => {
         const user = await UserModel.findOne({ email })
         const exp = await ExperimentModel.findOne({ _id: expId })
         if (user && exp && action === 'like') {
-            if (!user.likedList.includes(exp))
+            if (!user.likedList.includes(exp._id))
                 user.likedList.push(exp)
         }
         else if (user && exp && action === 'unlike') {
