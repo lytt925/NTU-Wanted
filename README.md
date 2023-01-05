@@ -3,7 +3,7 @@ git 協作都在以下地方完成。
 https://github.com/wp1111-Final-Project/NTU-Wanted/
 
 # [111-1] Web Programming Final
-(Group 48) NTU-Wanted. 
+(Group 48) NTU-Wanted   
 組長： 心理四 李彥廷  
 組員： 心理四 蕭柏圓 、 心理四 沈家齊  
 - Demo 影片連結：https://youtu.be/WVGufTUzmmI
