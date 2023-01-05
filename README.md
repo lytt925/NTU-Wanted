@@ -27,7 +27,7 @@ https://github.com/wp1111-Final-Project/NTU-Wanted/
 資料庫：MongoDB Atlas
 - 使用之第三方套件、框架、程式碼：
   - 前端：antd, mui, axios, react,
-  - 後端：mongoose, express, nodemon
+  - 後端：mongoose, express, nodemon, uuidv4, cors
 - 安裝方式：
     - 在 localhost 安裝與測試之詳細步驟：
     - 請先到 “final” 目錄用 “yarn install:all” 來安裝我們的專案。
