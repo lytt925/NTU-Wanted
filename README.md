@@ -34,7 +34,7 @@ https://github.com/wp1111-Final-Project/NTU-Wanted/
     - <b>[Frontend]</b>:
         - 到 “final” 目錄用 “yarn start” 開啟前端（請注意：出於安全性的考量，若是想要在 localhost 安裝與測試，Google 登入的功能只允許前端開在 localhost:3000 ）。
     - <b>[Backend]</b>:
-        - 須在 “final/backend” 目錄，新增一個 .env 的檔案，內容為 “MONGO_URL=你的 Mongo DB 連結” 以及 “MODE=Reset“。
+        - 須在 “final/backend” 目錄，新增一個 .env 的檔案，內容為 “MONGO_URL=你的 Mongo DB 連結” 以及 “MODE=Reset“ (MODE=Reset)是為了要有初始資料。
         - 到 “final” 目錄用 “yarn server” 開啟後端。
 - 專題製作心得：
   - 李彥廷： 這個主題是因為身為心理系學生常常需要收實驗收問卷而產生的想法，目標就是希望能做出一個真的有用的網站。這是第一次跟別人合作寫一個比較大的project ，讓我更了解合作時的流程和程式架構的重要性。
